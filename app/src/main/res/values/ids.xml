@@ -1,0 +1,4 @@
+<resources>
+    <item type="id" name="vod_list_group_last_id"/>
+    <item type="id" name="vod_list_right_first_id"/>
+</resources>

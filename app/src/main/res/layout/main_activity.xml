@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.szreach.ybolotvbox.views.MainLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:background="@drawable/home_bg"
+       android:id="@+id/home_page"
+       android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="40px"
+            android:src="@drawable/logo"
+            android:layout_width="40px"
+            android:layout_height="40px"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="3px"
+            android:text="@string/home_title"
+            android:textSize="26px"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:typeface="monospace"
+            />
+        <com.szreach.ybolotvbox.views.DateTimeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:letterSpacing="-0.06"
+            android:layout_marginLeft="600px"
+            android:text="2017年07月26日 星期三 11:23"
+            android:textSize="26px"
+            android:textColor="#ffffff"
+            android:typeface="monospace"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="29.5"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginLeft="146px"
+            android:layout_marginTop="33.5px"
+            android:layout_width="994px"
+            android:layout_height="382px"
+            >
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="380px"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/live"
+                    android:orientation="horizontal"
+                    android:background="@drawable/icon1"
+                    android:layout_width="match_parent"
+                    android:layout_height="186px"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    >
+
+                    <TextView
+                        android:letterSpacing="-0.1"
+                        android:layout_marginLeft="285px"
+                        android:layout_marginTop="140px"
+                        android:text="@string/home_live"
+                        android:textSize="22px"
+                        android:textColor="#ffffff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/vod"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="7px"
+                    android:background="@drawable/icon2"
+                    android:layout_width="match_parent"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_height="186px">
+
+                    <TextView
+                        android:letterSpacing="-0.1"
+                        android:layout_marginLeft="60px"
+                        android:layout_marginTop="140px"
+                        android:text="@string/home_vod"
+                        android:textSize="22px"
+                        android:textColor="#ffffff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/news"
+                android:orientation="vertical"
+                android:background="@drawable/icon3"
+                android:layout_marginLeft="7px"
+                android:layout_width="214px"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_height="379px">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="5"
+                    >
+                    <TextView
+                        android:letterSpacing="-0.02"
+                        android:lineSpacingMultiplier="1.2"
+                        android:layout_marginLeft="22px"
+                        android:layout_marginTop="17px"
+                        android:text="中国邮政科技秀闪亮渝洽会"
+                        android:textSize="22px"
+                        android:textColor="#ffffff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:letterSpacing="-0.05"
+                        android:lineSpacingMultiplier="1.5"
+                        android:layout_marginLeft="22px"
+                        android:layout_marginTop="10px"
+                        android:text="6月22日，第20届中国际投资暨全球采购会在重庆国际博览中心开幕。"
+                        android:textSize="18px"
+                        android:textColor="#ffffff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    >
+                    <TextView
+                        android:letterSpacing="-0.1"
+                        android:layout_marginLeft="118px"
+                        android:layout_marginTop="18px"
+                        android:text="@string/home_news"
+                        android:textSize="22px"
+                        android:textColor="#ffffff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginLeft="7px"
+                android:layout_width="186px"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/history"
+                    android:orientation="horizontal"
+                    android:background="@drawable/icon4"
+                    android:layout_width="match_parent"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_height="186px">
+
+                    <TextView
+                        android:letterSpacing="-0.1"
+                        android:layout_marginLeft="58px"
+                        android:layout_marginTop="140px"
+                        android:text="@string/home_history"
+                        android:textSize="22px"
+                        android:textColor="#ffffff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/settings"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="7px"
+                    android:background="@drawable/icon5"
+                    android:layout_width="match_parent"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_height="186px">
+
+                    <TextView
+                        android:letterSpacing="-0.1"
+                        android:layout_marginLeft="58px"
+                        android:layout_marginTop="140px"
+                        android:text="@string/home_settings"
+                        android:textSize="22px"
+                        android:textColor="#ffffff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginLeft="7px"
+                android:layout_width="186px"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/network"
+                    android:orientation="horizontal"
+                    android:background="@drawable/icon6"
+                    android:layout_width="match_parent"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_height="186px">
+
+                    <TextView
+                        android:letterSpacing="-0.1"
+                        android:layout_marginLeft="58px"
+                        android:layout_marginTop="140px"
+                        android:text="@string/home_network"
+                        android:textSize="22px"
+                        android:textColor="#ffffff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/upgrade"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="7px"
+                    android:background="@drawable/icon7"
+                    android:layout_width="match_parent"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_height="186px">
+
+                    <TextView
+                        android:letterSpacing="-0.1"
+                        android:layout_marginLeft="58px"
+                        android:layout_marginTop="140px"
+                        android:text="@string/home_upgrade"
+                        android:textSize="22px"
+                        android:textColor="#ffffff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <com.szreach.ybolotvbox.views.MoveFrameLayout
+            android:id="@+id/main_move_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</com.szreach.ybolotvbox.views.MainLinearLayout>
