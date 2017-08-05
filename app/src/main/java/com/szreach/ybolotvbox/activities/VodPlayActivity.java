@@ -47,7 +47,7 @@ public class VodPlayActivity extends Activity {
             }
         });
         videoView.setMediaController(new MediaController(this));
-        videoView.setVideoPath(video.getVideoPath());
+        videoView.setVideoPath("");
         progressDialog.show();
     }
 

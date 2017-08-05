@@ -6,6 +6,9 @@ package com.szreach.ybolotvbox.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
@@ -15,6 +18,7 @@ import com.szreach.ybolotvbox.R;
 import com.szreach.ybolotvbox.beans.VideoBean;
 import com.szreach.ybolotvbox.beans.VodGroupBean;
 import com.szreach.ybolotvbox.listener.VideoItemListener;
+import com.szreach.ybolotvbox.utils.DataService;
 import com.szreach.ybolotvbox.views.MoveFrameLayout;
 import com.szreach.ybolotvbox.views.VideoImgItemView;
 import com.szreach.ybolotvbox.views.VideoItemView;
@@ -44,46 +48,55 @@ public class VodListActivity extends Activity {
         mMainMoveFrame.setUpRectResource(R.drawable.conner_vod);
         mMainMoveFrame.setTranDurAnimTime(400);
 
-        loadVideoGroups();
-
         vodListPage.getViewTreeObserver().addOnGlobalFocusChangeListener(new ViewTreeObserver.OnGlobalFocusChangeListener() {
             @Override
             public void onGlobalFocusChanged(View oldFocus, View newFocus) {
-
                 // 视频分组获得焦点
-                if(newFocus instanceof VodGroupItemView) {
+                if (newFocus instanceof VodGroupItemView) {
                     VodGroupItemView target = (VodGroupItemView) newFocus;
                     target.setTextColor(0xff0083fd);
 
-                    // 第一次进入页面
-                    if(oldFocus == null) {
-                        mCurrentGroup = newFocus;
-                    }
-
+                    mCurrentGroup = newFocus;
                     // 上个焦点是视频分组
-                    if(oldFocus != null && oldFocus instanceof  VodGroupItemView) {
+                    if (oldFocus != null && oldFocus instanceof VodGroupItemView) {
                         VodGroupItemView oldTarget = (VodGroupItemView) oldFocus;
                         oldTarget.setTextColor(0xffc0c0c0);
-                        mCurrentGroup = newFocus;
                     }
 
                     // 上个焦点是视频封面
-                    if(oldFocus != null && oldFocus instanceof VideoImgItemView) {
+                    if (oldFocus != null && oldFocus instanceof VideoImgItemView) {
                         mCurrentGroup.requestFocus();
                         mMainMoveFrame.setVisibility(LinearLayout.INVISIBLE);
                     }
 
                     // 根据分组ID查询视频列表
-                    if(oldFocus == null || (oldFocus != null && oldFocus instanceof VodGroupItemView)) {
-                        VodGroupItemView newTarget = (VodGroupItemView) newFocus;
-                        String groupId = newTarget.getVodGroup().getVideoGroupId();
-                        loadVideosByGroupId(newTarget, Integer.parseInt(groupId));
-                    }
+                    VodGroupItemView newTarget = (VodGroupItemView) newFocus;
+                    final long groupId = newTarget.getVodGroup().getGroupId();
+                    final Handler mHandler = new Handler() {
+                        @Override
+                        public void handleMessage(Message msg) {
+                            super.handleMessage(msg);
+                            Bundle data = msg.getData();
+                            ArrayList<VideoBean> videoList = data.getParcelableArrayList("videoList");
+                            updateRightLayout(videoList);
+                        }
+                    };
+
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            Message msg = new Message();
+                            Bundle data = new Bundle();
+                            data.putParcelableArrayList("videoList", DataService.getInstance().getVideopListByGroupId(groupId));
+                            msg.setData(data);
+                            mHandler.sendMessage(msg);
+                        }
+                    }.start();
 
                 }
 
                 // 视频封面获得焦点
-                if(newFocus instanceof VideoImgItemView) {
+                if (newFocus instanceof VideoImgItemView) {
                     // 视频封面获取焦点
                     mMainMoveFrame.setDrawUpRectEnabled(true);
                     float scale = 1.015f;
@@ -94,55 +107,48 @@ public class VodListActivity extends Activity {
             }
         });
 
+        final Handler mHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                Bundle data = msg.getData();
+                ArrayList<VodGroupBean> vodGroupBeanArrayList = data.getParcelableArrayList("groupList");
+                if(vodGroupBeanArrayList != null && vodGroupBeanArrayList.size() > 0) {
+                    for (int i = 0; i < vodGroupBeanArrayList.size(); i++) {
+                        VodGroupBean vgb = vodGroupBeanArrayList.get(i);
+                        VodGroupItemView vg = new VodGroupItemView(VodListActivity.this, vgb);
+                        vodListGroups.addView(vg);
+                        if(i == 0) {
+                            vg.requestFocus();
+                        }
+                        if (i == vodGroupBeanArrayList.size() - 1) {
+                            vg.setId(R.id.vod_list_group_last_id);
+                            vg.setNextFocusDownId(vg.getId());
+                        }
+                    }
+                }
+            }
+        };
+
+        new Thread() {
+            @Override
+            public void run() {
+                Message msg = new Message();
+                Bundle data = new Bundle();
+                data.putParcelableArrayList("groupList", DataService.getInstance().getVodGroupList());
+                msg.setData(data);
+                mHandler.sendMessage(msg);
+            }
+        }.start();
     }
 
-    private void loadVideoGroups() {
-        int len = 8;
-        for(int i = 0; i < len; i++) {
-            VodGroupBean vgb = new VodGroupBean();
-            if(i == 0) {
-                vgb.setVideoGroupName("全        部");
-            } else if(i + 1 == len) {
-                vgb.setVideoGroupName("其        他");
-            } else {
-                vgb.setVideoGroupName("体育赛事");
-            }
-            vgb.setVideoGroupId(String.valueOf((i + 1) * 3));
-            VodGroupItemView vg = new VodGroupItemView(this, vgb);
-            vodListGroups.addView(vg);
-            if(i == len - 1) {
-                vg.setId(R.id.vod_list_group_last_id);
-                vg.setNextFocusDownId(vg.getId());
-            }
-        }
-    }
-
-    private void loadVideosByGroupId(VodGroupItemView groupView, int len) {
-        List<VideoBean> videoList = new ArrayList<VideoBean>();
-        int count = 0;
-        for(int i = 0; i < len; i++) {
-            VideoBean vb = new VideoBean();
-            vb.setVideoName("中国邮政科技秀闪亮渝洽会" + (i+1));
-            if(count == 0) {
-                vb.setVideoPath("http://www.ybolo.com/Rec/d80ded0719e6466b821d7fe727f379bc/SD/resource/videos/1_1.mp4");
-                count++;
-            } else if(count == 1) {
-                vb.setVideoPath("http://120.77.61.155/Rec/037edf176486422194972d006420caed/SD/resource/videos/1_1.mp4");
-                count++;
-            } else {
-                vb.setVideoPath("http://120.77.61.155/Rec/b122ab77e76041a89359913d267f3d83/SD/resource/videos/1_1.mp4");
-                count = 0;
-            }
-            videoList.add(vb);
-        }
-
-
+    private void updateRightLayout(List<VideoBean> videoList) {
         vodListRightLayout.removeAllViews();
         vodListRightImgList.clear();
 
 
-        if(videoList != null && videoList.size() > 0) {
-            for(int i = 0; i < videoList.size(); i++) {
+        if (videoList != null && videoList.size() > 0) {
+            for (int i = 0; i < videoList.size(); i++) {
                 VideoBean vb = videoList.get(i);
 
                 VideoImgItemView videoImg = new VideoImgItemView(this, vb);
@@ -154,7 +160,7 @@ public class VodListActivity extends Activity {
             }
 
             // 初始化方向键, 点击事件
-            for(int i = 0; i < vodListRightImgList.size(); i++) {
+            for (int i = 0; i < vodListRightImgList.size(); i++) {
                 VideoImgItemView imageView = vodListRightImgList.get(i);
                 imageView.setId(R.id.vod_list_right_first_id + i);
                 imageView.setOnKeyListener(new VideoItemListener(this));

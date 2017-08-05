@@ -21,7 +21,7 @@ public class VodGroupItemView extends AppCompatTextView {
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             this.setLayoutParams(lp);
             lp.setMargins(0, 20, 0, 16);
-            this.setText(group.getVideoGroupName());
+            this.setText(group.getGroupName());
             this.setLetterSpacing(-0.01f);
             this.setTextSize(27f);
             this.setTextColor(0xffc0c0c0);
