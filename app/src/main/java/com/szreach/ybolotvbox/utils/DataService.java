@@ -1,5 +1,6 @@
 package com.szreach.ybolotvbox.utils;
 
+import com.szreach.ybolotvbox.beans.LiveBean;
 import com.szreach.ybolotvbox.beans.VideoBean;
 import com.szreach.ybolotvbox.beans.VodGroupBean;
 import com.szreach.ybolotvbox.jsonMsg.ResultItem;
@@ -20,6 +21,8 @@ import java.util.Map;
 
 public class DataService {
     public static final String URL_PREFIX = Constant.DataServerAdress + "/rest/AndroidService";
+    public static final String URL_GET_LIVE_LIST = "/getLiveList";
+    public static final String URL_GET_LIVE = "/getLive";
     public static final String URL_GET_VIDEOGROUP_LIST = "/getVideoGroup";
     public static final String URL_GET_VIDEO_LIST = "/getVideoList";
     public static final String URL_GET_VIDEO_INFO = "/getVideoInfo";
@@ -36,6 +39,46 @@ public class DataService {
             ins = new DataService();
         }
         return ins;
+    }
+
+    /**
+     * 获取直播列表
+     * @return
+     */
+    public ArrayList<LiveBean> getLiveList() {
+        ArrayList<LiveBean> liveBeanArrayList = new ArrayList<LiveBean>();
+        String urlPrefix = URL_PREFIX + URL_GET_LIVE_LIST;
+        String url = urlPrefix + "/10001";
+        String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_GET, url, null);
+
+        try {
+            ResultItem<ArrayList<LiveBean>> resultItem = mapper.readValue(retStr, new TypeReference<ResultItem<ArrayList<LiveBean>>>() {
+            });
+            if (resultItem.getMsgHeader().isResult() && resultItem.getData() != null && resultItem.getData().size() > 0) {
+                liveBeanArrayList = resultItem.getData();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return liveBeanArrayList;
+    }
+
+    public LiveBean getLive(long coId, String liveId) {
+        LiveBean live = null;
+        String urlPrefix = URL_PREFIX + URL_GET_LIVE;
+        String url = urlPrefix + "/" + coId + "/" + liveId;
+        String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_GET, url, null);
+
+        try {
+            ResultItem<LiveBean> resultItem = mapper.readValue(retStr, new TypeReference<ResultItem<LiveBean>>() {
+            });
+            if (resultItem.getMsgHeader().isResult() && resultItem.getData() != null) {
+                live = resultItem.getData();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return live;
     }
 
     public ArrayList<VodGroupBean> getVodGroupList() {
@@ -129,6 +172,8 @@ public class DataService {
 
     public static void main(String[] args) {
 //        DataService.getInstance().getVodGroupList();
-        DataService.getInstance().getVideopListByGroupId(0);
+//        DataService.getInstance().getVideopListByGroupId(0);
+        DataService.getInstance().getLiveList();
     }
+
 }

@@ -52,15 +52,17 @@ public class VodPlayActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        videoView.stopPlayback();
+        if(videoView != null) {
+            videoView.stopPlayback();
+        }
     }
 
     private void playVideo(String videoPath) {
-        videoView = (VideoView)this.findViewById(R.id.live_play_video);
+        videoView = (VideoView) this.findViewById(R.id.live_play_video);
         videoView.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {
             @Override
             public void onBufferingUpdate(MediaPlayer mp, int percent) {
-                if(percent >= 98) {
+                if (percent >= 98) {
                     progressDialog.dismiss();
                 }
                 progressDialog.setMessage("加载中..." + percent + "%");
@@ -79,6 +81,7 @@ public class VodPlayActivity extends Activity {
             this.intent = intent;
             this.handler = mHandler;
         }
+
         @Override
         public void run() {
             Bundle bundle = intent.getExtras();
@@ -86,7 +89,7 @@ public class VodPlayActivity extends Activity {
             String videoId = (String) bundle.getSerializable("videoId");
 
             HashMap<String, String> videoPaths = DataService.getInstance().getVideoPlayPath(coId, videoId);
-            if(videoPaths != null) {
+            if (videoPaths != null) {
                 String videoPath = videoPaths.get("httpAddrL00");
                 Message msg = new Message();
                 Bundle data = new Bundle();

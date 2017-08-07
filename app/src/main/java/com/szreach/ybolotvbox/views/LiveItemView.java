@@ -41,20 +41,12 @@ public class LiveItemView extends LinearLayout {
                     public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
                         if(keyCode == Constant.OK_BTN_KEYCODE && keyEvent.getAction() == KeyEvent.ACTION_UP) {
                             LiveListActivity act = (LiveListActivity) context;
-                            /*LiveListActivity act = (LiveListActivity) context;
-                            LiveItemView target = (LiveItemView) view;
-                            target.setBackgroundColor(0xff0084fd);
-                            LiveItemView selectedView = act.getSelectedView();
-                            if(selectedView != null) {
-                                selectedView.setBackgroundColor(0x00ffffff);
-                                selectedView.getLiveflagView().setTextColor(0xff0084fd);
-                            }
-                            act.setSelectedView(target);*/
 
                             act.getVideoView().stopPlayback();
                             Intent intent = new Intent(context, LivePlayActivity.class);
                             Bundle bundle = new Bundle();
-                            bundle.putSerializable("live", getLiveInfo());
+                            bundle.putSerializable("coId", getLiveInfo().getCoId());
+                            bundle.putSerializable("liveId", getLiveInfo().getLiveId());
                             intent.putExtras(bundle);
                             context.startActivity(intent);
                         }

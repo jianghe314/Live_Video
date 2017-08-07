@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/live_list_count"
-                android:text="共计8场直播"
+                android:text=""
                 android:textSize="18px"
                 android:letterSpacing="-0.06"
                 android:textColor="#0091ff"
@@ -98,7 +98,7 @@
             >
             <TextView
                 android:id="@+id/live_list_right_title"
-                android:text="白山市市长对邮政业支持跨境电商发展提出具体要求"
+                android:text=""
                 android:layout_marginLeft="40px"
                 android:layout_gravity="center_vertical"
                 android:textColor="#ffffff"
@@ -116,7 +116,7 @@
             >
             <TextView
                 android:id="@+id/live_list_right_time"
-                android:text="2017/07/24 13:00-18:56"
+                android:text=""
                 android:layout_marginLeft="40px"
                 android:layout_gravity="center_vertical"
                 android:textColor="#ffffff"
@@ -127,7 +127,9 @@
                 android:layout_height="wrap_content"/>
 
             <ImageView
+                android:id="@+id/live_list_count_icon"
                 android:src="@drawable/icon_live_count"
+                android:visibility="invisible"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="582px"
                 android:layout_width="22px"
@@ -135,7 +137,7 @@
 
             <TextView
                 android:id="@+id/live_list_right_count"
-                android:text="8606"
+                android:text=""
                 android:layout_marginLeft="7px"
                 android:layout_gravity="center_vertical"
                 android:textColor="#ffffff"

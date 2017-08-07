@@ -7,19 +7,29 @@ package com.szreach.ybolotvbox.activities;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.szreach.ybolotvbox.R;
 import com.szreach.ybolotvbox.beans.LiveBean;
+import com.szreach.ybolotvbox.utils.DataService;
 import com.szreach.ybolotvbox.utils.UIUtils;
 import com.szreach.ybolotvbox.views.LiveItemView;
+
+import java.util.ArrayList;
 
 import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.Vitamio;
 import io.vov.vitamio.widget.VideoView;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
+import static com.szreach.ybolotvbox.R.id.live;
 
 public class LiveListActivity extends Activity {
     private LinearLayout liveListItems;
@@ -49,35 +59,60 @@ public class LiveListActivity extends Activity {
             }
         });
 
-        this.addItem();
-
         liveListItems.getViewTreeObserver().addOnGlobalFocusChangeListener(new ViewTreeObserver.OnGlobalFocusChangeListener() {
             @Override
             public void onGlobalFocusChanged(View oldFocus, View newFocus) {
-                if (oldFocus != null && oldFocus != videoView) {
+                if (oldFocus != null && oldFocus instanceof LiveItemView) {
                     LiveItemView oldFocusLayout = (LiveItemView) oldFocus;
                     if (oldFocusLayout != selectedView) {
                         oldFocusLayout.setBackgroundColor(0x00ffffff);
                         oldFocusLayout.getLiveflagView().setTextColor(0xff0084fd);
                     }
                 }
-                if (newFocus != null && newFocus != videoView) {
+                if (newFocus != null && newFocus instanceof LiveItemView) {
                     LiveItemView newFocusLayout = (LiveItemView) newFocus;
                     if (newFocusLayout != selectedView) {
 //                        newFocusLayout.setBackgroundColor(0xff203040); // 灰色
                         newFocusLayout.setBackgroundColor(0xff0084fd);
                         newFocusLayout.getLiveflagView().setTextColor(0xffffffff);
-                        LiveBean live = newFocusLayout.getLiveInfo();
-                        ((TextView) findViewById(R.id.live_list_right_title)).setText(live.getLiveName());
-                        ((TextView) findViewById(R.id.live_list_right_count)).setText(String.valueOf(live.getOnLine()));
-                        ((TextView) findViewById(R.id.live_list_right_time)).setText(live.getLiveDateTimeStr());
-                        videoView.setVideoPath(live.getLn01());
-                        progressDialog.show();
-                        progressDialog.setMessage("加载中...0%");
+                        final LiveBean live = newFocusLayout.getLiveInfo();
+
+                        final Handler handler = new Handler() {
+                            @Override
+                            public void handleMessage(Message msg) {
+                                super.handleMessage(msg);
+                                Bundle bundle = msg.getData();
+                                LiveBean liveBean = bundle.getParcelable("live");
+
+                                ((TextView) findViewById(R.id.live_list_right_title)).setText(liveBean.getLiveName());
+                                ((TextView) findViewById(R.id.live_list_right_time)).setText(liveBean.getLiveDateTimeStr());
+                                ((TextView) findViewById(R.id.live_list_right_count)).setText(String.valueOf(liveBean.getOnLineNum()));
+                                ((ImageView) findViewById(R.id.live_list_count_icon)).setVisibility(View.VISIBLE);
+
+                                videoView.setVideoPath(liveBean.getRtmpAddress());
+                                progressDialog.show();
+                                progressDialog.setMessage("加载中...0%");
+                            }
+                        };
+
+                        new Thread() {
+                            @Override
+                            public void run() {
+                                long coId = live.getCoId();
+                                String liveId = live.getLiveId();
+                                Message msg = new Message();
+                                Bundle bundle = new Bundle();
+                                bundle.putParcelable("live", DataService.getInstance().getLive(coId, liveId));
+                                msg.setData(bundle);
+                                handler.sendMessage(msg);
+                            }
+                        }.start();
                     }
                 }
             }
         });
+
+        new DataThread().start();
     }
 
     @Override
@@ -86,32 +121,32 @@ public class LiveListActivity extends Activity {
         progressDialog.show();
     }
 
-    private void addItem() {
-        for (int i = 0; i < 20; i++) {
-            LiveBean live = new LiveBean();
-            if (i % 2 == 0) {
-                live.setLiveName("白山市市长对邮政业支持跨境电商发展提出具体要求");
-                live.setLiveStart("2017/05/06 09:01");
-                live.setLiveEnd("2017/05/06 11:21");
-                live.setOnLine(3658);
-
-            } else {
-                live.setLiveName("吉林省局检查组到辽源市开展检查");
-                live.setLiveStart("2017/05/06 09:01");
-                live.setLiveEnd("2017/05/06 21:01");
-                live.setOnLine(3658);
-            }
-            if (i % 3 == 0) {
-                live.setLiveFlag(1);
-                // live.setLn01("rtmp://live.hkstv.hk.lxdns.com/live/hks");
-                live.setLn01("rtmp://120.24.180.127/live/10031-002-L");
-                if(i % 6 == 0) {
-                    live.setLn01("rtmp://120.24.180.127/live/10031-001-L");
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Bundle bundle = msg.getData();
+            ArrayList<LiveBean> liveList = bundle.getParcelableArrayList("liveList");
+            ((TextView)LiveListActivity.this.findViewById(R.id.live_list_count)).setText("共计" + liveList.size() + "场直播");
+            for (int i = 0; i < liveList.size(); i++) {
+                LiveBean liveBean = liveList.get(i);
+                LiveItemView item = new LiveItemView(LiveListActivity.this, liveBean);
+                liveListItems.addView(item);
+                if(i == 0) {
+                    item.requestFocus();
                 }
             }
+        }
+    };
 
-            LiveItemView item = new LiveItemView(this, live);
-            liveListItems.addView(item);
+    private class DataThread extends Thread {
+        @Override
+        public void run() {
+            Message msg = new Message();
+            Bundle bundle = new Bundle();
+            bundle.putParcelableArrayList("liveList", DataService.getInstance().getLiveList());
+            msg.setData(bundle);
+            handler.sendMessage(msg);
         }
     }
 
