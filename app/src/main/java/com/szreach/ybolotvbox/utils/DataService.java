@@ -22,6 +22,7 @@ public class DataService {
     public static final String URL_PREFIX = Constant.DataServerAdress + "/rest/AndroidService";
     public static final String URL_GET_VIDEOGROUP_LIST = "/getVideoGroup";
     public static final String URL_GET_VIDEO_LIST = "/getVideoList";
+    public static final String URL_GET_VIDEO_INFO = "/getVideoInfo";
 
     private static final ObjectMapper mapper = new ObjectMapper();
 
@@ -52,7 +53,7 @@ public class DataService {
                     retStr = HttpUtils.sendRequest(HttpUtils.METHOD_GET, url, null);
                     ResultItem<ArrayList<VodGroupBean>> resultItem_ = mapper.readValue(retStr, new TypeReference<ResultItem<ArrayList<VodGroupBean>>>() {
                     });
-                    if(resultItem_.getMsgHeader().isResult() && resultItem_.getData() != null && resultItem_.getData().size() > 0) {
+                    if (resultItem_.getMsgHeader().isResult() && resultItem_.getData() != null && resultItem_.getData().size() > 0) {
                         vodGroupBeanList.addAll(resultItem_.getData());
                     }
                 }
@@ -73,7 +74,7 @@ public class DataService {
 
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("coId", 10001);
-        if(groupId == 0) {
+        if (groupId == 0) {
             params.put("groupId", null);
         } else {
             params.put("groupId", groupId);
@@ -87,7 +88,7 @@ public class DataService {
         try {
             ResultItem<ArrayList<VideoBean>> resultItem = mapper.readValue(retStr, new TypeReference<ResultItem<ArrayList<VideoBean>>>() {
             });
-            if(resultItem.getMsgHeader().isResult() && resultItem.getData() != null && resultItem.getData().size() > 0) {
+            if (resultItem.getMsgHeader().isResult() && resultItem.getData() != null && resultItem.getData().size() > 0) {
                 videoList.addAll(resultItem.getData());
             }
 
@@ -102,9 +103,28 @@ public class DataService {
         return videoList;
     }
 
+    public HashMap<String, String> getVideoPlayPath(long coId, String videoId) {
+        HashMap<String, String> ret = null;
+        String url = URL_PREFIX + URL_GET_VIDEO_INFO + "/" + coId + "/" + videoId;
+        String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_GET, url, null);
 
+        try {
+            ResultItem<HashMap<String, String>> resultItem = mapper.readValue(retStr, new TypeReference<ResultItem<HashMap<String, String>>>() {
+            });
+            if (resultItem.getMsgHeader().isResult() && resultItem.getData() != null && resultItem.getData().size() > 0) {
+                ret = resultItem.getData();
+            }
 
+        } catch (JsonParseException e) {
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        return ret;
+    }
 
 
     public static void main(String[] args) {

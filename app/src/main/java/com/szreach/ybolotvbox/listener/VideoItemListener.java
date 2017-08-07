@@ -2,6 +2,7 @@ package com.szreach.ybolotvbox.listener;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
@@ -42,7 +43,8 @@ public class VideoItemListener implements View.OnKeyListener {
             VideoImgItemView viv = (VideoImgItemView) view;
             Intent intent = new Intent(act, VodPlayActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putSerializable("video", viv.getVideoBean());
+            bundle.putSerializable("coId", viv.getVideo().getCoId());
+            bundle.putSerializable("videoId", viv.getVideo().getVideoId());
             intent.putExtras(bundle);
             act.startActivity(intent);
         }

@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.flexbox.FlexboxLayout;
 import com.szreach.ybolotvbox.R;
@@ -31,6 +32,7 @@ public class VodListActivity extends Activity {
     private LinearLayout vodListPage;
     private LinearLayout vodListGroups;
     private FlexboxLayout vodListRightLayout;
+    private TextView countTextView;
     private MoveFrameLayout mMainMoveFrame;
     private View mCurrentGroup;
     private View mCurrentVideo;
@@ -43,6 +45,7 @@ public class VodListActivity extends Activity {
         vodListPage = (LinearLayout) findViewById(R.id.vod_list_page);
         vodListGroups = (LinearLayout) findViewById(R.id.vod_list_groups);
         vodListRightLayout = (FlexboxLayout) findViewById(R.id.vod_list_right_list);
+        countTextView = (TextView) findViewById(R.id.vod_list_count);
         vodListRightImgList = new ArrayList<VideoImgItemView>();
         mMainMoveFrame = (MoveFrameLayout) findViewById(R.id.vod_list_page_move);
         mMainMoveFrame.setUpRectResource(R.drawable.conner_vod);
@@ -72,12 +75,14 @@ public class VodListActivity extends Activity {
                     // 根据分组ID查询视频列表
                     VodGroupItemView newTarget = (VodGroupItemView) newFocus;
                     final long groupId = newTarget.getVodGroup().getGroupId();
+
                     final Handler mHandler = new Handler() {
                         @Override
                         public void handleMessage(Message msg) {
                             super.handleMessage(msg);
                             Bundle data = msg.getData();
                             ArrayList<VideoBean> videoList = data.getParcelableArrayList("videoList");
+                            countTextView.setText("共计" + videoList.size() + "个视频");
                             updateRightLayout(videoList);
                         }
                     };
@@ -113,14 +118,18 @@ public class VodListActivity extends Activity {
                 super.handleMessage(msg);
                 Bundle data = msg.getData();
                 ArrayList<VodGroupBean> vodGroupBeanArrayList = data.getParcelableArrayList("groupList");
-                if(vodGroupBeanArrayList != null && vodGroupBeanArrayList.size() > 0) {
+                if (vodGroupBeanArrayList != null && vodGroupBeanArrayList.size() > 0) {
+                    int groupUUID = (int) (Math.random() * 10000000);
                     for (int i = 0; i < vodGroupBeanArrayList.size(); i++) {
                         VodGroupBean vgb = vodGroupBeanArrayList.get(i);
                         VodGroupItemView vg = new VodGroupItemView(VodListActivity.this, vgb);
+                        vg.setId(groupUUID + i);
                         vodListGroups.addView(vg);
-                        if(i == 0) {
+
+                        if (i == 0) {
                             vg.requestFocus();
                         }
+
                         if (i == vodGroupBeanArrayList.size() - 1) {
                             vg.setId(R.id.vod_list_group_last_id);
                             vg.setNextFocusDownId(vg.getId());
@@ -145,7 +154,6 @@ public class VodListActivity extends Activity {
     private void updateRightLayout(List<VideoBean> videoList) {
         vodListRightLayout.removeAllViews();
         vodListRightImgList.clear();
-
 
         if (videoList != null && videoList.size() > 0) {
             for (int i = 0; i < videoList.size(); i++) {

@@ -71,7 +71,8 @@
             android:layout_marginLeft="33.5px"
             >
             <TextView
-                android:text="共计15558个视频"
+                android:id="@+id/vod_list_count"
+                android:text=""
                 android:layout_gravity="bottom"
                 android:textSize="15px"
                 android:textColor="#ffffff"

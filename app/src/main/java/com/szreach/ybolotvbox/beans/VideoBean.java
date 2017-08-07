@@ -148,4 +148,16 @@ public class VideoBean implements Serializable, Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
 
     }
+
+    public static Creator<VideoBean> CREATOR = new Creator<VideoBean>() {
+        @Override
+        public VideoBean createFromParcel(Parcel parcel) {
+            return null;
+        }
+
+        @Override
+        public VideoBean[] newArray(int i) {
+            return new VideoBean[0];
+        }
+    };
 }
