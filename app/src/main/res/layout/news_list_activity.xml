@@ -70,6 +70,7 @@
                     app:flexDirection="row"
                     android:paddingTop="50px"
                     android:paddingLeft="10px"
+                    android:focusable="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

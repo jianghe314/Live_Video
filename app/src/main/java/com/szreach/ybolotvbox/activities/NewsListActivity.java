@@ -7,6 +7,9 @@ package com.szreach.ybolotvbox.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -15,6 +18,7 @@ import com.google.android.flexbox.FlexboxLayout;
 import com.szreach.ybolotvbox.R;
 import com.szreach.ybolotvbox.beans.NewsBean;
 import com.szreach.ybolotvbox.utils.Constant;
+import com.szreach.ybolotvbox.utils.DataService;
 import com.szreach.ybolotvbox.views.MoveFrameLayout;
 import com.szreach.ybolotvbox.views.NewsConItemView;
 import com.szreach.ybolotvbox.views.NewsItemView;
@@ -22,10 +26,22 @@ import com.szreach.ybolotvbox.views.NewsItemView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.szreach.ybolotvbox.R.id.news;
+
 public class NewsListActivity extends Activity {
     private MoveFrameLayout mMainMoveFrame;
     private FlexboxLayout newsListCenterLayout;
     private View currentNewsItemView;
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Bundle bundle = msg.getData();
+            ArrayList<NewsBean> newsList = bundle.getParcelableArrayList("newsList");
+            initData(newsList);
+        }
+    };
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -36,8 +52,6 @@ public class NewsListActivity extends Activity {
         mMainMoveFrame.setTranDurAnimTime(200);
 
         newsListCenterLayout = (FlexboxLayout) findViewById(R.id.news_list_center_list);
-
-        loadData();
 
         newsListCenterLayout.getViewTreeObserver().addOnGlobalFocusChangeListener(new ViewTreeObserver.OnGlobalFocusChangeListener() {
             @Override
@@ -51,30 +65,11 @@ public class NewsListActivity extends Activity {
                 }
             }
         });
+
+        new DataThread().start();
     }
 
-    private void loadData() {
-        List<NewsBean> newsBeanList = new ArrayList<NewsBean>();
-
-        int count = 0;
-        for(int i = 0; i < 20; i++) {
-            NewsBean newsBean = new NewsBean();
-            newsBean.setNewsId("xxxxxxxx");
-            newsBean.setNewsDatetime("2017-07-31");
-            newsBean.setNewsTitle("中国邮政科技秀闪亮渝洽会秀闪亮会秀闪亮会秀闪亮渝洽会" + (i + 1));
-            newsBeanList.add(newsBean);
-            if(count == 0) {
-                newsBean.setNewsUrl("http://www.szreach.com/news/mtbd/320.html");
-                count++;
-            } else if(count == 1) {
-                newsBean.setNewsUrl("http://www.szreach.com/news/gsxw/270.html");
-                count++;
-            } else {
-                newsBean.setNewsUrl("http://www.szreach.com/news/mtbd/240.html");
-                count = 0;
-            }
-        }
-
+    private void initData(ArrayList<NewsBean> newsBeanList) {
         if(newsBeanList != null && newsBeanList.size() > 0) {
             for(int i = 0; i < newsBeanList.size(); i++) {
                 NewsBean newsBean = newsBeanList.get(i);
@@ -101,4 +96,14 @@ public class NewsListActivity extends Activity {
         }
     }
 
+    private class DataThread extends Thread {
+        @Override
+        public void run() {
+            Message msg = new Message();
+            Bundle bundle = new Bundle();
+            bundle.putParcelableArrayList("newsList", DataService.getInstance().getNewsList());
+            msg.setData(bundle);
+            handler.sendMessage(msg);
+        }
+    }
 }

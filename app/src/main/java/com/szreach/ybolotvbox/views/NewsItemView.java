@@ -2,6 +2,11 @@ package com.szreach.ybolotvbox.views;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,6 +16,10 @@ import android.widget.TextView;
 import com.szreach.ybolotvbox.R;
 import com.szreach.ybolotvbox.beans.NewsBean;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 /**
  * Created by Adams.Tsui on 2017/7/28 0028.
  */
@@ -18,14 +27,25 @@ import com.szreach.ybolotvbox.beans.NewsBean;
 public class NewsItemView extends LinearLayout {
     private Activity act;
     private NewsBean news;
+    private ImageView imageView;
 
-    public NewsItemView(Context context, NewsBean news) {
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Bundle data = msg.getData();
+            Bitmap bitMap = data.getParcelable("bitMap");
+            getImageView().setImageBitmap(bitMap);
+        }
+    };
+
+    public NewsItemView(Context context, final NewsBean news) {
         super(context);
 
         this.act = (Activity) context;
         this.news = news;
 
-        if(news != null) {
+        if (news != null) {
             LayoutParams lp = new LayoutParams(543, 120);
             lp.gravity = Gravity.TOP;
             this.setLayoutParams(lp);
@@ -42,10 +62,28 @@ public class NewsItemView extends LinearLayout {
             LayoutParams imageLp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             ImageView imageView = new ImageView(context);
             imageView.setLayoutParams(imageLp);
-//            imageView.setImageURI();
             imageView.setImageResource(R.drawable.news_img);
 
             lll.addView(imageView);
+            this.imageView = imageView;
+            new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        Message msg = new Message();
+                        Bundle data = new Bundle();
+                        URL url = new URL(news.getThumbnail());
+                        Bitmap bitMap = BitmapFactory.decodeStream(url.openStream());
+                        data.putParcelable("bitMap", bitMap);
+                        msg.setData(data);
+                        mHandler.sendMessage(msg);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.start();
 
 
             // 右边区域
@@ -58,7 +96,7 @@ public class NewsItemView extends LinearLayout {
             titleLp.setMargins(20, 14, 0, 0);
             TextView title = new TextView(context);
             title.setLayoutParams(titleLp);
-            title.setText(news.getNewsTitle());
+            title.setText(news.getTitle());
             title.setTextColor(0xffeeeeee);
             title.setTextSize(22.3f);
             rll.addView(title);
@@ -67,7 +105,7 @@ public class NewsItemView extends LinearLayout {
             timeLp.setMargins(20, 0, 0, 0);
             TextView time = new TextView(context);
             time.setLayoutParams(timeLp);
-            time.setText(news.getNewsDatetime());
+            time.setText(news.getCreateTime());
             time.setTextColor(0xffeeeeee);
             time.setTextSize(19.4f);
             time.setLetterSpacing(0.05f);
@@ -92,5 +130,13 @@ public class NewsItemView extends LinearLayout {
 
     public void setNews(NewsBean news) {
         this.news = news;
+    }
+
+    public ImageView getImageView() {
+        return imageView;
+    }
+
+    public void setImageView(ImageView imageView) {
+        this.imageView = imageView;
     }
 }

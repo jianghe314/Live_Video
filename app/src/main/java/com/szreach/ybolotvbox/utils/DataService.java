@@ -1,6 +1,9 @@
 package com.szreach.ybolotvbox.utils;
 
+import android.util.Log;
+
 import com.szreach.ybolotvbox.beans.LiveBean;
+import com.szreach.ybolotvbox.beans.NewsBean;
 import com.szreach.ybolotvbox.beans.VideoBean;
 import com.szreach.ybolotvbox.beans.VodGroupBean;
 import com.szreach.ybolotvbox.jsonMsg.ResultItem;
@@ -13,6 +16,7 @@ import org.codehaus.jackson.type.TypeReference;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,6 +30,7 @@ public class DataService {
     public static final String URL_GET_VIDEOGROUP_LIST = "/getVideoGroup";
     public static final String URL_GET_VIDEO_LIST = "/getVideoList";
     public static final String URL_GET_VIDEO_INFO = "/getVideoInfo";
+    public static final String URL_GET_NEWS_LIST = "/getNewsList";
 
     private static final ObjectMapper mapper = new ObjectMapper();
 
@@ -63,6 +68,12 @@ public class DataService {
         return liveBeanArrayList;
     }
 
+    /**
+     * 获取直播详细信息
+     * @param coId
+     * @param liveId
+     * @return
+     */
     public LiveBean getLive(long coId, String liveId) {
         LiveBean live = null;
         String urlPrefix = URL_PREFIX + URL_GET_LIVE;
@@ -81,6 +92,10 @@ public class DataService {
         return live;
     }
 
+    /**
+     * 获取视频分组
+     * @return
+     */
     public ArrayList<VodGroupBean> getVodGroupList() {
         ArrayList<VodGroupBean> vodGroupBeanList = new ArrayList<VodGroupBean>();
         String urlPrefix = URL_PREFIX + URL_GET_VIDEOGROUP_LIST + "/10001/";
@@ -112,6 +127,11 @@ public class DataService {
         return vodGroupBeanList;
     }
 
+    /**
+     * 获取视频列表
+     * @param groupId
+     * @return
+     */
     public ArrayList<VideoBean> getVideopListByGroupId(long groupId) {
         ArrayList<VideoBean> videoList = new ArrayList<VideoBean>();
 
@@ -146,6 +166,12 @@ public class DataService {
         return videoList;
     }
 
+    /**
+     * 获取视频播放地址
+     * @param coId
+     * @param videoId
+     * @return
+     */
     public HashMap<String, String> getVideoPlayPath(long coId, String videoId) {
         HashMap<String, String> ret = null;
         String url = URL_PREFIX + URL_GET_VIDEO_INFO + "/" + coId + "/" + videoId;
@@ -169,11 +195,43 @@ public class DataService {
         return ret;
     }
 
+    public ArrayList<NewsBean> getNewsList() {
+        ArrayList<NewsBean> newsList = new ArrayList<NewsBean>();
+
+        String url = URL_PREFIX + URL_GET_NEWS_LIST;
+
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("coId", 10001);
+        params.put("pageNumber", 0);
+        params.put("pageSize", Integer.MAX_VALUE);
+
+        String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_POST, url, params);
+
+        try {
+            ResultItem<ArrayList<NewsBean>> resultItem = mapper.readValue(retStr, new TypeReference<ResultItem<ArrayList<NewsBean>>>() {
+            });
+            if (resultItem.getMsgHeader().isResult() && resultItem.getData() != null && resultItem.getData().size() > 0) {
+                newsList = resultItem.getData();
+            }
+
+        } catch (JsonParseException e) {
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return newsList;
+    }
+
+
 
     public static void main(String[] args) {
 //        DataService.getInstance().getVodGroupList();
 //        DataService.getInstance().getVideopListByGroupId(0);
-        DataService.getInstance().getLiveList();
+//        DataService.getInstance().getLiveList();
+//        DataService.getInstance().getNewsList();
     }
 
 }

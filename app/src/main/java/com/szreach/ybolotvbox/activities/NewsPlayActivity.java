@@ -31,6 +31,6 @@ public class NewsPlayActivity extends Activity {
         Intent intent = this.getIntent();
         NewsBean news = (NewsBean) intent.getSerializableExtra("news");
 
-        webView.loadUrl(news.getNewsUrl());
+//        webView.loadUrl(news.getNewsUrl());
     }
 }

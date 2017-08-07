@@ -119,7 +119,7 @@ public class VodListActivity extends Activity {
                 Bundle data = msg.getData();
                 ArrayList<VodGroupBean> vodGroupBeanArrayList = data.getParcelableArrayList("groupList");
                 if (vodGroupBeanArrayList != null && vodGroupBeanArrayList.size() > 0) {
-                    int groupUUID = (int) (Math.random() * 10000000);
+                    int groupUUID = (int)(Math.random() * 10000000);
                     for (int i = 0; i < vodGroupBeanArrayList.size(); i++) {
                         VodGroupBean vgb = vodGroupBeanArrayList.get(i);
                         VodGroupItemView vg = new VodGroupItemView(VodListActivity.this, vgb);
