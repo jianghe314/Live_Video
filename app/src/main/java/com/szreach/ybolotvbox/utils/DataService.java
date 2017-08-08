@@ -1,7 +1,5 @@
 package com.szreach.ybolotvbox.utils;
 
-import android.util.Log;
-
 import com.szreach.ybolotvbox.beans.LiveBean;
 import com.szreach.ybolotvbox.beans.NewsBean;
 import com.szreach.ybolotvbox.beans.VideoBean;
@@ -256,6 +254,39 @@ public class DataService {
         }
 
         return ret;
+    }
+
+    /**
+     * 获取首页新闻
+     * @return
+     */
+    public NewsBean getMainNews() {
+        NewsBean news = null;
+        String url = URL_PREFIX + URL_GET_NEWS_LIST;
+
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("coId", 10001);
+        params.put("pageNumber", 0);
+        params.put("pageSize", 1);
+
+        String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_POST, url, params);
+
+        try {
+            ResultItem<ArrayList<NewsBean>> resultItem = mapper.readValue(retStr, new TypeReference<ResultItem<ArrayList<NewsBean>>>() {
+            });
+            if (resultItem.getMsgHeader().isResult() && resultItem.getData() != null && resultItem.getData().size() > 0) {
+                news = resultItem.getData().get(0);
+            }
+
+        } catch (JsonParseException e) {
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return news;
     }
 
     public static void main(String[] args) {
