@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
 
 import com.google.android.flexbox.FlexboxLayout;
 import com.szreach.ybolotvbox.R;
@@ -26,6 +27,7 @@ import com.szreach.ybolotvbox.views.NewsItemView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.attr.delay;
 import static com.szreach.ybolotvbox.R.id.news;
 
 public class NewsListActivity extends Activity {
@@ -33,26 +35,16 @@ public class NewsListActivity extends Activity {
     private FlexboxLayout newsListCenterLayout;
     private View currentNewsItemView;
 
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            Bundle bundle = msg.getData();
-            ArrayList<NewsBean> newsList = bundle.getParcelableArrayList("newsList");
-            initData(newsList);
-        }
-    };
-
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.news_list_activity);
+
         mMainMoveFrame = (MoveFrameLayout) findViewById(R.id.news_list_page_move);
         mMainMoveFrame.setUpRectResource(R.drawable.conner_news);
         mMainMoveFrame.setTranDurAnimTime(200);
 
         newsListCenterLayout = (FlexboxLayout) findViewById(R.id.news_list_center_list);
-
         newsListCenterLayout.getViewTreeObserver().addOnGlobalFocusChangeListener(new ViewTreeObserver.OnGlobalFocusChangeListener() {
             @Override
             public void onGlobalFocusChanged(View oldFocus, View newFocus) {
@@ -85,7 +77,8 @@ public class NewsListActivity extends Activity {
                             NewsItemView target = (NewsItemView) view;
                             Intent intent = new Intent(target.getAct(), NewsPlayActivity.class);
                             Bundle bundle = new Bundle();
-                            bundle.putSerializable("news", target.getNews());
+                            bundle.putSerializable("coId", target.getNews().getCoId());
+                            bundle.putSerializable("nnId", target.getNews().getNnId());
                             intent.putExtras(bundle);
                             target.getAct().startActivity(intent);
                         }
@@ -93,8 +86,28 @@ public class NewsListActivity extends Activity {
                     }
                 });
             }
+
+            // 视图全部添加后，才让第一个元素获取焦点
+            new Handler().postDelayed(new Runnable(){
+                public void run() {
+                    View view = newsListCenterLayout.getChildAt(0);
+                    if(view != null) {
+                        view.requestFocus();
+                    }
+                }
+            }, 300);
         }
     }
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Bundle bundle = msg.getData();
+            ArrayList<NewsBean> newsList = bundle.getParcelableArrayList("newsList");
+            initData(newsList);
+        }
+    };
 
     private class DataThread extends Thread {
         @Override

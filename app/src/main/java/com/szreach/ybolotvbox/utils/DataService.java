@@ -16,7 +16,6 @@ import org.codehaus.jackson.type.TypeReference;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,10 +26,11 @@ public class DataService {
     public static final String URL_PREFIX = Constant.DataServerAdress + "/rest/AndroidService";
     public static final String URL_GET_LIVE_LIST = "/getLiveList";
     public static final String URL_GET_LIVE = "/getLive";
-    public static final String URL_GET_VIDEOGROUP_LIST = "/getVideoGroup";
+    public static final String URL_GET_GROUP_LIST = "/getVideoGroup";
     public static final String URL_GET_VIDEO_LIST = "/getVideoList";
     public static final String URL_GET_VIDEO_INFO = "/getVideoInfo";
     public static final String URL_GET_NEWS_LIST = "/getNewsList";
+    public static final String URL_GET_NEWS_URL = "/getNewsNnUrl";
 
     private static final ObjectMapper mapper = new ObjectMapper();
 
@@ -98,7 +98,7 @@ public class DataService {
      */
     public ArrayList<VodGroupBean> getVodGroupList() {
         ArrayList<VodGroupBean> vodGroupBeanList = new ArrayList<VodGroupBean>();
-        String urlPrefix = URL_PREFIX + URL_GET_VIDEOGROUP_LIST + "/10001/";
+        String urlPrefix = URL_PREFIX + URL_GET_GROUP_LIST + "/10001/";
         String url = urlPrefix + "0";
         String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_GET, url, null);
 
@@ -195,6 +195,10 @@ public class DataService {
         return ret;
     }
 
+    /**
+     * 获取新闻列表
+     * @return
+     */
     public ArrayList<NewsBean> getNewsList() {
         ArrayList<NewsBean> newsList = new ArrayList<NewsBean>();
 
@@ -225,7 +229,34 @@ public class DataService {
         return newsList;
     }
 
+    /**
+     * 获取新闻地址
+     * @param coId
+     * @param nnId
+     * @return
+     */
+    public String getNewsUrl(long coId, String nnId) {
+        String ret = null;
+        String url = URL_PREFIX + URL_GET_NEWS_URL + "/" + coId + "/" + nnId;
+        String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_GET, url, null);
 
+        try {
+            ResultItem<Map<String, String>> resultItem = mapper.readValue(retStr, new TypeReference<ResultItem<Map<String, String>>>() {
+            });
+            if (resultItem.getMsgHeader().isResult() && resultItem.getData() != null && resultItem.getData().size() > 0) {
+                ret = resultItem.getData().get("pcUrl");
+            }
+
+        } catch (JsonParseException e) {
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return ret;
+    }
 
     public static void main(String[] args) {
 //        DataService.getInstance().getVodGroupList();

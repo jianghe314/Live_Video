@@ -10,8 +10,8 @@ import java.io.Serializable;
  */
 
 public class NewsBean implements Serializable, Parcelable {
-    
-    private String coId;
+
+    private long coId;
     private String nnId;              // 新闻ID
     private String userId;           // 发布者用户ID
     private String userName;         // 发布者用户名称
@@ -21,11 +21,11 @@ public class NewsBean implements Serializable, Parcelable {
     private String summary;         // 新闻摘要
     private String thumbnail;       // 封面图片
 
-    public String getCoId() {
+    public long getCoId() {
         return coId;
     }
 
-    public void setCoId(String coId) {
+    public void setCoId(long coId) {
         this.coId = coId;
     }
 

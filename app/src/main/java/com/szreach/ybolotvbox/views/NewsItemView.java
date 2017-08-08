@@ -62,7 +62,7 @@ public class NewsItemView extends LinearLayout {
             LayoutParams imageLp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             ImageView imageView = new ImageView(context);
             imageView.setLayoutParams(imageLp);
-            imageView.setImageResource(R.drawable.news_img);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 
             lll.addView(imageView);
             this.imageView = imageView;
