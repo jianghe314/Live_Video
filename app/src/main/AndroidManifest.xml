@@ -38,6 +38,7 @@
         <activity android:name=".activities.LiveListActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".activities.LivePlayActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".activities.VodListActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity android:name=".activities.VodHisListActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".activities.VodPlayActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".activities.NewsListActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".activities.NewsPlayActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />

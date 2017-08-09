@@ -2,17 +2,20 @@ package com.szreach.ybolotvbox.listener;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
 import com.szreach.ybolotvbox.R;
 import com.szreach.ybolotvbox.activities.VodListActivity;
 import com.szreach.ybolotvbox.activities.VodPlayActivity;
+import com.szreach.ybolotvbox.beans.VideoBean;
 import com.szreach.ybolotvbox.utils.Constant;
+import com.szreach.ybolotvbox.utils.StoreObjectUtils;
 import com.szreach.ybolotvbox.views.VideoImgItemView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Adams.Tsui on 2017/7/31 0031.
@@ -46,6 +49,17 @@ public class VideoItemListener implements View.OnKeyListener {
             bundle.putSerializable("coId", viv.getVideo().getCoId());
             bundle.putSerializable("videoId", viv.getVideo().getVideoId());
             intent.putExtras(bundle);
+
+            // 存储历史记录
+            StoreObjectUtils sou = new StoreObjectUtils(act, StoreObjectUtils.SP_VOD_HISTORY);
+            Map<String, VideoBean> vodHisMap = sou.getMap(StoreObjectUtils.DATA_VOD_HISTORY, String.class, VideoBean.class);
+            if(vodHisMap == null) {
+                vodHisMap = new HashMap<String, VideoBean>();
+            }
+            vodHisMap.put(viv.getVideo().getVideoId(), viv.getVideo());
+            sou.saveObject(StoreObjectUtils.DATA_VOD_HISTORY, vodHisMap);
+
+            // 跳转页面
             act.startActivity(intent);
         }
         return false;

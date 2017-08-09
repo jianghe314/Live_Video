@@ -57,7 +57,7 @@ public class HttpUtils {
         Map<String, String> fieldMap = new HashMap<String, String>();
         fieldMap.put("videoId", "abcdfg123456");
         fieldMap.put("userName", "Adams.Tsui徐注光");
-        String json = mapper.writeValueAsString(null);
+        String json = mapper.writeValueAsString(fieldMap);
         System.out.println(json);
 
         // 返回JSON转换成Map

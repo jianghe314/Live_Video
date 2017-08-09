@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
@@ -160,7 +159,6 @@ public class VodListActivity extends Activity {
                 VideoBean vb = videoList.get(i);
 
                 VideoImgItemView videoImg = new VideoImgItemView(this, vb);
-                videoImg.setImageResource(R.drawable.video_sample);
                 vodListRightImgList.add(videoImg);
 
                 VideoItemView viv = new VideoItemView(this, vb, videoImg);

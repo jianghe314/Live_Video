@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import com.szreach.ybolotvbox.R;
 import com.szreach.ybolotvbox.activities.LiveListActivity;
 import com.szreach.ybolotvbox.activities.NewsListActivity;
+import com.szreach.ybolotvbox.activities.VodHisListActivity;
 import com.szreach.ybolotvbox.activities.VodListActivity;
 import com.szreach.ybolotvbox.utils.Constant;
 
@@ -44,7 +45,7 @@ public class MainBtnListener implements View.OnKeyListener {
 
             } else if (view == this.btnMap.get(R.id.history)) {
                 // 浏览历史
-
+                intent = new Intent(act, VodHisListActivity.class);
             } else if (view == this.btnMap.get(R.id.settings)) {
                 // 系统设置
 
