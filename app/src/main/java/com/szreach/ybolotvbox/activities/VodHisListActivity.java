@@ -5,7 +5,11 @@
 package com.szreach.ybolotvbox.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
@@ -15,6 +19,8 @@ import com.google.android.flexbox.FlexboxLayout;
 import com.szreach.ybolotvbox.R;
 import com.szreach.ybolotvbox.beans.VideoBean;
 import com.szreach.ybolotvbox.listener.VideoHisItemListener;
+import com.szreach.ybolotvbox.listener.VideoItemListener;
+import com.szreach.ybolotvbox.utils.Constant;
 import com.szreach.ybolotvbox.utils.StoreObjectUtils;
 import com.szreach.ybolotvbox.views.MoveFrameLayout;
 import com.szreach.ybolotvbox.views.VideoImgItemView;
@@ -30,7 +36,7 @@ public class VodHisListActivity extends Activity {
     private FlexboxLayout vodHisListRightLayout;
     private TextView countTextView;
     private MoveFrameLayout mMainMoveFrame;
-    private View mCurrentVideo;
+    private View mCurrentFocus;
     private List<VideoImgItemView> vodHisListRightImgList;
 
     @Override
@@ -53,14 +59,48 @@ public class VodHisListActivity extends Activity {
                     // 视频封面获取焦点
                     mMainMoveFrame.setDrawUpRectEnabled(true);
                     float scale = 1.015f;
-                    mMainMoveFrame.setFocusView(newFocus, mCurrentVideo, scale);
+                    mMainMoveFrame.setFocusView(newFocus, mCurrentFocus, scale);
                     mMainMoveFrame.bringToFront();
-                    mCurrentVideo = newFocus;
+                    mCurrentFocus = newFocus;
+
+                    if(oldFocus instanceof TextView) {
+                        ((TextView) oldFocus).setTextColor(0xff8e8e8e);
+                    }
+                }
+
+                if (newFocus instanceof TextView) {
+                    mMainMoveFrame.setVisibility(View.INVISIBLE);
+                    ((TextView) newFocus).setTextColor(0xffee0000);
                 }
             }
         });
 
         initCenterLayout();
+
+        new VideoHisItemListener(this).initItemFocus();
+
+        findViewById(R.id.vod_his_clear).setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                if(keyCode == Constant.OK_BTN_KEYCODE && keyEvent.getAction() == KeyEvent.ACTION_UP) {
+                    new AlertDialog.Builder(VodHisListActivity.this)
+                            .setTitle("警告")
+                            .setMessage("确定要清空观看历史记录？")
+                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    StoreObjectUtils sou = new StoreObjectUtils(VodHisListActivity.this, StoreObjectUtils.SP_VOD_HISTORY);
+                                    sou.saveObject(StoreObjectUtils.DATA_VOD_HISTORY, null);
+                                    vodHisListRightLayout.removeAllViews();
+                                }
+                            })
+                            .setNegativeButton("取消", null)
+                            .create()
+                            .show();
+                }
+                return false;
+            }
+        });
     }
 
     private void initCenterLayout() {
@@ -73,12 +113,15 @@ public class VodHisListActivity extends Activity {
             countTextView.setText("共计" + vodHisMap.size() +  "个视频");
 
             Iterator<Map.Entry<String, VideoBean>> vodEntrys = vodHisMap.entrySet().iterator();
+            int ind = 0;
             while (vodEntrys.hasNext()) {
                 VideoBean vb = vodEntrys.next().getValue();
                 VideoImgItemView videoImg = new VideoImgItemView(this, vb);
+                videoImg.setId(R.id.vod_list_right_first_id + ind);
                 vodHisListRightImgList.add(videoImg);
                 VideoItemView viv = new VideoItemView(this, vb, videoImg);
                 vodHisListRightLayout.addView(viv);
+                ind++;
             }
 
             // 初始化点击事件
@@ -124,12 +167,12 @@ public class VodHisListActivity extends Activity {
         this.mMainMoveFrame = mMainMoveFrame;
     }
 
-    public View getmCurrentVideo() {
-        return mCurrentVideo;
+    public View getmCurrentFocus() {
+        return mCurrentFocus;
     }
 
-    public void setmCurrentVideo(View mCurrentVideo) {
-        this.mCurrentVideo = mCurrentVideo;
+    public void setmCurrentFocus(View mCurrentFocus) {
+        this.mCurrentFocus = mCurrentFocus;
     }
 
     public List<VideoImgItemView> getVodHisListRightImgList() {

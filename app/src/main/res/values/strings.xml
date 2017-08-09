@@ -34,5 +34,6 @@
     <string name="news_list_title">新闻速递</string>
 
     <string name="vod_his_list_title">观看历史</string>
+    <string name="vod_his_list_clear">清空历史记录</string>
 
 </resources>

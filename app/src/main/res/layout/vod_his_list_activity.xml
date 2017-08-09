@@ -77,4 +77,24 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="4"
+            android:layout_height="0dp">
+
+            <TextView
+                android:id="@+id/vod_his_clear"
+                android:text="@string/vod_his_list_clear"
+                android:layout_gravity="bottom"
+                android:textSize="13px"
+                android:textColor="#8e8e8e"
+                android:letterSpacing="-0.01"
+                android:layout_marginBottom="3px"
+                android:layout_marginLeft="1180px"
+                android:focusable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
 </LinearLayout>

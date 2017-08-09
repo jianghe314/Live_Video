@@ -67,6 +67,43 @@ public class VideoHisItemListener implements View.OnKeyListener {
     }
 
     /**
+     * 初始化焦点事件
+     */
+    public void initItemFocus() {
+        List<VideoImgItemView> imgList = act.getVodHisListRightImgList();
+        for(int i = 0; i < imgList.size(); i++) {
+            VideoImgItemView viiv = imgList.get(i);
+            if(i == 0) {
+                viiv.setNextFocusLeftId(viiv.getId());
+            } else  {
+                viiv.setNextFocusLeftId(imgList.get(i - 1).getId());
+            }
+            if(isEleExists(i - STEP)) {
+                viiv.setNextFocusUpId(imgList.get(i - STEP).getId());
+            } else {
+                viiv.setNextFocusUpId(viiv.getId());
+            }
+
+            if(isEleExists(i + 1)) {
+                viiv.setNextFocusRightId(imgList.get(i + 1).getId());
+            } else {
+                viiv.setNextFocusRightId(viiv.getId());
+            }
+
+            if(isEleExists(i + STEP)) {
+                viiv.setNextFocusDownId(imgList.get(i + STEP).getId());
+            } else {
+                viiv.setNextFocusDownId(viiv.getId());
+            }
+
+            if(i == imgList.size() - 1) {
+                viiv.setNextFocusDownId(R.id.vod_his_clear);
+            }
+        }
+
+    }
+
+    /**
      * 通过下标获取元素的位置
      * @param index
      * @return

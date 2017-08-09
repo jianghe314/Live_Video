@@ -96,6 +96,7 @@ public class VideoItemListener implements View.OnKeyListener {
         }
 
     }
+
     public void initItemFocus_() {
         act.getmCurrentGroup().setNextFocusRightId(R.id.vod_list_right_first_id);
         List<VideoImgItemView> imgList = act.getVodListRightImgList();
