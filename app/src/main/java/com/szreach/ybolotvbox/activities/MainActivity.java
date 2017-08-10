@@ -6,17 +6,22 @@ package com.szreach.ybolotvbox.activities;
 
 
 import android.app.Activity;
-import android.app.AlertDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.szreach.ybolotvbox.R;
 import com.szreach.ybolotvbox.beans.NewsBean;
+import com.szreach.ybolotvbox.beans.SysCoBean;
 import com.szreach.ybolotvbox.listener.MainBtnListener;
 import com.szreach.ybolotvbox.utils.Constant;
 import com.szreach.ybolotvbox.utils.DataService;
@@ -24,13 +29,21 @@ import com.szreach.ybolotvbox.utils.StoreObjectUtils;
 import com.szreach.ybolotvbox.views.MainLinearLayout;
 import com.szreach.ybolotvbox.views.MoveFrameLayout;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import static com.szreach.ybolotvbox.R.id.news;
+import static com.szreach.ybolotvbox.R.id.url;
+
 public class MainActivity extends Activity {
     MainLinearLayout mLinearLayout;
     MoveFrameLayout mMainMoveFrame;
+    ImageView homePageLogo;
+    TextView homePageTitle;
     TextView newsTitle;
     TextView newsSummary;
     View mOldFocus;
@@ -42,13 +55,15 @@ public class MainActivity extends Activity {
 
         mLinearLayout = findViewById(R.id.home_page);
         mMainMoveFrame = findViewById(R.id.main_move_frame);
+        homePageLogo = findViewById(R.id.app_home_page_logo);
+        homePageTitle = findViewById(R.id.app_home_page_title);
         newsTitle = findViewById(R.id.main_news_title);
         newsSummary = findViewById(R.id.main_news_summary);
 
         initAppParams();
         initMoveFrame();
         initMainBtnEvent();
-        new DataThread(this.handler).start();
+        new DataThread(this.handlerNews, this.handlerCoInfo).start();
     }
 
     /**
@@ -56,10 +71,19 @@ public class MainActivity extends Activity {
      */
     private void initAppParams() {
         StoreObjectUtils storeObjectUtils = new StoreObjectUtils(MainActivity.this, StoreObjectUtils.SP_Plat);
+
+        /**
+         * 这个代码用于模拟器测试用
+         */
+        if(Constant.OK_BTN_KEYCODE == KeyEvent.KEYCODE_ENTER) {
+            storeObjectUtils.saveObject(StoreObjectUtils.DATA_Plat_Address, Constant.DataServerAdress);
+        }
+
         String platformAddr = storeObjectUtils.getString(StoreObjectUtils.DATA_Plat_Address);
         if (platformAddr != null && platformAddr.length() > 0) {
             Constant.DataServerAdress = platformAddr;
         }
+
     }
 
     private void initMoveFrame() {
@@ -88,7 +112,7 @@ public class MainActivity extends Activity {
 
         mainBtnMap.put(R.id.live, (LinearLayout) this.findViewById(R.id.live));
         mainBtnMap.put(R.id.vod, (LinearLayout) this.findViewById(R.id.vod));
-        mainBtnMap.put(R.id.news, (LinearLayout) this.findViewById(R.id.news));
+        mainBtnMap.put(news, (LinearLayout) this.findViewById(news));
         mainBtnMap.put(R.id.history, (LinearLayout) this.findViewById(R.id.history));
         mainBtnMap.put(R.id.settings, (LinearLayout) this.findViewById(R.id.settings));
         mainBtnMap.put(R.id.network, (LinearLayout) this.findViewById(R.id.network));
@@ -101,9 +125,9 @@ public class MainActivity extends Activity {
     }
 
     /**
-     * 异步网络请求数据
+     * 处理新闻数据
      */
-    private Handler handler = new Handler() {
+    private Handler handlerNews = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -114,11 +138,28 @@ public class MainActivity extends Activity {
         }
     };
 
-    private class DataThread extends Thread {
-        private Handler handler;
+    /**
+     * 处理企业信息
+     */
+    private Handler handlerCoInfo = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Bundle bundle = msg.getData();
+            String coName = bundle.getString("coName");
+            Bitmap bitmap = bundle.getParcelable("coLogoMap");
+            homePageTitle.setText(coName);
+            homePageLogo.setImageBitmap(bitmap);
+        }
+    };
 
-        public DataThread(Handler handler) {
-            this.handler = handler;
+    private class DataThread extends Thread {
+        private Handler handlerNews;
+        private Handler handlerCoInfo;
+
+        public DataThread(Handler handlerNews, Handler handlerCoInfo) {
+            this.handlerNews = handlerNews;
+            this.handlerCoInfo = handlerCoInfo;
         }
 
         @Override
@@ -130,7 +171,26 @@ public class MainActivity extends Activity {
                     Bundle bundle = new Bundle();
                     bundle.putParcelable("news", news);
                     msg.setData(bundle);
-                    handler.sendMessage(msg);
+                    handlerNews.sendMessage(msg);
+                }
+
+                SysCoBean sysCoBean = DataService.getInstance().getSysCoBean();
+                if(sysCoBean != null) {
+                    Message msg = new Message();
+                    Bundle bundle = new Bundle();
+
+                    try {
+                        bundle.putString("coName", sysCoBean.getCoName());
+                        URL url = new URL(Constant.DataServerAdress + "/Rec/coImg/" + sysCoBean.getCoLogo());
+                        Bitmap bitMap = BitmapFactory.decodeStream(url.openStream());
+                        bundle.putParcelable("coLogoMap", bitMap);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    msg.setData(bundle);
+                    handlerCoInfo.sendMessage(msg);
                 }
             }
         }

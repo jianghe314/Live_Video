@@ -26,7 +26,7 @@
 
             <TextView
                 android:id="@+id/vod_his_list_count"
-                android:text="共计669个视频"
+                android:text="共计0个视频"
                 android:layout_gravity="bottom"
                 android:textSize="15px"
                 android:textColor="#ffffff"

@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/live_list_count"
-                android:text=""
+                android:text="共计0场直播"
                 android:textSize="18px"
                 android:letterSpacing="-0.06"
                 android:textColor="#0091ff"

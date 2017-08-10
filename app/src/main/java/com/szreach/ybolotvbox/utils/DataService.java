@@ -2,6 +2,7 @@ package com.szreach.ybolotvbox.utils;
 
 import com.szreach.ybolotvbox.beans.LiveBean;
 import com.szreach.ybolotvbox.beans.NewsBean;
+import com.szreach.ybolotvbox.beans.SysCoBean;
 import com.szreach.ybolotvbox.beans.VideoBean;
 import com.szreach.ybolotvbox.beans.VodGroupBean;
 import com.szreach.ybolotvbox.jsonMsg.ResultItem;
@@ -29,6 +30,7 @@ public class DataService {
     public static final String URL_GET_VIDEO_INFO = "/getVideoInfo";
     public static final String URL_GET_NEWS_LIST = "/getNewsList";
     public static final String URL_GET_NEWS_URL = "/getNewsNnUrl";
+    public static final String URL_GET_CO_INFO = "/getCoInfo";
 
     private static final ObjectMapper mapper = new ObjectMapper();
 
@@ -286,11 +288,40 @@ public class DataService {
         return news;
     }
 
+    /**
+     * 获取企业信息
+     * @return
+     */
+    public SysCoBean getSysCoBean() {
+        SysCoBean sysCo = null;
+        String url = Constant.DataServerAdress + URL_PREFIX + URL_GET_CO_INFO + "/10001";
+        try {
+            String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_GET, url, null);
+            ResultItem<SysCoBean> resultItem = mapper.readValue(retStr, new TypeReference<ResultItem<SysCoBean>>() {
+            });
+            if (resultItem.getMsgHeader().isResult() && resultItem.getData() != null) {
+                sysCo = resultItem.getData();
+            }
+
+        } catch (JsonParseException e) {
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return sysCo;
+    }
+
     public static void main(String[] args) {
 //        DataService.getInstance().getVodGroupList();
 //        DataService.getInstance().getVideopListByGroupId(0);
 //        DataService.getInstance().getLiveList();
 //        DataService.getInstance().getNewsList();
+        SysCoBean bean = DataService.getInstance().getSysCoBean();
+        System.out.println(bean.getCoId());
+        System.out.println(bean.getCoName());
     }
 
 }

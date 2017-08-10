@@ -72,7 +72,7 @@
             >
             <TextView
                 android:id="@+id/vod_list_count"
-                android:text=""
+                android:text="共计0个视频"
                 android:layout_gravity="bottom"
                 android:textSize="15px"
                 android:textColor="#ffffff"
