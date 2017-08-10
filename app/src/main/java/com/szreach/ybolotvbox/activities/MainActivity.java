@@ -6,6 +6,7 @@ package com.szreach.ybolotvbox.activities;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,7 +18,9 @@ import android.widget.TextView;
 import com.szreach.ybolotvbox.R;
 import com.szreach.ybolotvbox.beans.NewsBean;
 import com.szreach.ybolotvbox.listener.MainBtnListener;
+import com.szreach.ybolotvbox.utils.Constant;
 import com.szreach.ybolotvbox.utils.DataService;
+import com.szreach.ybolotvbox.utils.StoreObjectUtils;
 import com.szreach.ybolotvbox.views.MainLinearLayout;
 import com.szreach.ybolotvbox.views.MoveFrameLayout;
 
@@ -41,9 +44,22 @@ public class MainActivity extends Activity {
         mMainMoveFrame = findViewById(R.id.main_move_frame);
         newsTitle = findViewById(R.id.main_news_title);
         newsSummary = findViewById(R.id.main_news_summary);
+
+        initAppParams();
         initMoveFrame();
         initMainBtnEvent();
         new DataThread(this.handler).start();
+    }
+
+    /**
+     * 初始化应用数据
+     */
+    private void initAppParams() {
+        StoreObjectUtils storeObjectUtils = new StoreObjectUtils(MainActivity.this, StoreObjectUtils.SP_Plat);
+        String platformAddr = storeObjectUtils.getString(StoreObjectUtils.DATA_Plat_Address);
+        if (platformAddr != null && platformAddr.length() > 0) {
+            Constant.DataServerAdress = platformAddr;
+        }
     }
 
     private void initMoveFrame() {
@@ -64,6 +80,9 @@ public class MainActivity extends Activity {
         });
     }
 
+    /**
+     * 初始化面板按钮事件
+     */
     private void initMainBtnEvent() {
         Map<Integer, LinearLayout> mainBtnMap = new HashMap<Integer, LinearLayout>();
 
@@ -76,11 +95,14 @@ public class MainActivity extends Activity {
         mainBtnMap.put(R.id.upgrade, (LinearLayout) this.findViewById(R.id.upgrade));
 
         Iterator<Map.Entry<Integer, LinearLayout>> it = mainBtnMap.entrySet().iterator();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             it.next().getValue().setOnKeyListener(new MainBtnListener(this, mainBtnMap));
         }
     }
 
+    /**
+     * 异步网络请求数据
+     */
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -101,13 +123,15 @@ public class MainActivity extends Activity {
 
         @Override
         public void run() {
-            NewsBean news = DataService.getInstance().getMainNews();
-            if(news != null) {
-                Message msg = new Message();
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("news", news);
-                msg.setData(bundle);
-                handler.sendMessage(msg);
+            if (Constant.DataServerAdress != null && Constant.DataServerAdress.length() > 0) {
+                NewsBean news = DataService.getInstance().getMainNews();
+                if (news != null) {
+                    Message msg = new Message();
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("news", news);
+                    msg.setData(bundle);
+                    handler.sendMessage(msg);
+                }
             }
         }
     }

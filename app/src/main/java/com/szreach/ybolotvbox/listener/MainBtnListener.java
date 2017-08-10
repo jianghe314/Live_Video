@@ -1,6 +1,7 @@
 package com.szreach.ybolotvbox.listener;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.view.KeyEvent;
 import android.view.View;
@@ -8,10 +9,13 @@ import android.widget.LinearLayout;
 
 import com.szreach.ybolotvbox.R;
 import com.szreach.ybolotvbox.activities.LiveListActivity;
+import com.szreach.ybolotvbox.activities.MainActivity;
 import com.szreach.ybolotvbox.activities.NewsListActivity;
+import com.szreach.ybolotvbox.activities.PlatformActivity;
 import com.szreach.ybolotvbox.activities.VodHisListActivity;
 import com.szreach.ybolotvbox.activities.VodListActivity;
 import com.szreach.ybolotvbox.utils.Constant;
+import com.szreach.ybolotvbox.utils.StoreObjectUtils;
 
 import java.util.Map;
 
@@ -35,22 +39,39 @@ public class MainBtnListener implements View.OnKeyListener {
         if(keyCode == Constant.OK_BTN_KEYCODE && keyEvent.getAction() == KeyEvent.ACTION_UP) {
             if (view == this.btnMap.get(R.id.live)) {
                 // 直播
+                if(!checkPlatformAddressExists()) {
+                    createAlert().show();
+                    return false;
+                }
                 intent = new Intent(act, LiveListActivity.class);
             } else if (view == this.btnMap.get(R.id.vod)) {
                 // 视频
+                if(!checkPlatformAddressExists()) {
+                    createAlert().show();
+                    return false;
+                }
                 intent = new Intent(act, VodListActivity.class);
             } else if (view == this.btnMap.get(R.id.news)) {
                 // 新闻
+                if(!checkPlatformAddressExists()) {
+                    createAlert().show();
+                    return false;
+                }
                 intent = new Intent(act, NewsListActivity.class);
 
             } else if (view == this.btnMap.get(R.id.history)) {
                 // 浏览历史
+                if(!checkPlatformAddressExists()) {
+                    createAlert().show();
+                    return false;
+                }
                 intent = new Intent(act, VodHisListActivity.class);
             } else if (view == this.btnMap.get(R.id.settings)) {
                 // 系统设置
 
             } else if (view == this.btnMap.get(R.id.network)) {
                 // 网络设置
+                intent = new Intent(act, PlatformActivity.class);
 
             } else if (view == this.btnMap.get(R.id.upgrade)) {
                 // 系统升级
@@ -60,5 +81,18 @@ public class MainBtnListener implements View.OnKeyListener {
             }
         }
         return false;
+    }
+
+    private boolean checkPlatformAddressExists() {
+        StoreObjectUtils storeObjectUtils = new StoreObjectUtils(act, StoreObjectUtils.SP_Plat);
+        String platformAddr = storeObjectUtils.getString(StoreObjectUtils.DATA_Plat_Address);
+        if(platformAddr != null && platformAddr.length() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    private AlertDialog createAlert() {
+        return new AlertDialog.Builder(act).setTitle("警告").setMessage("请先进行平台网络设置~").setPositiveButton("确定", null).create();
     }
 }

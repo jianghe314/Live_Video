@@ -21,7 +21,7 @@ import java.util.Map;
  */
 
 public class DataService {
-    public static final String URL_PREFIX = Constant.DataServerAdress + "/rest/AndroidService";
+    public static final String URL_PREFIX = "/rest/AndroidService";
     public static final String URL_GET_LIVE_LIST = "/getLiveList";
     public static final String URL_GET_LIVE = "/getLive";
     public static final String URL_GET_GROUP_LIST = "/getVideoGroup";
@@ -50,11 +50,11 @@ public class DataService {
      */
     public ArrayList<LiveBean> getLiveList() {
         ArrayList<LiveBean> liveBeanArrayList = new ArrayList<LiveBean>();
-        String urlPrefix = URL_PREFIX + URL_GET_LIVE_LIST;
+        String urlPrefix = Constant.DataServerAdress + URL_PREFIX + URL_GET_LIVE_LIST;
         String url = urlPrefix + "/10001";
-        String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_GET, url, null);
 
         try {
+            String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_GET, url, null);
             ResultItem<ArrayList<LiveBean>> resultItem = mapper.readValue(retStr, new TypeReference<ResultItem<ArrayList<LiveBean>>>() {
             });
             if (resultItem.getMsgHeader().isResult() && resultItem.getData() != null && resultItem.getData().size() > 0) {
@@ -74,11 +74,11 @@ public class DataService {
      */
     public LiveBean getLive(long coId, String liveId) {
         LiveBean live = null;
-        String urlPrefix = URL_PREFIX + URL_GET_LIVE;
+        String urlPrefix = Constant.DataServerAdress + URL_PREFIX + URL_GET_LIVE;
         String url = urlPrefix + "/" + coId + "/" + liveId;
-        String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_GET, url, null);
 
         try {
+            String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_GET, url, null);
             ResultItem<LiveBean> resultItem = mapper.readValue(retStr, new TypeReference<ResultItem<LiveBean>>() {
             });
             if (resultItem.getMsgHeader().isResult() && resultItem.getData() != null) {
@@ -96,11 +96,11 @@ public class DataService {
      */
     public ArrayList<VodGroupBean> getVodGroupList() {
         ArrayList<VodGroupBean> vodGroupBeanList = new ArrayList<VodGroupBean>();
-        String urlPrefix = URL_PREFIX + URL_GET_GROUP_LIST + "/10001/";
+        String urlPrefix = Constant.DataServerAdress + URL_PREFIX + URL_GET_GROUP_LIST + "/10001/";
         String url = urlPrefix + "0";
-        String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_GET, url, null);
 
         try {
+            String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_GET, url, null);
             ResultItem<ArrayList<VodGroupBean>> resultItem = mapper.readValue(retStr, new TypeReference<ResultItem<ArrayList<VodGroupBean>>>() {
             });
             if (resultItem.getMsgHeader().isResult() && resultItem.getData() != null && resultItem.getData().size() > 0) {
@@ -132,21 +132,20 @@ public class DataService {
      */
     public ArrayList<VideoBean> getVideopListByGroupId(long groupId) {
         ArrayList<VideoBean> videoList = new ArrayList<VideoBean>();
-
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("coId", 10001);
-        if (groupId == 0) {
-            params.put("groupId", null);
-        } else {
-            params.put("groupId", groupId);
-        }
-        params.put("pageNumber", 0);
-        params.put("pageSize", Integer.MAX_VALUE);
-
-        String url = URL_PREFIX + URL_GET_VIDEO_LIST;
-        String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_POST, url, params);
+        String url = Constant.DataServerAdress + URL_PREFIX + URL_GET_VIDEO_LIST;
 
         try {
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("coId", 10001);
+            if (groupId == 0) {
+                params.put("groupId", null);
+            } else {
+                params.put("groupId", groupId);
+            }
+            params.put("pageNumber", 0);
+            params.put("pageSize", Integer.MAX_VALUE);
+
+            String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_POST, url, params);
             ResultItem<ArrayList<VideoBean>> resultItem = mapper.readValue(retStr, new TypeReference<ResultItem<ArrayList<VideoBean>>>() {
             });
             if (resultItem.getMsgHeader().isResult() && resultItem.getData() != null && resultItem.getData().size() > 0) {
@@ -172,10 +171,10 @@ public class DataService {
      */
     public HashMap<String, String> getVideoPlayPath(long coId, String videoId) {
         HashMap<String, String> ret = null;
-        String url = URL_PREFIX + URL_GET_VIDEO_INFO + "/" + coId + "/" + videoId;
-        String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_GET, url, null);
+        String url = Constant.DataServerAdress + URL_PREFIX + URL_GET_VIDEO_INFO + "/" + coId + "/" + videoId;
 
         try {
+            String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_GET, url, null);
             ResultItem<HashMap<String, String>> resultItem = mapper.readValue(retStr, new TypeReference<ResultItem<HashMap<String, String>>>() {
             });
             if (resultItem.getMsgHeader().isResult() && resultItem.getData() != null && resultItem.getData().size() > 0) {
@@ -199,17 +198,15 @@ public class DataService {
      */
     public ArrayList<NewsBean> getNewsList() {
         ArrayList<NewsBean> newsList = new ArrayList<NewsBean>();
-
-        String url = URL_PREFIX + URL_GET_NEWS_LIST;
-
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("coId", 10001);
-        params.put("pageNumber", 0);
-        params.put("pageSize", Integer.MAX_VALUE);
-
-        String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_POST, url, params);
+        String url = Constant.DataServerAdress + URL_PREFIX + URL_GET_NEWS_LIST;
 
         try {
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("coId", 10001);
+            params.put("pageNumber", 0);
+            params.put("pageSize", Integer.MAX_VALUE);
+
+            String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_POST, url, params);
             ResultItem<ArrayList<NewsBean>> resultItem = mapper.readValue(retStr, new TypeReference<ResultItem<ArrayList<NewsBean>>>() {
             });
             if (resultItem.getMsgHeader().isResult() && resultItem.getData() != null && resultItem.getData().size() > 0) {
@@ -235,10 +232,10 @@ public class DataService {
      */
     public String getNewsUrl(long coId, String nnId) {
         String ret = null;
-        String url = URL_PREFIX + URL_GET_NEWS_URL + "/" + coId + "/" + nnId;
-        String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_GET, url, null);
+        String url = Constant.DataServerAdress + URL_PREFIX + URL_GET_NEWS_URL + "/" + coId + "/" + nnId;
 
         try {
+            String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_GET, url, null);
             ResultItem<Map<String, String>> resultItem = mapper.readValue(retStr, new TypeReference<ResultItem<Map<String, String>>>() {
             });
             if (resultItem.getMsgHeader().isResult() && resultItem.getData() != null && resultItem.getData().size() > 0) {
@@ -262,16 +259,16 @@ public class DataService {
      */
     public NewsBean getMainNews() {
         NewsBean news = null;
-        String url = URL_PREFIX + URL_GET_NEWS_LIST;
-
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("coId", 10001);
-        params.put("pageNumber", 0);
-        params.put("pageSize", 1);
-
-        String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_POST, url, params);
+        String url = Constant.DataServerAdress + URL_PREFIX + URL_GET_NEWS_LIST;
 
         try {
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("coId", 10001);
+            params.put("pageNumber", 0);
+            params.put("pageSize", 1);
+
+            String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_POST, url, params);
+
             ResultItem<ArrayList<NewsBean>> resultItem = mapper.readValue(retStr, new TypeReference<ResultItem<ArrayList<NewsBean>>>() {
             });
             if (resultItem.getMsgHeader().isResult() && resultItem.getData() != null && resultItem.getData().size() > 0) {

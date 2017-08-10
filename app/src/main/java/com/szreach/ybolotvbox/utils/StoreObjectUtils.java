@@ -23,6 +23,10 @@ public class StoreObjectUtils {
     final public static String SP_VOD_HISTORY = "sp_vod_history";
     final public static String DATA_VOD_HISTORY = "data_vod_history";
 
+    final public static String SP_Plat = "sp_plat";
+    final public static String DATA_Plat_Address = "data_plat_address";
+
+
     private Context context;
     private String spName;
 
@@ -90,7 +94,15 @@ public class StoreObjectUtils {
     }
 
     public String getString(String key) {
-        return sp.getString(key, null);
+        String ret = null;
+        String str = sp.getString(key, null);
+        if(str != null && str.length() > 0) {
+            ret = str.replace("\"", "");
+        }
+        if(ret != null && ret.equals("null")) {
+            ret = null;
+        }
+        return ret;
     }
 
     public int getInt(String key) {

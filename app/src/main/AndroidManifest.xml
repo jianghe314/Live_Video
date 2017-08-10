@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.szreach.ybolotvbox">
+          package="com.szreach.ybolotvbox">
 
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -42,6 +42,7 @@
         <activity android:name=".activities.VodPlayActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".activities.NewsListActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".activities.NewsPlayActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity android:name=".activities.PlatformActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity android:name=".videoplayer.VideoPlayer" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
     </application>
 
