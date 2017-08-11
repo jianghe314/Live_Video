@@ -1,5 +1,6 @@
 package com.szreach.ybolotv.utils;
 
+import com.szreach.ybolotv.beans.ApkVersion;
 import com.szreach.ybolotv.beans.LiveBean;
 import com.szreach.ybolotv.beans.NewsBean;
 import com.szreach.ybolotv.beans.SysCoBean;
@@ -23,6 +24,7 @@ import java.util.Map;
 
 public class DataService {
     public static final String URL_PREFIX = "/rest/AndroidService";
+    public static final String URL_VERSION_INFO = "/Rec/android/ybolotv_version.json";
     public static final String URL_GET_LIVE_LIST = "/getLiveList";
     public static final String URL_GET_LIVE = "/getLive";
     public static final String URL_GET_GROUP_LIST = "/getVideoGroup";
@@ -314,14 +316,33 @@ public class DataService {
         return sysCo;
     }
 
+    /**
+     * 获取APK版本信息
+     * @return
+     */
+    public ApkVersion getApkVersionInfo() {
+        ApkVersion apkVersion = null;
+        try {
+            String url = Constant.DataServerAdress + URL_VERSION_INFO;
+            String retStr = HttpUtils.sendRequest(HttpUtils.METHOD_GET, url, null);
+            if(retStr != null && retStr.length() > 0) {
+                apkVersion = mapper.readValue(retStr, new TypeReference<ApkVersion>() {
+                });
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return apkVersion;
+    }
+
     public static void main(String[] args) {
 //        DataService.getInstance().getVodGroupList();
 //        DataService.getInstance().getVideopListByGroupId(0);
 //        DataService.getInstance().getLiveList();
 //        DataService.getInstance().getNewsList();
-        SysCoBean bean = DataService.getInstance().getSysCoBean();
-        System.out.println(bean.getCoId());
-        System.out.println(bean.getCoName());
+        ApkVersion version = DataService.getInstance().getApkVersionInfo();
+        System.out.println(version.getVersionName());
+
     }
 
 }

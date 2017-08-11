@@ -11,6 +11,7 @@ import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.activities.LiveListActivity;
 import com.szreach.ybolotv.activities.NewsListActivity;
 import com.szreach.ybolotv.activities.PlatformActivity;
+import com.szreach.ybolotv.activities.UpgradeActivity;
 import com.szreach.ybolotv.activities.VodHisListActivity;
 import com.szreach.ybolotv.activities.VodListActivity;
 import com.szreach.ybolotv.utils.Constant;
@@ -69,11 +70,16 @@ public class MainBtnListener implements View.OnKeyListener {
                 // 系统设置
 
             } else if (view == this.btnMap.get(R.id.network)) {
-                // 网络设置
+                // 平台地址设置
                 intent = new Intent(act, PlatformActivity.class);
 
             } else if (view == this.btnMap.get(R.id.upgrade)) {
                 // 系统升级
+                if(!checkPlatformAddressExists()) {
+                    createAlert().show();
+                    return false;
+                }
+                intent = new Intent(act, UpgradeActivity.class);
             }
             if (intent != null) {
                 act.startActivity(intent);

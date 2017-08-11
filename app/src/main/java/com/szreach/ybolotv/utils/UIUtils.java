@@ -14,4 +14,10 @@ public class UIUtils {
         pDialog.dismiss();
         return pDialog;
     }
+
+    public static ProgressDialog createDownloadDialog(Context context) {
+        ProgressDialog pDialog = ProgressDialog.show(context, "正在更新", "进度...0%");
+        pDialog.dismiss();
+        return pDialog;
+    }
 }
