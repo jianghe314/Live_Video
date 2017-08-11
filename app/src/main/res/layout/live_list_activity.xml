@@ -79,7 +79,7 @@
             android:layout_weight="4"
             android:orientation="horizontal"
             >
-            <com.szreach.ybolotvbox.views.DateTimeTextView
+            <com.szreach.ybolotv.views.DateTimeTextView
                 android:layout_marginLeft="620px"
                 android:textColor="#ffffff"
                 android:letterSpacing="-0.06"

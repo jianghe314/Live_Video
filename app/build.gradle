@@ -12,7 +12,7 @@ android {
         exclude 'META-INF/ASL2.0'
     }
     defaultConfig {
-        applicationId "com.szreach.ybolotvbox"
+        applicationId "com.szreach.ybolotv"
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1

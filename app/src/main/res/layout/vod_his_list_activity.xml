@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-            <com.szreach.ybolotvbox.views.DateTimeTextView
+            <com.szreach.ybolotv.views.DateTimeTextView
                 android:layout_marginLeft="636.5px"
                 android:layout_marginBottom="8px"
                 android:layout_gravity="bottom"
@@ -70,7 +70,7 @@
 
             </ScrollView>
 
-            <com.szreach.ybolotvbox.views.MoveFrameLayout
+            <com.szreach.ybolotv.views.MoveFrameLayout
                 android:id="@+id/vod_his_list_page_move"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
