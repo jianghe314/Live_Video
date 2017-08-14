@@ -7,7 +7,9 @@ package com.szreach.ybolotv.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,19 +26,56 @@ import com.szreach.ybolotv.utils.UpgradeUtils;
 
 public class UpgradeActivity extends Activity {
     private TextView upgradeCheck;
+    private TextView upgradeFile;
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.upgrade_activity);
 
+        upgradeFile = findViewById(R.id.upgrade_file);
         upgradeCheck = findViewById(R.id.upgrade_check);
+
+        upgradeFile.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                if(keyCode == Constant.OK_BTN_KEYCODE && keyEvent.getAction() == KeyEvent.ACTION_UP) {
+                    // 打开文件管理器
+                    Intent intent = new Intent(Intent.ACTION_MAIN);
+                    intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                    ComponentName cn = new ComponentName("com.hitv.explorer", "com.hitv.explorer.activity.MainExplorerActivity");
+                    intent.setComponent(cn);
+                    UpgradeActivity.this.startActivity(intent);
+
+                    // 高级设置
+                    /*Intent intent = new Intent("android.settings.SETTINGS");
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    UpgradeActivity.this.startActivity(intent);*/
+
+                    // 以太网
+                    /*Intent intent = new Intent(Intent.ACTION_MAIN);
+                    intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                    ComponentName cn = new ComponentName("com.android.hisiliconsetting", "com.android.hisiliconsetting.net.EthernetActivity");
+                    intent.setComponent(cn);
+                    UpgradeActivity.this.startActivity(intent);*/
+
+                    // 无线网
+                    /*Intent intent = new Intent(Intent.ACTION_MAIN);
+                    intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                    ComponentName cn = new ComponentName("com.android.hisiliconsetting", "com.android.hisiliconsetting.net.WifiActivity");
+                    intent.setComponent(cn);
+                    UpgradeActivity.this.startActivity(intent);*/
+
+                }
+                return false;
+            }
+        });
 
         upgradeCheck.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
                 if(keyCode == Constant.OK_BTN_KEYCODE && keyEvent.getAction() == KeyEvent.ACTION_UP) {
-                    new UpgradeThread(UpgradeActivity.this.upgradeHandler).start();
+                      new UpgradeThread(UpgradeActivity.this.upgradeHandler).start();
                 }
                 return false;
             }

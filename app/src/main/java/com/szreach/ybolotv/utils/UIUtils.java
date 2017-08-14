@@ -16,7 +16,7 @@ public class UIUtils {
     }
 
     public static ProgressDialog createDownloadDialog(Context context) {
-        ProgressDialog pDialog = ProgressDialog.show(context, "正在更新", "进度...0%");
+        ProgressDialog pDialog = ProgressDialog.show(context, "正在更新", "下载...0%");
         pDialog.dismiss();
         return pDialog;
     }

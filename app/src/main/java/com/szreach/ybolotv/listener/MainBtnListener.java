@@ -2,6 +2,7 @@ package com.szreach.ybolotv.listener;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.view.KeyEvent;
 import android.view.View;
@@ -68,6 +69,9 @@ public class MainBtnListener implements View.OnKeyListener {
                 intent = new Intent(act, VodHisListActivity.class);
             } else if (view == this.btnMap.get(R.id.settings)) {
                 // 系统设置
+                intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                intent.setComponent(new ComponentName("com.android.hisiliconsetting", "com.android.hisiliconsetting.MainActivity"));
 
             } else if (view == this.btnMap.get(R.id.network)) {
                 // 平台地址设置

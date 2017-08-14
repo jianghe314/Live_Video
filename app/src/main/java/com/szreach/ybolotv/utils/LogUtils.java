@@ -5,10 +5,6 @@ import android.util.Log;
 
 /**
  * Created by Adams.Tsui on 2017/07/27.
- * *使用：
- * OPENLOG.initTag("xiaomingge", true); // 测试LOG输出.
- * 如果不进行初始化，那么将使用命令来开启LOG输出.
- * 开启LOG输出:
  */
 
 public class LogUtils {
