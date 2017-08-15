@@ -16,6 +16,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.szreach.ybolotv.R;
@@ -23,18 +26,35 @@ import com.szreach.ybolotv.beans.ApkVersion;
 import com.szreach.ybolotv.utils.Constant;
 import com.szreach.ybolotv.utils.DataService;
 import com.szreach.ybolotv.utils.UpgradeUtils;
+import com.szreach.ybolotv.views.MoveFrameLayout;
 
 public class UpgradeActivity extends Activity {
-    private TextView upgradeCheck;
-    private TextView upgradeFile;
+    private LinearLayout mLinearLayout;
+    private LinearLayout upgradeCheck;
+    private LinearLayout upgradeFile;
+    private MoveFrameLayout mMainMoveFrame;
+    private View mOldFocus;
+    private TextView upgradeCurrVersion;
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.upgrade_activity);
 
+        mLinearLayout = findViewById(R.id.upgrade_page);
+        mMainMoveFrame = findViewById(R.id.upgrade_move_frame);
         upgradeFile = findViewById(R.id.upgrade_file);
         upgradeCheck = findViewById(R.id.upgrade_check);
+        upgradeCurrVersion = findViewById(R.id.upgrade_curr_version);
+
+        try {
+            String versionName = UpgradeActivity.this.getPackageManager().getPackageInfo(UpgradeActivity.this.getPackageName(), 0).versionName;
+            upgradeCurrVersion.setText("当前版本：" + versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        initMoveFrame();
 
         upgradeFile.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -90,7 +110,7 @@ public class UpgradeActivity extends Activity {
             Bundle bundle = msg.getData();
             final ApkVersion apkVersion = bundle.getParcelable("apkVersion");
             try {
-                int versionCode = UpgradeActivity.this.getPackageManager().getPackageInfo("com.szreach.ybolotv", 0).versionCode;
+                int versionCode = UpgradeActivity.this.getPackageManager().getPackageInfo(UpgradeActivity.this.getPackageName(), 0).versionCode;
                 if(apkVersion != null && apkVersion.getVersionCode() > versionCode) {
                     new AlertDialog.Builder(UpgradeActivity.this)
                     .setTitle("应用更新")
@@ -134,6 +154,23 @@ public class UpgradeActivity extends Activity {
             this.upgradeHandler.sendMessage(msg);
         }
 
+    }
+
+    private void initMoveFrame() {
+        mMainMoveFrame.setUpRectResource(R.drawable.conner_main);
+        mMainMoveFrame.setTranDurAnimTime(400);
+        mLinearLayout.getViewTreeObserver().addOnGlobalFocusChangeListener(new ViewTreeObserver.OnGlobalFocusChangeListener() {
+            @Override
+            public void onGlobalFocusChanged(View oldFocus, View newFocus) {
+            if (newFocus != null) {
+                mMainMoveFrame.setDrawUpRectEnabled(true);
+                float scale = 1.015f;
+                mMainMoveFrame.setFocusView(newFocus, mOldFocus, scale);
+                mMainMoveFrame.bringToFront();
+                mOldFocus = newFocus;
+            }
+            }
+        });
     }
 
 }

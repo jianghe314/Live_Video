@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          android:versionCode="1"
-          android:versionName="YBoloTV 0.1"
           package="com.szreach.ybolotv">
 
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
@@ -48,7 +46,8 @@
                 <category android:name="android.intent.category.HOME" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.MONKEY"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <!--自启动的话，不能加上这个配置，否则在应用列表里，会出现这个应用的图标/-->
+                <!--category android:name="android.intent.category.LAUNCHER"/-->
             </intent-filter>
         </activity>
 

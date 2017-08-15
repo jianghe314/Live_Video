@@ -1,44 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/page_bg"
-        android:orientation="horizontal"
-        android:id="@+id/upgrade_page"
+      android:id="@+id/upgrade_page"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@drawable/page_bg"
+      android:orientation="horizontal"
     >
 
     <LinearLayout
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/upgrade_file"
-                android:padding="5px"
-                android:textColor="#ffffff"
-                android:background="#696969"
-                android:textSize="30px"
-                android:text="U盘更新"
-                android:layout_width="match_parent"
-                android:focusable="true"
-                android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/upgrade_check"
-                android:padding="5px"
-                android:textColor="#ffffff"
-                android:background="#696969"
-                android:textSize="30px"
-                android:text="检查更新"
-                android:layout_width="match_parent"
-                android:focusable="true"
-                android:layout_height="match_parent"/>
+            <LinearLayout
+                android:layout_width="400px"
+                android:layout_height="226px"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="186px"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/upgrade_file"
+                        android:layout_width="186px"
+                        android:layout_height="186px"
+                        android:background="@drawable/upgrade_local"
+                        android:focusable="true"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_marginBottom="18px"
+                            android:layout_gravity="bottom"
+                            android:gravity="center"
+                            android:textSize="18px"
+                            android:textColor="#FFFFFF"
+                            android:text="本地升级"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/upgrade_check"
+                        android:layout_width="186px"
+                        android:layout_height="186px"
+                        android:layout_marginLeft="28px"
+                        android:background="@drawable/upgrade_online"
+                        android:focusable="true"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_marginBottom="18px"
+                            android:layout_gravity="bottom"
+                            android:gravity="center"
+                            android:textSize="18px"
+                            android:textColor="#FFFFFF"
+                            android:text="在线升级"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <com.szreach.ybolotv.views.MoveFrameLayout
+                        android:id="@+id/upgrade_move_frame"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/upgrade_curr_version"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14px"
+                        android:gravity="center"/>
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 

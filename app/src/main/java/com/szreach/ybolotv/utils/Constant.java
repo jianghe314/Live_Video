@@ -11,5 +11,5 @@ public class Constant {
 
      public final static int OK_BTN_KEYCODE = KeyEvent.KEYCODE_DPAD_CENTER;
 
-//         public final static int OK_BTN_KEYCODE = KeyEvent.KEYCODE_ENTER;
+//    public final static int OK_BTN_KEYCODE = KeyEvent.KEYCODE_ENTER;
 }

@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class DataService {
     public static final String URL_PREFIX = "/rest/AndroidService";
-    public static final String URL_VERSION_INFO = "/Rec/android/ybolotv_version.json";
+    public static final String URL_VERSION_INFO = "/Rec/android/version_jlyzj/ybolotv_version.json";
     public static final String URL_GET_LIVE_LIST = "/getLiveList";
     public static final String URL_GET_LIVE = "/getLive";
     public static final String URL_GET_GROUP_LIST = "/getVideoGroup";
