@@ -44,7 +44,7 @@ public class PlatformActivity extends Activity {
         platSaveBtn.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
-                if(keyCode == Constant.OK_BTN_KEYCODE && keyEvent.getAction() == KeyEvent.ACTION_UP) {
+                if((keyCode == KeyEvent.KEYCODE_DPAD_CENTER || keyCode == KeyEvent.KEYCODE_ENTER) && keyEvent.getAction() == KeyEvent.ACTION_UP) {
                     String platAddressStr = platAddressText.getText().toString();
                     if(platAddressStr != null && platAddressStr.length() > 0 && !platAddressStr.startsWith("http://") && !platAddressStr.startsWith("https://")) {
                         new AlertDialog.Builder(PlatformActivity.this).setTitle("警告")

@@ -36,6 +36,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import static com.szreach.ybolotv.R.id.news;
+import static com.szreach.ybolotv.utils.Constant.DEVICE_TYPE;
 
 public class MainActivity extends Activity {
     MainLinearLayout mLinearLayout;
@@ -73,7 +74,7 @@ public class MainActivity extends Activity {
         /**
          * 这个代码用于模拟器测试用
          */
-        if(Constant.OK_BTN_KEYCODE == KeyEvent.KEYCODE_ENTER) {
+        if(Constant.DEVICE_TYPE == -1) {
             storeObjectUtils.saveObject(StoreObjectUtils.DATA_Plat_Address, Constant.DataServerAdress);
         }
 

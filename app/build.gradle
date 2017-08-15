@@ -15,8 +15,8 @@ android {
         applicationId "com.szreach.ybolotv"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 5
-        versionName "YBoloTV 0.2"
+        versionCode 6
+        versionName "YBoloTV-v1.0.0_jlyz"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

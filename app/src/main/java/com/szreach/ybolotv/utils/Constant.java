@@ -1,7 +1,5 @@
 package com.szreach.ybolotv.utils;
 
-import android.view.KeyEvent;
-
 /**
  * Created by Adams.Tsui on 2017/07/27.
  */
@@ -9,7 +7,6 @@ import android.view.KeyEvent;
 public class Constant {
     public static String DataServerAdress = "http://192.168.0.211";
 
-     public final static int OK_BTN_KEYCODE = KeyEvent.KEYCODE_DPAD_CENTER;
-
-//    public final static int OK_BTN_KEYCODE = KeyEvent.KEYCODE_ENTER;
+//        public final static int DEVICE_TYPE = -1;
+        public final static int DEVICE_TYPE = 0;
 }

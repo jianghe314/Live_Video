@@ -80,7 +80,7 @@ public class VodHisListActivity extends Activity {
         findViewById(R.id.vod_his_clear).setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
-                if(keyCode == Constant.OK_BTN_KEYCODE && keyEvent.getAction() == KeyEvent.ACTION_UP) {
+                if((keyCode == KeyEvent.KEYCODE_DPAD_CENTER || keyCode == KeyEvent.KEYCODE_ENTER) && keyEvent.getAction() == KeyEvent.ACTION_UP) {
                     new AlertDialog.Builder(VodHisListActivity.this)
                             .setTitle("警告")
                             .setMessage("确定要清空观看历史记录？")

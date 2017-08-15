@@ -37,7 +37,7 @@ public class MainBtnListener implements View.OnKeyListener {
 
     @Override
     public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
-        if(keyCode == Constant.OK_BTN_KEYCODE && keyEvent.getAction() == KeyEvent.ACTION_UP) {
+        if((keyCode == KeyEvent.KEYCODE_DPAD_CENTER || keyCode == KeyEvent.KEYCODE_ENTER) && keyEvent.getAction() == KeyEvent.ACTION_UP) {
             if (view == this.btnMap.get(R.id.live)) {
                 // 直播
                 if(!checkPlatformAddressExists()) {
