@@ -13,8 +13,8 @@ import com.szreach.ybolotv.activities.MainActivity;
 public class BootBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent mBootIntent = new Intent(context, MainActivity.class);
+        /*Intent mBootIntent = new Intent(context, MainActivity.class);
         mBootIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-        context.startActivity(mBootIntent);
+        context.startActivity(mBootIntent);*/
     }
 }
