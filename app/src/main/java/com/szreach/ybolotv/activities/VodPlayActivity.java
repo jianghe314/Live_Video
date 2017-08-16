@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.KeyEvent;
+import android.view.View;
 
 import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.utils.DataService;
@@ -42,7 +44,7 @@ public class VodPlayActivity extends Activity {
         super.onCreate(icicle);
         Vitamio.isInitialized(getApplicationContext());
 
-        setContentView(R.layout.live_play_activity);
+        setContentView(R.layout.vod_play_activity);
 
         progressDialog = UIUtils.createDialog(VodPlayActivity.this);
         progressDialog.setCancelable(true);
@@ -52,13 +54,15 @@ public class VodPlayActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        if(videoView != null) {
+        if (videoView != null) {
             videoView.stopPlayback();
         }
     }
 
     private void playVideo(String videoPath) {
-        videoView = (VideoView) this.findViewById(R.id.live_play_video);
+        videoView = (VideoView) this.findViewById(R.id.vod_play_video);
+        videoView.setMediaController(new MediaController(this));
+
         videoView.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {
             @Override
             public void onBufferingUpdate(MediaPlayer mp, int percent) {
@@ -68,7 +72,7 @@ public class VodPlayActivity extends Activity {
                 progressDialog.setMessage("加载中..." + percent + "%");
             }
         });
-        videoView.setMediaController(new MediaController(this));
+
         videoView.setVideoPath(videoPath);
         progressDialog.show();
     }
