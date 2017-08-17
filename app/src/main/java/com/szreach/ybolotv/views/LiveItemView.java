@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.szreach.ybolotv.activities.LiveListActivity;
 import com.szreach.ybolotv.activities.LivePlayActivity;
 import com.szreach.ybolotv.beans.LiveBean;
-import com.szreach.ybolotv.utils.Constant;
 
 /**
  * Created by Adams.Tsui on 2017/7/28 0028.

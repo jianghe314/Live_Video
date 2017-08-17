@@ -23,8 +23,13 @@ import java.util.Map;
  */
 
 public class DataService {
-    public static final String URL_PREFIX = "/rest/AndroidService";
+    // 升级信息路径
     public static final String URL_VERSION_INFO = "/Rec/android/version_jlyzj/ybolotv_version.json";
+
+    // REST接口前缀
+    public static final String URL_PREFIX = "/rest/AndroidService";
+
+    // REST接口
     public static final String URL_GET_LIVE_LIST = "/getLiveList";
     public static final String URL_GET_LIVE = "/getLive";
     public static final String URL_GET_GROUP_LIST = "/getVideoGroup";

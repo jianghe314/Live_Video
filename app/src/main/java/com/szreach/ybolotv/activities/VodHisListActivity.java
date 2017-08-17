@@ -18,7 +18,6 @@ import com.google.android.flexbox.FlexboxLayout;
 import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.beans.VideoBean;
 import com.szreach.ybolotv.listener.VideoHisItemListener;
-import com.szreach.ybolotv.utils.Constant;
 import com.szreach.ybolotv.utils.StoreObjectUtils;
 import com.szreach.ybolotv.views.MoveFrameLayout;
 import com.szreach.ybolotv.views.VideoImgItemView;

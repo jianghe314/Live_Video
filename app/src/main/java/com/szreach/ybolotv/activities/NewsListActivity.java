@@ -16,7 +16,6 @@ import android.view.ViewTreeObserver;
 import com.google.android.flexbox.FlexboxLayout;
 import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.beans.NewsBean;
-import com.szreach.ybolotv.utils.Constant;
 import com.szreach.ybolotv.utils.DataService;
 import com.szreach.ybolotv.views.MoveFrameLayout;
 import com.szreach.ybolotv.views.NewsConItemView;

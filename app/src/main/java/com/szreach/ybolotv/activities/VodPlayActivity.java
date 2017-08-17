@@ -60,8 +60,9 @@ public class VodPlayActivity extends Activity {
     }
 
     private void playVideo(String videoPath) {
+        MediaController controller = new MediaController(this);
         videoView = (VideoView) this.findViewById(R.id.vod_play_video);
-        videoView.setMediaController(new MediaController(this));
+        videoView.setMediaController(controller);
 
         videoView.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {
             @Override

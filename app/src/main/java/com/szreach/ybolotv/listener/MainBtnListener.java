@@ -15,7 +15,6 @@ import com.szreach.ybolotv.activities.PlatformActivity;
 import com.szreach.ybolotv.activities.UpgradeActivity;
 import com.szreach.ybolotv.activities.VodHisListActivity;
 import com.szreach.ybolotv.activities.VodListActivity;
-import com.szreach.ybolotv.utils.Constant;
 import com.szreach.ybolotv.utils.StoreObjectUtils;
 
 import java.util.Map;

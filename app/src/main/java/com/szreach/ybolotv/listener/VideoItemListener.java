@@ -9,7 +9,6 @@ import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.activities.VodListActivity;
 import com.szreach.ybolotv.activities.VodPlayActivity;
 import com.szreach.ybolotv.beans.VideoBean;
-import com.szreach.ybolotv.utils.Constant;
 import com.szreach.ybolotv.utils.StoreObjectUtils;
 import com.szreach.ybolotv.views.VideoImgItemView;
 

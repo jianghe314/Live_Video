@@ -17,13 +17,11 @@ import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.beans.ApkVersion;
-import com.szreach.ybolotv.utils.Constant;
 import com.szreach.ybolotv.utils.DataService;
 import com.szreach.ybolotv.utils.UpgradeUtils;
 import com.szreach.ybolotv.views.MoveFrameLayout;
