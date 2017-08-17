@@ -71,12 +71,11 @@ public class VodPlayActivity extends Activity {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 videoView.seekTo(0);
-
                 new Handler().postDelayed(new Runnable(){
                     public void run() {
                         videoView.pause();
                     }
-                }, 800);
+                }, 700);
             }
         });
 
@@ -99,10 +98,12 @@ public class VodPlayActivity extends Activity {
                 }
 
                 if(keyCode == KeyEvent.KEYCODE_DPAD_LEFT && keyEvent.getAction() == KeyEvent.ACTION_UP) {
+                    controller.show();
                     videoView.seekTo(videoView.getCurrentPosition() - 5000);
                 }
 
                 if(keyCode == KeyEvent.KEYCODE_DPAD_RIGHT && keyEvent.getAction() == KeyEvent.ACTION_UP) {
+                    controller.show();
                     videoView.seekTo(videoView.getCurrentPosition() + 5000);
                 }
                 return false;
