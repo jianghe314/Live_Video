@@ -83,7 +83,7 @@ public class UpgradeUtils {
             switch (msg.what) {
                 case DOWNLOADING:
                     // 设置进度条位置
-                    progressDialog.setMessage("更新中..." + progress + "%");
+                    progressDialog.setMessage("下载中..." + progress + "%");
                     break;
                 case DOWNLOAD_FINISH:
                     // 安装文件

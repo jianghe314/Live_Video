@@ -186,6 +186,7 @@ public class MediaController extends FrameLayout {
 
   @Override
   public void onFinishInflate() {
+    super.onFinishInflate();
     if (mRoot != null)
       initControllerView(mRoot);
   }
@@ -258,8 +259,8 @@ public class MediaController extends FrameLayout {
     mEndTime = (TextView) v.findViewById(getResources().getIdentifier("mediacontroller_time_total", "id", mContext.getPackageName()));
     mCurrentTime = (TextView) v.findViewById(getResources().getIdentifier("mediacontroller_time_current", "id", mContext.getPackageName()));
     mFileName = (TextView) v.findViewById(getResources().getIdentifier("mediacontroller_file_name", "id", mContext.getPackageName()));
-    if (mFileName != null)
-      mFileName.setText(mTitle);
+//    if (mFileName != null)
+//      mFileName.setText(mTitle);
   }
 
   public void setMediaPlayer(MediaPlayerControl player) {
@@ -287,8 +288,8 @@ public class MediaController extends FrameLayout {
    */
   public void setFileName(String name) {
     mTitle = name;
-    if (mFileName != null)
-      mFileName.setText(mTitle);
+//    if (mFileName != null)
+//      mFileName.setText(mTitle);
   }
 
   /**

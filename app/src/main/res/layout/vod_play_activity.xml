@@ -6,9 +6,19 @@
        android:id="@+id/vod_play_page"
        android:orientation="horizontal"
        >
-    <io.vov.vitamio.widget.VideoView
+    <LinearLayout
+        android:id="@+id/vod_video_con"
         android:focusable="true"
-        android:id="@+id/vod_play_video"
+        android:layout_marginLeft="1px"
+        android:layout_marginTop="1px"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <io.vov.vitamio.widget.VideoView
+            android:focusable="true"
+            android:id="@+id/vod_play_video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
 </LinearLayout>
