@@ -64,8 +64,9 @@ public class HttpUtils {
         String str = "{\"code\":1,\"msg\":\"成功\",\"result\":\"201607121644019558\"}";
         Map<String, String> result = mapper.readValue(str, new TypeReference<Map<String, String>>() {
         });
+        System.out.println(result.get("msg"));
 
-        String ret = HttpUtils.sendRequest(HttpUtils.METHOD_GET, "http://192.168.0.211/rest/AndroidService/getVideoGroup/10001/11", null);
+        String ret = HttpUtils.sendRequest(HttpUtils.METHOD_GET, "http://www.baidu.com", null);
         System.out.println(ret);
 
     }
