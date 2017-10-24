@@ -11,7 +11,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
@@ -36,7 +35,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 import static com.szreach.ybolotv.R.id.news;
-import static com.szreach.ybolotv.utils.Constant.DEVICE_TYPE;
 
 public class MainActivity extends Activity {
     MainLinearLayout mLinearLayout;
@@ -70,13 +68,6 @@ public class MainActivity extends Activity {
      */
     private void initAppParams() {
         StoreObjectUtils storeObjectUtils = new StoreObjectUtils(MainActivity.this, StoreObjectUtils.SP_Plat);
-
-        /**
-         * 这个代码用于模拟器测试用
-         */
-        if(Constant.DEVICE_TYPE == -1) {
-            storeObjectUtils.saveObject(StoreObjectUtils.DATA_Plat_Address, Constant.DataServerAdress);
-        }
 
         String platformAddr = storeObjectUtils.getString(StoreObjectUtils.DATA_Plat_Address);
         if (platformAddr != null && platformAddr.length() > 0) {

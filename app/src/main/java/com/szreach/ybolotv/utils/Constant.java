@@ -6,7 +6,4 @@ package com.szreach.ybolotv.utils;
 
 public class Constant {
     public static String DataServerAdress = "http://192.168.0.211";
-
-//        public final static int DEVICE_TYPE = -1;
-        public final static int DEVICE_TYPE = 0;
 }

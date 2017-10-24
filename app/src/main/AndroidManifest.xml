@@ -60,7 +60,6 @@
         <activity android:name=".activities.NewsPlayActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".activities.PlatformActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity android:name=".activities.UpgradeActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".videoplayer.VideoPlayer" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
