@@ -60,6 +60,7 @@
         <activity android:name=".activities.NewsPlayActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".activities.PlatformActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity android:name=".activities.UpgradeActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity android:name=".activities.AutoLivePlayActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -70,5 +71,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+        <service android:name=".service.AutoPlayLiveService"/>
     </application>
 </manifest>

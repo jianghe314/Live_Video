@@ -49,9 +49,9 @@
         android:orientation="horizontal">
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_marginLeft="@dimen/x55"
+            android:layout_marginLeft="@dimen/x54"
             android:layout_marginTop="@dimen/x20"
-            android:layout_width="@dimen/x370"
+            android:layout_width="@dimen/x372"
             android:layout_height="@dimen/y168">
 
             <LinearLayout
@@ -262,7 +262,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
 
         <com.szreach.ybolotv.views.MoveFrameLayout
             android:id="@+id/main_move_frame"

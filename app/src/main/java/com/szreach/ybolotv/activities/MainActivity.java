@@ -6,6 +6,7 @@ package com.szreach.ybolotv.activities;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.beans.NewsBean;
 import com.szreach.ybolotv.beans.SysCoBean;
 import com.szreach.ybolotv.listener.MainBtnListener;
+import com.szreach.ybolotv.service.AutoPlayLiveService;
 import com.szreach.ybolotv.utils.Constant;
 import com.szreach.ybolotv.utils.DataService;
 import com.szreach.ybolotv.utils.StoreObjectUtils;
@@ -60,7 +62,13 @@ public class MainActivity extends Activity {
         initAppParams();
         initMoveFrame();
         initMainBtnEvent();
-        new DataThread(this.handlerNews, this.handlerCoInfo).start();
+        initPageData();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        initWebSocket();
     }
 
     /**
@@ -82,14 +90,13 @@ public class MainActivity extends Activity {
         mLinearLayout.getViewTreeObserver().addOnGlobalFocusChangeListener(new ViewTreeObserver.OnGlobalFocusChangeListener() {
             @Override
             public void onGlobalFocusChanged(View oldFocus, View newFocus) {
-
-                if (newFocus != null) {
-                    mMainMoveFrame.setDrawUpRectEnabled(true);
-                    float scale = 1.015f;
-                    mMainMoveFrame.setFocusView(newFocus, mOldFocus, scale);
-                    mMainMoveFrame.bringToFront();
-                    mOldFocus = newFocus;
-                }
+            if (newFocus != null) {
+                mMainMoveFrame.setDrawUpRectEnabled(true);
+                float scale = 1.015f;
+                mMainMoveFrame.setFocusView(newFocus, mOldFocus, scale);
+                mMainMoveFrame.bringToFront();
+                mOldFocus = newFocus;
+            }
             }
         });
     }
@@ -111,6 +118,17 @@ public class MainActivity extends Activity {
         Iterator<Map.Entry<Integer, LinearLayout>> it = mainBtnMap.entrySet().iterator();
         while (it.hasNext()) {
             it.next().getValue().setOnKeyListener(new MainBtnListener(this, mainBtnMap));
+        }
+    }
+
+    private void initPageData() {
+        new DataThread(this.handlerNews, this.handlerCoInfo).start();
+    }
+
+    private void initWebSocket() {
+        if(Constant.OpenAutoPlayLiveService) {
+            Intent intent = new Intent(this, AutoPlayLiveService.class);
+            startService(intent);
         }
     }
 
