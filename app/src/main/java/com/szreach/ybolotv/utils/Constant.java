@@ -9,5 +9,6 @@ public class Constant {
 
     public static boolean OpenAutoPlayLiveService = true;                // 是否通过Websocket开启直播
 
+    public static boolean OpenAutoPlayVodService = true;                 // 是否通过Websocket开启点播
 
 }

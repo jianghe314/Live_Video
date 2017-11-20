@@ -39,7 +39,7 @@ public class AutoPlayLiveService extends Service {
         super.onCreate();
 
         String websocketPort = "8088";
-        String websocketUrl = "ws://" + getServerHost() + ":" + websocketPort + "/liveandroidsocket";
+        String websocketUrl = "ws://" + getServerHost() + ":" + websocketPort + "/liveandroidsocket?type=LIVE";
         AsyncHttpClient.getDefaultInstance().websocket(websocketUrl, websocketPort, new AsyncHttpClient.WebSocketConnectCallback() {
             @Override
             public void onCompleted(Exception ex, WebSocket webSocket) {
@@ -47,7 +47,7 @@ public class AutoPlayLiveService extends Service {
                     return;
                 }
 
-                webSocket.send(UUID.randomUUID().toString());
+                webSocket.send("LIVE-" + UUID.randomUUID().toString());
                 webSocket.setStringCallback(new WebSocket.StringCallback() {
                     @Override
                     public void onStringAvailable(String retStr) {

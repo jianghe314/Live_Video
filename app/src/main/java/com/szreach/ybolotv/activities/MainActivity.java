@@ -23,6 +23,7 @@ import com.szreach.ybolotv.beans.NewsBean;
 import com.szreach.ybolotv.beans.SysCoBean;
 import com.szreach.ybolotv.listener.MainBtnListener;
 import com.szreach.ybolotv.service.AutoPlayLiveService;
+import com.szreach.ybolotv.service.AutoPlayVodService;
 import com.szreach.ybolotv.utils.Constant;
 import com.szreach.ybolotv.utils.DataService;
 import com.szreach.ybolotv.utils.StoreObjectUtils;
@@ -128,6 +129,11 @@ public class MainActivity extends Activity {
     private void initWebSocket() {
         if(Constant.OpenAutoPlayLiveService) {
             Intent intent = new Intent(this, AutoPlayLiveService.class);
+            startService(intent);
+        }
+
+        if(Constant.OpenAutoPlayVodService) {
+            Intent intent = new Intent(this, AutoPlayVodService.class);
             startService(intent);
         }
     }
