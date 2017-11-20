@@ -73,5 +73,6 @@
                 android:resource="@xml/file_paths" />
         </provider>
         <service android:name=".service.AutoPlayLiveService"/>
+        <service android:name=".service.AutoPlayVodService"/>
     </application>
 </manifest>
