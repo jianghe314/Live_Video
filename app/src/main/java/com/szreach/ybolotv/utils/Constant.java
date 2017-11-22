@@ -5,7 +5,7 @@ package com.szreach.ybolotv.utils;
  */
 
 public class Constant {
-    public static String DataServerAdress = "http://192.168.0.211";
+    public static String DataServerAdress = "http://192.168.0.66";
 
     public static boolean OpenAutoPlayLiveService = true;                // 是否通过Websocket开启直播
 

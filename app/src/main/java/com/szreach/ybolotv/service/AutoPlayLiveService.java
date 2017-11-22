@@ -2,12 +2,11 @@ package com.szreach.ybolotv.service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
-import com.koushikdutta.async.ByteBufferList;
-import com.koushikdutta.async.DataEmitter;
-import com.koushikdutta.async.callback.DataCallback;
 import com.koushikdutta.async.http.AsyncHttpClient;
 import com.koushikdutta.async.http.WebSocket;
 import com.szreach.ybolotv.activities.AutoLivePlayActivity;
@@ -15,18 +14,26 @@ import com.szreach.ybolotv.activities.MainActivity;
 import com.szreach.ybolotv.beans.LiveBean;
 import com.szreach.ybolotv.utils.Constant;
 
+import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
 import java.io.IOException;
-import java.util.UUID;
 
 /**
  * Created by Adams.Tsui on 2017/10/25 0025.
  */
 
 public class AutoPlayLiveService extends Service {
-    private static final ObjectMapper mapper = new ObjectMapper();
+
+    private static final ObjectMapper mapper;
+    private Handler mHandler = new Handler();
+    private WebSocket webSocketObj;
+
+    static {
+        mapper = new ObjectMapper();
+        mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    }
 
     @Nullable
     @Override
@@ -38,49 +45,81 @@ public class AutoPlayLiveService extends Service {
     public void onCreate() {
         super.onCreate();
 
+        Log.e(AutoPlayVodService.class.getName(), "=====进入直播Service");
+
+        new WebSockectThread().start();
+
+    }
+
+    /**
+     * 连接Websocket服务端
+     */
+    private void connect() {
+
         String websocketPort = "8088";
         String websocketUrl = "ws://" + getServerHost() + ":" + websocketPort + "/liveandroidsocket?type=LIVE";
+
         AsyncHttpClient.getDefaultInstance().websocket(websocketUrl, websocketPort, new AsyncHttpClient.WebSocketConnectCallback() {
             @Override
             public void onCompleted(Exception ex, WebSocket webSocket) {
                 if (ex != null) {
+                    Log.e(AutoPlayLiveService.class.getName(), "=====直播Websocket连接出错");
                     return;
                 }
 
-                webSocket.send("LIVE-" + UUID.randomUUID().toString());
+                webSocketObj = webSocket;
+
                 webSocket.setStringCallback(new WebSocket.StringCallback() {
                     @Override
                     public void onStringAvailable(String retStr) {
-//                        Log.e("YBolo发送信息:", retStr);
-                        Intent actIntent = null;
-                        if("CLOSE".equals(retStr)) {
-                            actIntent = new Intent(getBaseContext(), MainActivity.class);
-                        } else {
-                            LiveBean live = null;
-                            actIntent = new Intent(getBaseContext(), AutoLivePlayActivity.class);
-                            try {
-                                live = mapper.readValue(retStr, new TypeReference<LiveBean>() {});
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            if(live != null) {
-//                                Log.e(":~~~Live Info:", live.getRtmpAddress());
-                                actIntent.putExtra("livePath", live.getRtmpAddress());
-                            }
-                        }
-                        actIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(actIntent);
-                    }
-                });
-
-                webSocket.setDataCallback(new DataCallback() {
-                    @Override
-                    public void onDataAvailable(DataEmitter emitter, ByteBufferList bb) {
-
+                        receiverWebSocket(retStr);
                     }
                 });
             }
         });
+    }
+
+    /**
+     * 处理服务端推送
+     * @param retStr
+     */
+    private void receiverWebSocket(String retStr) {
+        Log.e("YBolo发送直播信息:", retStr);
+        Intent actIntent;
+        if("CLOSE".equals(retStr)) {
+            actIntent = new Intent(getBaseContext(), MainActivity.class);
+        } else {
+            LiveBean live = null;
+            actIntent = new Intent(getBaseContext(), AutoLivePlayActivity.class);
+            try {
+                live = mapper.readValue(retStr, new TypeReference<LiveBean>() {});
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if(live != null) {
+                actIntent.putExtra("livePath", live.getRtmpAddress());
+            }
+        }
+        actIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(actIntent);
+    }
+
+    /**
+     * 检测Websocket连接是否断开，如果断开，重连
+     */
+    private class WebSockectThread extends Thread {
+        @Override
+        public void run() {
+            if(webSocketObj != null) {
+                Log.e(AutoPlayVodService.class.getName(), "=======================直播websocket连接状态：：：" + webSocketObj.isOpen());
+            }
+
+            if(webSocketObj == null || (webSocketObj != null && !webSocketObj.isOpen())) {
+                connect();
+            }
+            // 一分钟检测一次
+            mHandler.postDelayed(this, 1000 * 30);
+        }
     }
 
     private String getServerHost() {
