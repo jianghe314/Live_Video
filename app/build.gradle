@@ -16,7 +16,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 6
-        versionName "YBoloTV-v1.0.0_jlyz"
+        versionName "V1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -25,6 +25,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def fileName = outputFile.name.replace("app","${defaultConfig.applicationId }_${defaultConfig.versionName}_${releaseTime() }")
+                output.outputFile = new File(outputFile.parent, fileName)
+            }
+        }
+    }
+}
+
+def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
 }
 
 dependencies {
