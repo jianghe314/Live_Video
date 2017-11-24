@@ -30,6 +30,7 @@
                 android:id="@+id/platform_address"
                 android:textSize="35px"
                 android:background="#ffffff"
+                android:maxLines="1"
                 android:hint="http://192.168.0.1"
                 android:padding="3px"
                 android:layout_width="500px"
