@@ -1,9 +1,5 @@
 [
     {
-        "merged": "E:\\AndroidDev\\StudioProjects\\ybolo-AndroidApp\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_launcher.png",
-        "source": "E:\\AndroidDev\\StudioProjects\\ybolo-AndroidApp\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_launcher.png"
-    },
-    {
         "merged": "E:\\AndroidDev\\StudioProjects\\ybolo-TV\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_launcher.png",
         "source": "E:\\AndroidDev\\StudioProjects\\ybolo-TV\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_launcher.png"
     }

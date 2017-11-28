@@ -25,17 +25,17 @@ public class AutoVodPlayActivity extends Activity {
         super.onCreate(icicle);
         Vitamio.isInitialized(getApplicationContext());
 
-        setContentView(R.layout.live_play_activity);
+        setContentView(R.layout.vod_play_activity);
 
         progressDialog = UIUtils.createDialog(AutoVodPlayActivity.this);
         progressDialog.setCancelable(true);
 
-        String vodPatch = getIntent().getStringExtra("vodPath");
-        playLive(vodPatch);
+        String vodPath = getIntent().getStringExtra("vodPath");
+        playLive(vodPath);
     }
 
     private void playLive(String livePath) {
-        videoView = (VideoView)this.findViewById(R.id.live_play_video);
+        videoView = (VideoView)this.findViewById(R.id.vod_play_video);
         videoView.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {
             @Override
             public void onBufferingUpdate(MediaPlayer mp, int percent) {

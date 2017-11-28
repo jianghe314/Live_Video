@@ -143,7 +143,11 @@ public class VodPlayActivity extends Activity {
 
             HashMap<String, String> videoPaths = DataService.getInstance().getVideoPlayPath(coId, videoId);
             if (videoPaths != null) {
-                String videoPath = videoPaths.get("httpAddrL00");
+                String videoPath = videoPaths.get("httpAddrH00");
+                if(videoPath == null || (videoPath != null && videoPath.length() == 0)) {
+                    videoPath = videoPaths.get("httpAddrL00");
+                }
+
                 Message msg = new Message();
                 Bundle data = new Bundle();
                 data.putCharSequence("videoPath", videoPath);

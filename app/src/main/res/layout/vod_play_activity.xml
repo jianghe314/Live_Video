@@ -2,11 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:background="@drawable/page_bg"
        android:id="@+id/vod_play_page"
        android:orientation="horizontal"
        >
     <LinearLayout
+        android:gravity="center"
+        android:background="#ff000000"
         android:id="@+id/vod_video_con"
         android:focusable="true"
         android:layout_marginLeft="1px"
@@ -15,6 +16,7 @@
         android:layout_height="match_parent">
 
         <io.vov.vitamio.widget.VideoView
+            android:layout_gravity="center"
             android:focusable="true"
             android:id="@+id/vod_play_video"
             android:layout_width="match_parent"

@@ -93,10 +93,11 @@ public class AutoPlayVodService extends Service {
             try {
                 Map<String, Object> result = mapper.readValue(retStr, new TypeReference<HashMap<String, Object>>() {});
                 if(result != null && result.size() > 0) {
-                    Object vodPath = result.get("httpAddrL00");
-                    if(vodPath != null) {
-                        actIntent.putExtra("vodPath", vodPath.toString());
+                    Object vodPath = result.get("httpAddrH00");
+                    if(vodPath == null || (vodPath != null && vodPath.toString().length() == 0)) {
+                        vodPath = result.get("httpAddrL00");
                     }
+                    actIntent.putExtra("vodPath", vodPath.toString());
                 }
             } catch (IOException e) {
                 e.printStackTrace();
