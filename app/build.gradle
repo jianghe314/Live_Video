@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion "26.0.2"
     packagingOptions{
         exclude 'META-INF/DEPENDENCIES'
         exclude 'META-INF/NOTICE'
@@ -27,11 +27,9 @@ android {
     }
 
     applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            def outputFile = output.outputFile
-            if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                def fileName = outputFile.name.replace("app","${defaultConfig.applicationId }_${defaultConfig.versionName}_${releaseTime() }")
-                output.outputFile = new File(outputFile.parent, fileName)
+        variant.outputs.all {
+            if (outputFileName != null && outputFileName.endsWith('.apk')) {
+                outputFileName = outputFileName.replace("app","${defaultConfig.applicationId }_${defaultConfig.versionName}_${releaseTime() }")
             }
         }
     }
