@@ -24,20 +24,20 @@
             <TextView
                 android:id="@+id/live_list_title"
                 android:text="@string/live_list_title"
-                android:textSize="33px"
+                android:textSize="@dimen/x12"
                 android:letterSpacing="-0.06"
                 android:textColor="#ffffff"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="20px"
+                android:layout_marginLeft="@dimen/x10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/live_list_count"
                 android:text="共计0场直播"
-                android:textSize="18px"
+                android:textSize="@dimen/x6"
                 android:letterSpacing="-0.06"
                 android:textColor="#0091ff"
-                android:layout_marginLeft="10px"
+                android:layout_marginLeft="@dimen/x5"
                 android:layout_gravity="bottom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -80,10 +80,10 @@
             android:orientation="horizontal"
             >
             <com.szreach.ybolotv.views.DateTimeTextView
-                android:layout_marginLeft="620px"
+                android:layout_marginLeft="@dimen/x240"
                 android:textColor="#ffffff"
                 android:letterSpacing="-0.06"
-                android:textSize="18px"
+                android:textSize="@dimen/x8"
                 android:typeface="monospace"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
@@ -99,10 +99,10 @@
             <TextView
                 android:id="@+id/live_list_right_title"
                 android:text=""
-                android:layout_marginLeft="40px"
+                android:layout_marginLeft="@dimen/x10"
                 android:layout_gravity="center_vertical"
                 android:textColor="#ffffff"
-                android:textSize="27px"
+                android:textSize="@dimen/x10"
                 android:letterSpacing="-0.06"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -117,10 +117,10 @@
             <TextView
                 android:id="@+id/live_list_right_time"
                 android:text=""
-                android:layout_marginLeft="40px"
+                android:layout_marginLeft="@dimen/x10"
                 android:layout_gravity="center_vertical"
                 android:textColor="#ffffff"
-                android:textSize="18px"
+                android:textSize="@dimen/x7"
                 android:typeface="monospace"
                 android:letterSpacing="-0.1"
                 android:layout_width="wrap_content"
@@ -131,17 +131,17 @@
                 android:src="@drawable/icon_live_count"
                 android:visibility="invisible"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="582px"
-                android:layout_width="22px"
-                android:layout_height="22px"/>
+                android:layout_marginLeft="@dimen/x225"
+                android:layout_width="@dimen/x8"
+                android:layout_height="@dimen/x8"/>
 
             <TextView
                 android:id="@+id/live_list_right_count"
                 android:text=""
-                android:layout_marginLeft="7px"
+                android:layout_marginLeft="@dimen/x2"
                 android:layout_gravity="center_vertical"
                 android:textColor="#ffffff"
-                android:textSize="18px"
+                android:textSize="@dimen/x7"
                 android:typeface="monospace"
                 android:letterSpacing="-0.05"
                 android:layout_width="wrap_content"
@@ -158,10 +158,10 @@
             >
             <LinearLayout
                 android:id="@+id/live_list_right_conn"
-                android:layout_width="858px"
-                android:layout_height="482px"
-                android:layout_marginLeft="40px"
-                android:layout_marginTop="14px"
+                android:layout_width="@dimen/x325"
+                android:layout_height="@dimen/x180"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginTop="@dimen/x12"
                 >
                 <io.vov.vitamio.widget.VideoView
                     android:id="@+id/live_list_right_video"

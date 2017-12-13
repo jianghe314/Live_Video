@@ -3,12 +3,14 @@ package com.szreach.ybolotv.views;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.activities.LiveListActivity;
 import com.szreach.ybolotv.activities.LivePlayActivity;
 import com.szreach.ybolotv.beans.LiveBean;
@@ -30,7 +32,7 @@ public class LiveItemView extends LinearLayout {
         this.liveInfo = liveInfo;
 
         if (liveInfo != null) {
-            this.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 123));
+            this.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             this.setOrientation(LinearLayout.VERTICAL);
             if(liveInfo.getLiveFlag() == 1) {
                 this.setFocusable(true);
@@ -54,16 +56,16 @@ public class LiveItemView extends LinearLayout {
                 });
             }
 
-            LayoutParams upLp = new LayoutParams(LayoutParams.MATCH_PARENT, 0, 116);
+            LayoutParams upLp = new LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             upLayout = new LinearLayout(context);
             upLayout.setLayoutParams(upLp);
             upLayout.setOrientation(LinearLayout.HORIZONTAL);
 
             liveNameView = new TextView(context);
             LayoutParams liveNameLp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            liveNameLp.setMargins(20, 20, 13, 0);
+            liveNameLp.setMargins(getResources().getDimensionPixelOffset(R.dimen.x10), getResources().getDimensionPixelOffset(R.dimen.y8), getResources().getDimensionPixelOffset(R.dimen.x3), getResources().getDimensionPixelOffset(R.dimen.y3));
             liveNameView.setLayoutParams(liveNameLp);
-            liveNameView.setTextSize(22.4f);
+            liveNameView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelOffset(R.dimen.x7));
             liveNameView.setText(liveInfo.getLiveName());
             liveNameView.getPaint().setFakeBoldText(true);
             if(liveInfo.getLiveFlag() == 1) {
@@ -74,16 +76,16 @@ public class LiveItemView extends LinearLayout {
 
             upLayout.addView(liveNameView);
 
-            LayoutParams downLp = new LayoutParams(LayoutParams.MATCH_PARENT, 0, 70);
+            LayoutParams downLp = new LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             downLayout = new LinearLayout(context);
             downLayout.setLayoutParams(downLp);
             downLayout.setOrientation(LinearLayout.HORIZONTAL);
 
             liveTimeView = new TextView(context);
             LayoutParams liveTimeLp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            liveTimeLp.setMargins(20, 10, 0, 0);
+            liveTimeLp.setMargins(getResources().getDimensionPixelOffset(R.dimen.x10), 0, getResources().getDimensionPixelOffset(R.dimen.x3), getResources().getDimensionPixelOffset(R.dimen.y8));
             liveTimeView.setLayoutParams(liveTimeLp);
-            liveTimeView.setTextSize(18f);
+            liveTimeView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelOffset(R.dimen.x6));
             liveTimeView.setText(liveInfo.getLiveDateTimeStr());
             liveTimeView.getPaint().setFakeBoldText(true);
             if(liveInfo.getLiveFlag() == 1) {
@@ -96,9 +98,9 @@ public class LiveItemView extends LinearLayout {
 
             liveflagView = new TextView(context);
             LayoutParams liveFlagLp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            liveFlagLp.setMargins(77, 8, 0, 0);
+            liveFlagLp.setMargins(getResources().getDimensionPixelOffset(R.dimen.x20), 0, 0, getResources().getDimensionPixelOffset(R.dimen.y8));
             liveflagView.setLayoutParams(liveFlagLp);
-            liveflagView.setTextSize(15f);
+            liveflagView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelOffset(R.dimen.x6));
             liveflagView.setTextColor(0xff0084fd);
             liveflagView.setText(liveInfo.getLiveFlagStr());
             liveflagView.getPaint().setFakeBoldText(true);

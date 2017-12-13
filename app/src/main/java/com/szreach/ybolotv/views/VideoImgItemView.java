@@ -9,6 +9,7 @@ import android.os.Message;
 import android.support.v7.widget.AppCompatImageView;
 import android.widget.LinearLayout;
 
+import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.beans.VideoBean;
 
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class VideoImgItemView extends AppCompatImageView {
     public VideoImgItemView(Context context, VideoBean videoBean) {
         super(context);
         this.video = videoBean;
-        LinearLayout.LayoutParams imgLp = new LinearLayout.LayoutParams(174, 100);
+        LinearLayout.LayoutParams imgLp = new LinearLayout.LayoutParams(getResources().getDimensionPixelOffset(R.dimen.x65), getResources().getDimensionPixelOffset(R.dimen.x40));
         this.setLayoutParams(imgLp);
         this.setFocusable(true);
         this.setFocusableInTouchMode(true);

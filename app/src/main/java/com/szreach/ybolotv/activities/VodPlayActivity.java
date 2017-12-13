@@ -6,7 +6,6 @@ package com.szreach.ybolotv.activities;
 
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;

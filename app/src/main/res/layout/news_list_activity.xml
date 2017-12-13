@@ -16,29 +16,30 @@
         <TextView
             android:id="@+id/news_list_title"
             android:text="@string/news_list_title"
-            android:textSize="33.5px"
+            android:textSize="@dimen/x12"
             android:letterSpacing="-0.06"
             android:textColor="#ffffff"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="40px"
+            android:layout_marginLeft="@dimen/x10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:text="共计0条新闻"
             android:layout_gravity="bottom"
-            android:textSize="15px"
+            android:textSize="@dimen/x5"
             android:textColor="#ffffff"
-            android:layout_marginLeft="54px"
-            android:layout_marginBottom="8px"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginBottom="@dimen/x3"
             android:letterSpacing="-0.01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <com.szreach.ybolotv.views.DateTimeTextView
-            android:layout_marginLeft="636.5px"
-            android:layout_marginBottom="8px"
-            android:textSize="18px"
+            android:layout_marginLeft="@dimen/x250"
+            android:layout_marginBottom="@dimen/x3"
+            android:textSize="@dimen/x8"
+            android:textColor="#ffffff"
             android:layout_gravity="bottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

@@ -52,7 +52,7 @@ public class DateTimeTextView extends AppCompatTextView {
         int second = calendar.get(Calendar.SECOND);
         int week = calendar.get(Calendar.DAY_OF_WEEK);
 
-        return getDateStr(year, month, day) + " " + getWeekStr(week) + " " + getTimeStr(hour, minute, second);
+        return getDateStr(year, month, day) + " " + getWeekStr(week) + " " + getTimeStr(hour, minute);
     }
 
     private String getDateStr(int year, int month, int day) {
@@ -67,4 +67,9 @@ public class DateTimeTextView extends AppCompatTextView {
     private String getTimeStr(int hour, int minute, int second) {
         return (hour < 10 ? "0" + hour : hour) + ":" + (minute < 10 ? "0" + minute : minute) + ":" + (second < 10 ? "0" + second : second);
     }
+
+    private String getTimeStr(int hour, int minute) {
+        return (hour < 10 ? "0" + hour : hour) + ":" + (minute < 10 ? "0" + minute : minute);
+    }
+
 }

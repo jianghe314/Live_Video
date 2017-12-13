@@ -23,11 +23,11 @@
             <TextView
                 android:id="@+id/vod_list_title"
                 android:text="@string/vod_list_title"
-                android:textSize="33.5px"
+                android:textSize="@dimen/x12"
                 android:letterSpacing="-0.06"
                 android:textColor="#ffffff"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="37px"
+                android:layout_marginLeft="@dimen/x10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -74,18 +74,19 @@
                 android:id="@+id/vod_list_count"
                 android:text="共计0个视频"
                 android:layout_gravity="bottom"
-                android:textSize="15px"
+                android:textSize="@dimen/x6"
                 android:textColor="#ffffff"
-                android:layout_marginBottom="8px"
+                android:layout_marginBottom="@dimen/x2"
                 android:letterSpacing="-0.01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <com.szreach.ybolotv.views.DateTimeTextView
-                android:layout_marginLeft="636.5px"
-                android:layout_marginBottom="8px"
+                android:layout_marginLeft="@dimen/x245"
+                android:layout_marginBottom="@dimen/x2"
                 android:layout_gravity="bottom"
-                android:textSize="18px"
+                android:textSize="@dimen/x8"
+                android:textColor="#ffffff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
