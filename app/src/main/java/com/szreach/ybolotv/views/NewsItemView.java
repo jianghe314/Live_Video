@@ -7,12 +7,14 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.beans.NewsBean;
 
 import java.io.IOException;
@@ -45,7 +47,7 @@ public class NewsItemView extends LinearLayout {
         this.news = news;
 
         if (news != null) {
-            LayoutParams lp = new LayoutParams(543, 120);
+            LayoutParams lp = new LayoutParams(getResources().getDimensionPixelOffset(R.dimen.x195), getResources().getDimensionPixelOffset(R.dimen.x40));
             lp.gravity = Gravity.TOP;
             this.setLayoutParams(lp);
             this.setOrientation(LinearLayout.HORIZONTAL);
@@ -53,7 +55,7 @@ public class NewsItemView extends LinearLayout {
             this.setFocusableInTouchMode(true);
 
             // 左边区域
-            LayoutParams lLp = new LayoutParams(154, ViewGroup.LayoutParams.MATCH_PARENT);
+            LayoutParams lLp = new LayoutParams(getResources().getDimensionPixelOffset(R.dimen.x60), ViewGroup.LayoutParams.MATCH_PARENT);
             LinearLayout lll = new LinearLayout(context);
             lll.setLayoutParams(lLp);
             lll.setOrientation(HORIZONTAL);
@@ -86,27 +88,27 @@ public class NewsItemView extends LinearLayout {
 
 
             // 右边区域
-            LayoutParams rLp = new LayoutParams(389, ViewGroup.LayoutParams.MATCH_PARENT);
+            LayoutParams rLp = new LayoutParams(getResources().getDimensionPixelOffset(R.dimen.x100), ViewGroup.LayoutParams.MATCH_PARENT);
             LinearLayout rll = new LinearLayout(context);
             rll.setLayoutParams(rLp);
             rll.setOrientation(VERTICAL);
 
-            LayoutParams titleLp = new LayoutParams(342, 74);
-            titleLp.setMargins(20, 14, 0, 0);
+            LayoutParams titleLp = new LayoutParams(getResources().getDimensionPixelOffset(R.dimen.x100), ViewGroup.LayoutParams.WRAP_CONTENT);
+            titleLp.setMargins(getResources().getDimensionPixelOffset(R.dimen.x5), getResources().getDimensionPixelOffset(R.dimen.x5), 0, 0);
             TextView title = new TextView(context);
             title.setLayoutParams(titleLp);
             title.setText(news.getTitle());
             title.setTextColor(0xffeeeeee);
-            title.setTextSize(22.3f);
+            title.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelOffset(R.dimen.x9));
             rll.addView(title);
 
-            LayoutParams timeLp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 47);
-            timeLp.setMargins(20, 0, 0, 0);
+            LayoutParams timeLp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            timeLp.setMargins(getResources().getDimensionPixelOffset(R.dimen.x5), 0, 0, 0);
             TextView time = new TextView(context);
             time.setLayoutParams(timeLp);
             time.setText(news.getCreateTime());
             time.setTextColor(0xffeeeeee);
-            time.setTextSize(19.4f);
+            time.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelOffset(R.dimen.x6));
             time.setLetterSpacing(0.05f);
             rll.addView(time);
 

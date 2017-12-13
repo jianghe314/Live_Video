@@ -17,7 +17,7 @@
             <TextView
                 android:id="@+id/vod_his_list_title"
                 android:text="@string/vod_his_list_title"
-                android:textSize="33.5px"
+                android:textSize="@dimen/x12"
                 android:letterSpacing="-0.06"
                 android:textColor="#ffffff"
                 android:layout_gravity="center_vertical"
@@ -27,20 +27,22 @@
             <TextView
                 android:id="@+id/vod_his_list_count"
                 android:text="共计0个视频"
-                android:layout_gravity="bottom"
-                android:textSize="15px"
+                android:textSize="@dimen/x6"
                 android:textColor="#ffffff"
-                android:layout_marginBottom="8px"
+                android:layout_gravity="bottom"
+                android:gravity="bottom"
+                android:layout_marginBottom="@dimen/x1"
                 android:letterSpacing="-0.01"
-                android:layout_marginLeft="15px"
+                android:layout_marginLeft="@dimen/x5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <com.szreach.ybolotv.views.DateTimeTextView
-                android:layout_marginLeft="636.5px"
-                android:layout_marginBottom="8px"
+                android:layout_marginLeft="@dimen/x260"
+                android:layout_marginBottom="@dimen/x2"
                 android:layout_gravity="bottom"
-                android:textSize="18px"
+                android:textSize="@dimen/x8"
+                android:textColor="#ffffff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -86,11 +88,11 @@
                 android:id="@+id/vod_his_clear"
                 android:text="@string/vod_his_list_clear"
                 android:layout_gravity="bottom"
-                android:textSize="13px"
+                android:textSize="@dimen/x8"
                 android:textColor="#8e8e8e"
                 android:letterSpacing="-0.01"
                 android:layout_marginBottom="3px"
-                android:layout_marginLeft="1180px"
+                android:layout_marginLeft="@dimen/x230"
                 android:focusable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

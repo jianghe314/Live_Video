@@ -22,25 +22,25 @@
             <TextView
                 android:letterSpacing="-0.05"
                 android:text="平台地址："
-                android:textSize="35px"
+                android:textSize="@dimen/x8"
                 android:textColor="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
             <EditText
                 android:id="@+id/platform_address"
-                android:textSize="35px"
+                android:textSize="@dimen/x8"
                 android:background="#ffffff"
                 android:maxLines="1"
                 android:hint="http://192.168.0.1"
-                android:padding="3px"
-                android:layout_width="500px"
-                android:layout_height="50px"/>
+                android:padding="@dimen/x1"
+                android:layout_width="@dimen/x100"
+                android:layout_height="@dimen/x10"/>
             <TextView
                 android:id="@+id/platform_save"
-                android:padding="5px"
+                android:padding="@dimen/x1"
                 android:textColor="#ffffff"
                 android:background="#00aaee"
-                android:textSize="30px"
+                android:textSize="@dimen/x7"
                 android:text="确  定"
                 android:layout_width="match_parent"
                 android:focusable="true"

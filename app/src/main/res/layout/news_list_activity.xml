@@ -27,7 +27,7 @@
         <TextView
             android:text="共计0条新闻"
             android:layout_gravity="bottom"
-            android:textSize="@dimen/x5"
+            android:textSize="@dimen/x7"
             android:textColor="#ffffff"
             android:layout_marginLeft="@dimen/x20"
             android:layout_marginBottom="@dimen/x3"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"/>
 
         <com.szreach.ybolotv.views.DateTimeTextView
-            android:layout_marginLeft="@dimen/x250"
+            android:layout_marginLeft="@dimen/x245"
             android:layout_marginBottom="@dimen/x3"
             android:textSize="@dimen/x8"
             android:textColor="#ffffff"

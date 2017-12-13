@@ -80,7 +80,7 @@
             android:orientation="horizontal"
             >
             <com.szreach.ybolotv.views.DateTimeTextView
-                android:layout_marginLeft="@dimen/x240"
+                android:layout_marginLeft="@dimen/x230"
                 android:textColor="#ffffff"
                 android:letterSpacing="-0.06"
                 android:textSize="@dimen/x8"
