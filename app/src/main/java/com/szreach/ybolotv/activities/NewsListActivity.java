@@ -12,6 +12,7 @@ import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.TextView;
 
 import com.google.android.flexbox.FlexboxLayout;
 import com.szreach.ybolotv.R;
@@ -27,11 +28,14 @@ public class NewsListActivity extends Activity {
     private MoveFrameLayout mMainMoveFrame;
     private FlexboxLayout newsListCenterLayout;
     private View currentNewsItemView;
+    private TextView newsListCount;
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.news_list_activity);
+
+        newsListCount = (TextView)findViewById(R.id.news_list_count);
 
         mMainMoveFrame = (MoveFrameLayout) findViewById(R.id.news_list_page_move);
         mMainMoveFrame.setUpRectResource(R.drawable.conner_news);
@@ -99,6 +103,7 @@ public class NewsListActivity extends Activity {
             Bundle bundle = msg.getData();
             ArrayList<NewsBean> newsList = bundle.getParcelableArrayList("newsList");
             initData(newsList);
+            newsListCount.setText("共计"+newsList.size()+"条新闻");
         }
     };
 
