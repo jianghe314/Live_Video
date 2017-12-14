@@ -5,7 +5,6 @@ import android.util.TypedValue;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.beans.VideoBean;
@@ -38,7 +37,6 @@ public class VideoItemView extends LinearLayout {
             videoName.setTextColor(0xffc0c0c0);
             videoName.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelOffset(R.dimen.x9));
             videoName.setText(video.getVideoName());
-            Toast.makeText(context,videoImg.getVideo().getVideoImgs(),Toast.LENGTH_LONG).show();
             this.addView(videoImg);
             this.addView(videoName);
         }
