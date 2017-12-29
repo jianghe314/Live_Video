@@ -110,7 +110,7 @@ public class MainActivity extends Activity {
 
         mainBtnMap.put(R.id.live, (LinearLayout) this.findViewById(R.id.live));
         mainBtnMap.put(R.id.vod, (LinearLayout) this.findViewById(R.id.vod));
-        mainBtnMap.put(news, (LinearLayout) this.findViewById(news));
+        mainBtnMap.put(R.id.news, (LinearLayout) this.findViewById(R.id.news));
         mainBtnMap.put(R.id.history, (LinearLayout) this.findViewById(R.id.history));
         mainBtnMap.put(R.id.settings, (LinearLayout) this.findViewById(R.id.settings));
         mainBtnMap.put(R.id.network, (LinearLayout) this.findViewById(R.id.network));
