@@ -17,7 +17,7 @@ import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.utils.Constant;
 import com.szreach.ybolotv.utils.StoreObjectUtils;
 
-public class PlatformActivity extends Activity {
+public class PlatformActivity extends Activity implements View.OnKeyListener, View.OnClickListener {
     private EditText platAddressText;
     private TextView platSaveBtn;
 
@@ -41,29 +41,8 @@ public class PlatformActivity extends Activity {
             }
         });
 
-        platSaveBtn.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
-                if((keyCode == KeyEvent.KEYCODE_DPAD_CENTER || keyCode == KeyEvent.KEYCODE_ENTER) && keyEvent.getAction() == KeyEvent.ACTION_UP) {
-                    String platAddressStr = platAddressText.getText().toString();
-                    if(platAddressStr != null && platAddressStr.length() > 0 && !platAddressStr.startsWith("http://") && !platAddressStr.startsWith("https://")) {
-                        new AlertDialog.Builder(PlatformActivity.this).setTitle("警告")
-                                .setMessage("请输入正确的网络地址~")
-                                .setPositiveButton("确定", null)
-                                .create().show();
-                    } else {
-                        StoreObjectUtils sou = new StoreObjectUtils(PlatformActivity.this, StoreObjectUtils.SP_Plat);
-                        sou.saveObject(StoreObjectUtils.DATA_Plat_Address, platAddressStr);
-                        Constant.DataServerAdress = platAddressStr;
-                        new AlertDialog.Builder(PlatformActivity.this).setTitle("提示")
-                                .setMessage("设置成功~")
-                                .setPositiveButton("确定", null)
-                                .create().show();
-                    }
-                }
-                return false;
-            }
-        });
+        platSaveBtn.setOnKeyListener(this);
+        platSaveBtn.setOnClickListener(this);
     }
 
     private void initData() {
@@ -74,4 +53,34 @@ public class PlatformActivity extends Activity {
         }
     }
 
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+        if((keyCode == KeyEvent.KEYCODE_DPAD_CENTER || keyCode == KeyEvent.KEYCODE_ENTER) && event.getAction() == KeyEvent.ACTION_UP) {
+            handleEvent();
+        }
+        return false;
+    }
+
+    @Override
+    public void onClick(View v) {
+        handleEvent();
+    }
+
+    private void handleEvent() {
+        String platAddressStr = platAddressText.getText().toString();
+        if(platAddressStr != null && platAddressStr.length() > 0 && !platAddressStr.startsWith("http://") && !platAddressStr.startsWith("https://")) {
+            new AlertDialog.Builder(PlatformActivity.this).setTitle("警告")
+                    .setMessage("请输入正确的网络地址~")
+                    .setPositiveButton("确定", null)
+                    .create().show();
+        } else {
+            StoreObjectUtils sou = new StoreObjectUtils(PlatformActivity.this, StoreObjectUtils.SP_Plat);
+            sou.saveObject(StoreObjectUtils.DATA_Plat_Address, platAddressStr);
+            Constant.DataServerAdress = platAddressStr;
+            new AlertDialog.Builder(PlatformActivity.this).setTitle("提示")
+                    .setMessage("设置成功~")
+                    .setPositiveButton("确定", null)
+                    .create().show();
+        }
+    }
 }

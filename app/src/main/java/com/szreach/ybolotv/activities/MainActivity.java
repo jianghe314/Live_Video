@@ -37,8 +37,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import static com.szreach.ybolotv.R.id.news;
-
 public class MainActivity extends Activity {
     MainLinearLayout mLinearLayout;
     MoveFrameLayout mMainMoveFrame;
@@ -117,8 +115,12 @@ public class MainActivity extends Activity {
         mainBtnMap.put(R.id.upgrade, (LinearLayout) this.findViewById(R.id.upgrade));
 
         Iterator<Map.Entry<Integer, LinearLayout>> it = mainBtnMap.entrySet().iterator();
+        MainBtnListener mainBtnListener = new MainBtnListener(this, mainBtnMap);
+
         while (it.hasNext()) {
-            it.next().getValue().setOnKeyListener(new MainBtnListener(this, mainBtnMap));
+            LinearLayout ele = it.next().getValue();
+            ele.setOnKeyListener(mainBtnListener);
+            ele.setOnClickListener(mainBtnListener);
         }
     }
 

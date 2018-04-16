@@ -24,7 +24,7 @@ import java.util.Map;
  * Created by Adams.Tsui on 2017/7/25.
  */
 
-public class MainBtnListener implements View.OnKeyListener {
+public class MainBtnListener implements View.OnKeyListener, View.OnClickListener {
     private Activity act;
     private Intent intent;
     Map<Integer, LinearLayout> btnMap;
@@ -35,60 +35,84 @@ public class MainBtnListener implements View.OnKeyListener {
     }
 
     @Override
+    public void onClick(View v) {
+        handleEvent(v);
+    }
+
+    @Override
     public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
         if((keyCode == KeyEvent.KEYCODE_DPAD_CENTER || keyCode == KeyEvent.KEYCODE_ENTER) && keyEvent.getAction() == KeyEvent.ACTION_UP) {
-            if (view == this.btnMap.get(R.id.live)) {
+            handleEvent(view);
+        }
+        return false;
+    }
+
+    private void handleEvent(View view) {
+        switch (view.getId()) {
+            case R.id.live:
                 // 直播
                 if(!checkPlatformAddressExists()) {
                     createAlert().show();
-                    return false;
+                    return;
                 }
                 intent = new Intent(act, LiveListActivity.class);
-            } else if (view == this.btnMap.get(R.id.vod)) {
+                break;
+
+            case R.id.vod:
                 // 视频
                 if(!checkPlatformAddressExists()) {
                     createAlert().show();
-                    return false;
+                    return;
                 }
                 intent = new Intent(act, VodListActivity.class);
-            } else if (view == this.btnMap.get(R.id.news)) {
+                break;
+
+            case R.id.news:
                 // 新闻
                 if(!checkPlatformAddressExists()) {
                     createAlert().show();
-                    return false;
+                    return;
                 }
                 intent = new Intent(act, NewsListActivity.class);
+                break;
 
-            } else if (view == this.btnMap.get(R.id.history)) {
+            case R.id.history:
                 // 浏览历史
                 if(!checkPlatformAddressExists()) {
                     createAlert().show();
-                    return false;
+                    return;
                 }
                 intent = new Intent(act, VodHisListActivity.class);
-            } else if (view == this.btnMap.get(R.id.settings)) {
+                break;
+
+            case R.id.settings:
                 // 系统设置
                 intent = new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_LAUNCHER);
                 intent.setComponent(new ComponentName("com.android.hisiliconsetting", "com.android.hisiliconsetting.MainActivity"));
+                break;
 
-            } else if (view == this.btnMap.get(R.id.network)) {
+            case R.id.network:
                 // 平台地址设置
                 intent = new Intent(act, PlatformActivity.class);
+                break;
 
-            } else if (view == this.btnMap.get(R.id.upgrade)) {
+            case R.id.upgrade:
                 // 系统升级
                 if(!checkPlatformAddressExists()) {
                     createAlert().show();
-                    return false;
+                    return;
                 }
                 intent = new Intent(act, UpgradeActivity.class);
-            }
-            if (intent != null) {
-                act.startActivity(intent);
-            }
+                break;
+
+            default:
+                break;
         }
-        return false;
+
+        if (intent != null) {
+            act.startActivity(intent);
+        }
     }
 
     private boolean checkPlatformAddressExists() {
@@ -103,4 +127,5 @@ public class MainBtnListener implements View.OnKeyListener {
     private AlertDialog createAlert() {
         return new AlertDialog.Builder(act).setTitle("警告").setMessage("请先进行平台网络设置~").setPositiveButton("确定", null).create();
     }
+
 }

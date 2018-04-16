@@ -165,11 +165,13 @@ public class VodListActivity extends Activity {
                 vodListRightLayout.addView(viv);
             }
 
+            VideoItemListener videoItemListener = new VideoItemListener(this);
             // 初始化方向键, 点击事件
             for (int i = 0; i < vodListRightImgList.size(); i++) {
                 VideoImgItemView imageView = vodListRightImgList.get(i);
                 imageView.setId(R.id.vod_list_right_first_id + i);
-                imageView.setOnKeyListener(new VideoItemListener(this));
+                imageView.setOnKeyListener(videoItemListener);
+                imageView.setOnClickListener(videoItemListener);
             }
             new VideoItemListener(this).initItemFocus();
         }
