@@ -34,11 +34,13 @@
             android:name="io.vov.vitamio.activity.InitActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
             android:launchMode="singleTop"
+            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
             android:name=".activities.MainActivity"
+            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -51,17 +53,49 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.LiveListActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".activities.LivePlayActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".activities.VodListActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".activities.VodHisListActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".activities.VodPlayActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".activities.NewsListActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".activities.NewsPlayActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".activities.PlatformActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <activity android:name=".activities.UpgradeActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".activities.AutoLivePlayActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".activities.AutoVodPlayActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity android:name=".activities.LiveListActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <activity android:name=".activities.LivePlayActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <activity android:name=".activities.VodListActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <activity android:name=".activities.VodHisListActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <activity android:name=".activities.VodPlayActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <activity android:name=".activities.NewsListActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <activity android:name=".activities.NewsPlayActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <activity android:name=".activities.PlatformActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+
+        <activity android:name=".activities.UpgradeActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <activity android:name=".activities.AutoLivePlayActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <activity android:name=".activities.AutoVodPlayActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
