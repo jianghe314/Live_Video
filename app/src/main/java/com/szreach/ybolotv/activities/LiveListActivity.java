@@ -8,12 +8,14 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.beans.LiveBean;
@@ -21,17 +23,19 @@ import com.szreach.ybolotv.utils.DataService;
 import com.szreach.ybolotv.utils.UIUtils;
 import com.szreach.ybolotv.views.LiveItemView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.Vitamio;
+import io.vov.vitamio.utils.Log;
 import io.vov.vitamio.widget.VideoView;
 
 public class LiveListActivity extends Activity {
     private LinearLayout liveListItems;
     private LiveItemView selectedView;
-    private VideoView videoView;
     private ProgressDialog progressDialog;
+    private VideoView videoView;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -43,8 +47,8 @@ public class LiveListActivity extends Activity {
 
         progressDialog = UIUtils.createDialog(LiveListActivity.this);
         progressDialog.setCancelable(true);
+        videoView=findViewById(R.id.live_list_right_video);
 
-        videoView = (VideoView) this.findViewById(R.id.live_list_right_video);
         videoView.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {
             @Override
             public void onBufferingUpdate(MediaPlayer mp, int percent) {
@@ -73,7 +77,7 @@ public class LiveListActivity extends Activity {
                         newFocusLayout.getLiveflagView().setTextColor(0xffffffff);
                         final LiveBean live = newFocusLayout.getLiveInfo();
 
-                        final Handler handler = new Handler() {
+                        final Handler handler = new Handler(Looper.getMainLooper()) {
                             @Override
                             public void handleMessage(Message msg) {
                                 super.handleMessage(msg);
@@ -117,7 +121,7 @@ public class LiveListActivity extends Activity {
         progressDialog.show();
     }
 
-    private Handler handler = new Handler() {
+    private Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -161,4 +165,6 @@ public class LiveListActivity extends Activity {
     public void setSelectedView(LiveItemView selectedView) {
         this.selectedView = selectedView;
     }
+
+
 }
