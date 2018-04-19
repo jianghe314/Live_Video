@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.szreach.ybolotv">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.szreach.ybolotv">
 
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -21,7 +22,8 @@
         android:largeHeap="true"
         android:persistent="true"
         android:icon="@drawable/ybolo_tv"
-        android:label="@string/app_name" >
+        android:label="@string/app_name"
+        tools:replace="label,allowBackup">
 
         <!--receiver android:name=".receiver.BootBroadcastReceiver">
             <intent-filter>
