@@ -19,4 +19,15 @@
         </attr>
 
     </declare-styleable>
+
+
+    <!--自定义媒体控制器-->
+    <declare-styleable name="CustomMediaController">
+
+        <!--视频显示时间字体的大小,有默认字号，12sp，不要超过18sp-->
+        <attr name="media_controller_textSize" format="dimension|integer"/>
+        <!--视频暂停播放按钮的大小-->
+        <attr name="media_controller_controlSize" format="dimension|integer"/>
+
+    </declare-styleable>
 </resources>

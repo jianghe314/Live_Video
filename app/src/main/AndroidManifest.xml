@@ -17,7 +17,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
-        android:allowBackup="false"
+        android:allowBackup="true"
         android:largeHeap="true"
         android:persistent="true"
         android:icon="@drawable/ybolo_tv"
@@ -71,7 +71,7 @@
 
         <activity android:name=".activities.VodPlayActivity"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+            android:theme="@style/AppCompat_NoAcionBar" />
 
         <activity android:name=".activities.NewsListActivity"
             android:screenOrientation="landscape"
@@ -92,11 +92,11 @@
 
         <activity android:name=".activities.AutoLivePlayActivity"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+            android:theme="@style/AppCompat_NoAcionBar" />
 
         <activity android:name=".activities.AutoVodPlayActivity"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+            android:theme="@style/AppCompat_NoAcionBar" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

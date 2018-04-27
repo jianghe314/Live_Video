@@ -8,9 +8,11 @@ package io.vov.vitamio;
 
 public final class R {
     public static final class color {
-        public static int mediacontroller_bg = 0x7f060001;
-        public static int mediacontroller_bg_pressed = 0x7f060002;
-        public static int transparent = 0x7f060003;
+        public static int color_mc_bg = 0x7f060001;
+        public static int color_white = 0x7f060002;
+        public static int mediacontroller_bg = 0x7f060003;
+        public static int mediacontroller_bg_pressed = 0x7f060004;
+        public static int transparent = 0x7f060005;
     }
     public static final class drawable {
         public static int ic_launcher = 0x7f090001;

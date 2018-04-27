@@ -15,4 +15,9 @@
     <drawable name="red">#ffff0000</drawable>
     <drawable name="transparent">#00000000</drawable>
     <drawable name="yellow">#ffffff00</drawable>
+
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 </resources>

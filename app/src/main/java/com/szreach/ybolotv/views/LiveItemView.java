@@ -43,7 +43,7 @@ public class LiveItemView extends LinearLayout {
                         if((keyCode == KeyEvent.KEYCODE_DPAD_CENTER || keyCode == KeyEvent.KEYCODE_ENTER) && keyEvent.getAction() == KeyEvent.ACTION_UP) {
                             LiveListActivity act = (LiveListActivity) context;
 
-                            act.getVideoView().stopPlayback();
+                            act.getVideoView().stop();
                             Intent intent = new Intent(context, LivePlayActivity.class);
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("coId", getLiveInfo().getCoId());

@@ -4,5 +4,7 @@
     <color name="transparent">#00000000</color>
     <color name="mediacontroller_bg_pressed">#ff53c1bd</color>
     <color name="mediacontroller_bg">#99000000</color>
+    <color name="color_white">#ffffff</color>
+    <color name="color_mc_bg">#949494</color>
 
 </resources>
