@@ -43,7 +43,6 @@ public class StoreObjectUtils {
         try {
             String json = mapper.writeValueAsString(data);
             SharedPreferences.Editor editor = sp.edit();
-            editor.clear();
             editor.putString(key, json);
             editor.commit();
         } catch (JsonGenerationException e) {
