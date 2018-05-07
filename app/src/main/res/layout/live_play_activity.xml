@@ -24,7 +24,7 @@
     </com.ksyun.media.player.KSYTextureView>
 
     <TextView
-        android:textColor="@color/color_white"
+        android:textColor="#ffffff"
         android:id="@+id/live_play_hint"
         android:textSize="16sp"
         android:layout_centerInParent="true"

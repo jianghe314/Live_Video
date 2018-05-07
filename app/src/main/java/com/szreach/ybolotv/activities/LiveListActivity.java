@@ -10,13 +10,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,18 +25,12 @@ import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.beans.LiveBean;
 import com.szreach.ybolotv.utils.DataService;
 import com.szreach.ybolotv.utils.UIUtils;
-import com.szreach.ybolotv.views.CustomMediaController;
 import com.szreach.ybolotv.views.LiveItemView;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import io.vov.vitamio.MediaPlayer;
-import io.vov.vitamio.Vitamio;
-import io.vov.vitamio.utils.Log;
-import io.vov.vitamio.widget.VideoView;
 
 public class LiveListActivity extends Activity {
     private LinearLayout liveListItems;

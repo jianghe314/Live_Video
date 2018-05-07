@@ -5,8 +5,6 @@
 package com.szreach.ybolotv.activities;
 
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -19,16 +17,9 @@ import com.ksyun.media.player.IMediaPlayer;
 import com.ksyun.media.player.KSYMediaPlayer;
 import com.ksyun.media.player.KSYTextureView;
 import com.szreach.ybolotv.R;
-import com.szreach.ybolotv.utils.UIUtils;
 import com.szreach.ybolotv.views.CustomMediaController;
 
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import io.vov.vitamio.MediaPlayer;
-import io.vov.vitamio.Vitamio;
-import io.vov.vitamio.widget.VideoView;
 
 public class AutoLivePlayActivity extends AppCompatActivity {
 

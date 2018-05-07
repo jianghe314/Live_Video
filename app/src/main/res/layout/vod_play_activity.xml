@@ -4,7 +4,6 @@
         android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:id="@+id/vod_play_page"
-        android:background="@color/color_mc_bg"
        android:orientation="horizontal"
        >
     <!--
@@ -35,7 +34,7 @@
     </com.ksyun.media.player.KSYTextureView>
 
     <TextView
-        android:textColor="@color/color_white"
+        android:textColor="#ffffff"
         android:id="@+id/vod_play_hint"
         android:textSize="16sp"
         android:layout_centerInParent="true"

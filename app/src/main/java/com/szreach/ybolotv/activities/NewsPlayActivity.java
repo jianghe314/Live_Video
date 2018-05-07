@@ -17,15 +17,12 @@ import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.utils.DataService;
 import com.szreach.ybolotv.views.YBoloWebViewClient;
 
-import io.vov.vitamio.Vitamio;
-
 public class NewsPlayActivity extends Activity {
     private WebView webView;
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        Vitamio.isInitialized(getApplicationContext());
 
         setContentView(R.layout.news_play_activity);
         webView = (WebView) findViewById(R.id.news_play_view);

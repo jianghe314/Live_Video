@@ -5,8 +5,6 @@
 package com.szreach.ybolotv.activities;
 
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,13 +12,10 @@ import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,18 +25,12 @@ import com.ksyun.media.player.KSYMediaPlayer;
 import com.ksyun.media.player.KSYTextureView;
 import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.utils.DataService;
-import com.szreach.ybolotv.utils.UIUtils;
 import com.szreach.ybolotv.views.CustomMediaController;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import io.vov.vitamio.MediaPlayer;
-import io.vov.vitamio.Vitamio;
-import io.vov.vitamio.widget.MediaController;
-import io.vov.vitamio.widget.VideoView;
 
 public class VodPlayActivity extends AppCompatActivity implements CustomMediaController.StartOrStopListener,CustomMediaController.SetOnSeekBarListener,View.OnTouchListener{
 

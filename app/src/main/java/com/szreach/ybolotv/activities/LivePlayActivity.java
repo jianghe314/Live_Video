@@ -5,8 +5,6 @@
 package com.szreach.ybolotv.activities;
 
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,16 +27,11 @@ import com.ksyun.media.player.KSYTextureView;
 import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.beans.LiveBean;
 import com.szreach.ybolotv.utils.DataService;
-import com.szreach.ybolotv.utils.UIUtils;
 import com.szreach.ybolotv.views.CustomMediaController;
 
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import io.vov.vitamio.MediaPlayer;
-import io.vov.vitamio.Vitamio;
-import io.vov.vitamio.widget.VideoView;
 
 public class LivePlayActivity extends AppCompatActivity implements CustomMediaController.StartOrStopListener,CustomMediaController.SetOnSeekBarListener,View.OnTouchListener{
 
