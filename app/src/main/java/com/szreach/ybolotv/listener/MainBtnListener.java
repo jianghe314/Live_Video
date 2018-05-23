@@ -122,15 +122,17 @@ public class MainBtnListener implements View.OnKeyListener, View.OnClickListener
                 break;
             case R.id.camera:
                 //视频会议
-                String[] strings=getMeetData().split("#");
-                if(strings.length>0){
-                    intent=new Intent();
-                    intent.setAction(Intent.ACTION_VIEW);
-                    Uri uri=Uri.parse("conf://net.viazijing.cloud/join?host="+ strings[0]+"&mrnum="+strings[1]+"&mrpin="+(strings[3].equals(" ")?"":strings[3]));
-                    intent.setData(uri);
-                    act.startActivity(intent);
+                if(!getMeetData().equals("")){
+                    String[] strings=getMeetData().split("#");
+                    if(strings.length>0){
+                        intent=new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        Uri uri=Uri.parse("conf://net.viazijing.cloud/join?host="+ strings[0]+"&mrnum="+strings[1]+"&mrpin="+(strings[3].equals(" ")?"":strings[3]));
+                        intent.setData(uri);
+                        act.startActivity(intent);
+                    }
                 }else {
-                    Toast.makeText(act.getApplicationContext(),"请先到平台网络设置视频会议地址",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(act.getApplicationContext(), "请先到平台网络设置视频会议地址", Toast.LENGTH_SHORT).show();
                 }
                 break;
             default:
