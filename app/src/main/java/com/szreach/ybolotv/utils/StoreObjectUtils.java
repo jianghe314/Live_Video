@@ -25,7 +25,8 @@ public class StoreObjectUtils {
 
     final public static String SP_Plat = "sp_plat";
     final public static String DATA_Plat_Address = "data_plat_address";
-
+    final public static String Meet_Plat="meet_plat";
+    final public static String Meet_TAG="meet_TAG";
 
     private Context context;
     private String spName;

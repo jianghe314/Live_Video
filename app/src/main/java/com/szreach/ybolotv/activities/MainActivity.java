@@ -42,8 +42,8 @@ public class MainActivity extends Activity {
     MoveFrameLayout mMainMoveFrame;
     ImageView homePageLogo;
     TextView homePageTitle;
-    TextView newsTitle;
-    TextView newsSummary;
+    //TextView newsTitle;
+    //TextView newsSummary;
     View mOldFocus;
 
     @Override
@@ -55,8 +55,8 @@ public class MainActivity extends Activity {
         mMainMoveFrame = findViewById(R.id.main_move_frame);
         homePageLogo = findViewById(R.id.app_home_page_logo);
         homePageTitle = findViewById(R.id.app_home_page_title);
-        newsTitle = findViewById(R.id.main_news_title);
-        newsSummary = findViewById(R.id.main_news_summary);
+        //newsTitle = findViewById(R.id.main_news_title);
+        //newsSummary = findViewById(R.id.main_news_summary);
 
         initAppParams();
         initMoveFrame();
@@ -109,6 +109,7 @@ public class MainActivity extends Activity {
         mainBtnMap.put(R.id.live, (LinearLayout) this.findViewById(R.id.live));
         mainBtnMap.put(R.id.vod, (LinearLayout) this.findViewById(R.id.vod));
         mainBtnMap.put(R.id.news, (LinearLayout) this.findViewById(R.id.news));
+        mainBtnMap.put(R.id.camera, (LinearLayout) this.findViewById(R.id.camera));
         mainBtnMap.put(R.id.history, (LinearLayout) this.findViewById(R.id.history));
         mainBtnMap.put(R.id.settings, (LinearLayout) this.findViewById(R.id.settings));
         mainBtnMap.put(R.id.network, (LinearLayout) this.findViewById(R.id.network));
@@ -125,7 +126,7 @@ public class MainActivity extends Activity {
     }
 
     private void initPageData() {
-        new DataThread(this.handlerNews, this.handlerCoInfo).start();
+        //new DataThread(this.handlerNews, this.handlerCoInfo).start();
     }
 
     private void initWebSocket() {
@@ -143,6 +144,7 @@ public class MainActivity extends Activity {
     /**
      * 处理新闻数据
      */
+    /*
     private Handler handlerNews = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -153,6 +155,7 @@ public class MainActivity extends Activity {
             newsSummary.setText(news.getSummary());
         }
     };
+    */
 
     /**
      * 处理企业信息

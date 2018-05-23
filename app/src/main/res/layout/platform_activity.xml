@@ -1,53 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:background="@drawable/page_bg"
-       android:orientation="horizontal"
-       android:id="@+id/platform_page"
-       >
+       android:id="@+id/platform_page">
 
     <LinearLayout
-        android:layout_gravity="center_vertical"
+        android:layout_centerInParent="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="@dimen/x173"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
-                android:letterSpacing="-0.05"
-                android:text="平台地址："
-                android:textSize="@dimen/x8"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/x12"
+                android:gravity="center_vertical"
+                android:text="平台地址 "
                 android:textColor="#ffffff"
+                android:textSize="@dimen/x10" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-            <EditText
-                android:id="@+id/platform_address"
-                android:textSize="@dimen/x8"
-                android:background="#ffffff"
-                android:maxLines="1"
-                android:hint="http://192.168.0.1"
-                android:padding="@dimen/x1"
-                android:layout_width="@dimen/x100"
-                android:layout_height="@dimen/x10"/>
-            <TextView
-                android:id="@+id/platform_save"
-                android:padding="@dimen/x1"
-                android:textColor="#ffffff"
-                android:background="#00aaee"
-                android:textSize="@dimen/x7"
-                android:text="确  定"
-                android:layout_width="match_parent"
-                android:focusable="true"
-                android:layout_height="match_parent"/>
+                android:layout_height="@dimen/y13">
+
+                <EditText
+                    android:hint="http://www.ybolo.com"
+                    android:layout_weight="1"
+                    android:focusable="true"
+                    android:background="@color/color_white"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/x8"
+                    android:maxLines="1"
+                    android:id="@+id/platform_address"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/y12"  />
+                <TextView
+                    android:id="@+id/platform_save"
+                    android:focusable="true"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:padding="@dimen/x1"
+                    android:textColor="#262626"
+                    android:background="#ffffff"
+                    android:textSize="@dimen/x7"
+                    android:text="确  定"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/y12" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/y10"
+            android:layout_width="@dimen/x173"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="#ffffff"
+                android:textSize="@dimen/x10"
+                android:text="视频会议 "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y90">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y13">
+                    <TextView
+                        android:layout_alignParentStart="true"
+                        android:textColor="@color/color_white"
+                        android:id="@+id/meet_ip_hint"
+                        android:textSize="@dimen/x8"
+                        android:text="服务器地址: "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:focusable="true"
+                        android:background="@color/color_white"
+                        android:textColor="@color/color_black"
+                        android:textSize="@dimen/x8"
+                        android:maxLines="1"
+                        android:layout_toEndOf="@+id/meet_ip_hint"
+                        android:id="@+id/meet_ip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y13">
+                    <TextView
+                        android:textColor="@color/color_white"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/meet_num_hint"
+                        android:textSize="@dimen/x8"
+                        android:text="会    议   号  : "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:focusable="true"
+                        android:background="@color/color_white"
+                        android:textColor="@color/color_black"
+                        android:textSize="@dimen/x8"
+                        android:maxLines="1"
+                        android:layout_toEndOf="@+id/meet_num_hint"
+                        android:id="@+id/meet_num"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y13">
+                    <TextView
+                        android:textColor="@color/color_white"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/meet_userName_hint"
+                        android:textSize="@dimen/x8"
+                        android:text="用    户   名  : "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:focusable="true"
+                        android:background="@color/color_white"
+                        android:textColor="@color/color_black"
+                        android:textSize="@dimen/x8"
+                        android:maxLines="1"
+                        android:layout_toEndOf="@+id/meet_userName_hint"
+                        android:id="@+id/meet_userName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y13">
+                    <TextView
+                        android:textColor="@color/color_white"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/meet_psd_hint"
+                        android:textSize="@dimen/x8"
+                        android:text="用 户 密  码 : "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:inputType="textPassword"
+                        android:focusable="true"
+                        android:background="@color/color_white"
+                        android:textColor="@color/color_black"
+                        android:textSize="@dimen/x8"
+                        android:maxLines="1"
+                        android:layout_toEndOf="@+id/meet_psd_hint"
+                        android:id="@+id/meet_userPsd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+               <TextView
+                   android:id="@+id/meet_save"
+                   android:focusable="true"
+                   android:layout_gravity="end"
+                   android:layout_marginTop="5dp"
+                   android:gravity="center"
+                   android:padding="@dimen/x1"
+                   android:textColor="#262626"
+                   android:background="#ffffff"
+                   android:textSize="@dimen/x7"
+                   android:text="确  定"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

@@ -13,24 +13,17 @@ android {
     }
     defaultConfig {
         applicationId "com.szreach.ybolotv"
-        minSdkVersion 21
+        minSdkVersion 17
         targetSdkVersion 26
         versionCode 6
         versionName "V1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        ndk {
-            abiFilters 'armeabi-v7a', 'arm64-v8a'
-        }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-    sourceSets.main {
-        jniLibs.srcDirs 'src/main/libs' // 动态库和jar的存放路径
-        jni.srcDirs = [] // This prevents the auto generation of Android.mk
     }
 
     applicationVariants.all { variant ->

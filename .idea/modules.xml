@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ybolo-AndroidApp.iml" filepath="$PROJECT_DIR$/ybolo-AndroidApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/ybolo-TV.iml" filepath="$PROJECT_DIR$/ybolo-TV.iml" />
     </modules>
   </component>
