@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <drawable name="dkgray">#80808FF0</drawable>
-    <drawable name="yello">#F8F8FF00</drawable>
-    <drawable name="white">#FFFFFF</drawable>
-    <drawable name="darkgray">#938192</drawable>
-    <drawable name="lightgreen">#7cd12e</drawable>
-    <drawable name="black">#ff000000</drawable>
-    <drawable name="blue">#ff0000ff</drawable>
-    <drawable name="cyan">#ff00ffff</drawable>
-    <drawable name="gray">#ff888888</drawable>
-    <drawable name="green">#ff00ff00</drawable>
-    <drawable name="ltgray">#ffcccccc</drawable>
-    <drawable name="magenta">#ffff00ff</drawable>
-    <drawable name="red">#ffff0000</drawable>
-    <drawable name="transparent">#00000000</drawable>
-    <drawable name="yellow">#ffffff00</drawable>
-
-
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#d4d4d4</color>
+    <color name="colorPrimaryDark">#d4d4d4</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="color_tab_menu">#edeef1</color>
+    <color name="color_text_gray">#bcc2ce</color>
+    <color name="color_black_gray">#6e6e6e</color>
+    <color name="tab_menu_text_selected">#3052a2</color>
+    <color name="login_btn_press">#12327e</color>
+    <color name="tab_menu_text_unselected">#bcc2ce</color>
     <color name="color_white">#ffffff</color>
-    <color name="color_focus">#FF4081</color>
-    <color name="color_black">#434343</color>
+    <color name="color_white_shallow">#4dffffff</color>
+    <color name="login_edit_bg">#354772</color>
+    <color name="color_line">#f1f0f0</color>
+    <color name="color_black">#000000</color>
+    <color name="color_time">#ff5703</color>
+    <color name="live_textColor">#3c67ca</color>
+    <color name="color_orange_0">#ff8801</color>
+    <color name="color_orange_1">#cc6d02</color>
+    <color name="black_overlay">#66000000</color>
+
 </resources>

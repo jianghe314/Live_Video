@@ -1,22 +1,14 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao' // apply plugin
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
-    packagingOptions{
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/ASL2.0'
-    }
+    compileSdkVersion 27
     defaultConfig {
-        applicationId "com.szreach.ybolotv"
-        minSdkVersion 17
-        targetSdkVersion 26
-        versionCode 6
-        versionName "V1.0"
+        applicationId "ybolo.szreach.com.live_vod"
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -26,36 +18,36 @@ android {
         }
     }
 
-    applicationVariants.all { variant ->
-        variant.outputs.all {
-            if (outputFileName != null && outputFileName.endsWith('.apk')) {
-                outputFileName = outputFileName.replace("app","${defaultConfig.applicationId }_${defaultConfig.versionName}_${releaseTime() }")
-            }
-        }
-    }
 }
 
-def releaseTime() {
-    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
+greendao {
+    schemaVersion 1 //数据库版本号
+    daoPackage 'ybolo.szreach.com.live_vod.db'  //设置的文件路径
+    targetGenDir 'src/main/java'    //生成数据库文件的目录
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:recyclerview-v7:26.1.0'
-    compile 'com.google.android:flexbox:0.2.3'
-    compile 'com.koushikdutta.async:androidasync:2.+'
-    testCompile 'junit:junit:4.12'
-    compile files('libs/okio-1.13.0.jar')
-    compile files('libs/okhttp-3.8.1.jar')
-    compile files('libs/jackson-mapper-asl-1.9.13.jar')
-    compile files('libs/jackson-core-asl-1.9.13.jar')
-    //以下为金山云播放器依赖
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support:support-v4:27.1.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.yanzhenjie.nohttp:nohttp:1.1.9'
+    implementation 'com.google.code.gson:gson:2.8.4'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'org.greenrobot:greendao:3.2.2'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
     implementation 'com.ksyun.media:libksyplayer-java:2.1.2'
     implementation 'com.ksyun.media:libksyplayer-armv7a:2.1.2'
     implementation 'com.ksyun.media:libksyplayer-arm64:2.1.2'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.8'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.netease.hearttouch:ht-refreshrecyclerview:1.2.3'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 }

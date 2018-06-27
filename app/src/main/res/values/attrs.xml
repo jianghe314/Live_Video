@@ -1,33 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <declare-styleable name="TVRecyclerView">
-        <attr name="android:orientation" tools:ignore="ResourceName"/>
-        <attr name="tv_layoutManager" format="string"/>
-        <attr name="tv_numColumns" format="integer"/>
-        <attr name="tv_numRows" format="integer"/>
-        <attr name="tv_selectedItemCentered" format="boolean" />
-        <attr name="tv_loadMoreBeforehandCount" format="integer" />
-        <attr name="tv_selectedItemOffsetStart" format="dimension" />
-        <attr name="tv_selectedItemOffsetEnd" format="dimension" />
+<resources>
+    <!--自定义播放器-->
+    <declare-styleable name="YboloPlayer">
+
+        <!--加载时的背景颜色-->
+        <attr name="yboloPlayer_backColor" format="color|reference" />
+
+        <!--加载时提示文字的颜色-->
+        <attr name="yboloPlayer_hintColor" format="color|reference" />
+
+        <!--加载时提文字的大小-->
+        <attr name="yboloPlayer_hintSize" format="reference|dimension" />
+
+        <!--视频时间文字提示颜色-->
+        <attr name="yboloPlayer_timeColor" format="color|reference" />
+
+        <!--视频时间提示字体大小-->
+        <attr name="yboloPlayer_timeSize" format="reference|dimension" />
+
+        <!--seekBar的颜色-->
+        <attr name="yboloPlayer_seekBarColor" format="color|reference" />
+
+        <!--媒体控制栏的颜色，最好带透明度-->
+        <attr name="yboloPlayer_toolColor" format="color|reference" />
+
+        <!--是否点播，直播不显示媒体控制栏-->
+        <attr name="yboloPlayer_isLive" format="boolean" />
+
+        <!--播放按钮的大小-->
+        <attr name="yboloPlayer_btnSize" format="dimension|reference" />
 
     </declare-styleable>
-    <declare-styleable name="RoundImageView">
-        <attr name="borderRadius" format="reference|dimension"/>
-        <attr name="type">
-            <enum name="circle" value="0"/>
-            <enum name="round" value="1"/>
-        </attr>
 
-    </declare-styleable>
-
-
-    <!--自定义媒体控制器-->
-    <declare-styleable name="CustomMediaController">
-
-        <!--视频显示时间字体的大小,有默认字号，12sp，不要超过18sp-->
-        <attr name="media_controller_textSize" format="dimension|integer"/>
-        <!--视频暂停播放按钮的大小-->
-        <attr name="media_controller_controlSize" format="dimension|integer"/>
-
+    <!-- Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels. -->
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference" />
+        <attr name="metaButtonBarButtonStyle" format="reference" />
     </declare-styleable>
 </resources>
