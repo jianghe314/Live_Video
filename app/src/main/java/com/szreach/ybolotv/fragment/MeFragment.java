@@ -10,14 +10,15 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.szreach.ybolotv.App;
+import com.szreach.ybolotv.activity.SettingActivity;
+import com.szreach.ybolotv.activity.UserInfoActivity;
+import com.szreach.ybolotv.base.BaseFragment;
+import com.szreach.ybolotv.bean.UserInfo;
+import com.szreach.ybolotv.mInterface.Interface;
 
-import ybolo.szreach.com.live_vod.App;
+
 import ybolo.szreach.com.live_vod.R;
-import ybolo.szreach.com.live_vod.activity.SettingActivity;
-import ybolo.szreach.com.live_vod.activity.UserInfoActivity;
-import ybolo.szreach.com.live_vod.base.BaseFragment;
-import ybolo.szreach.com.live_vod.bean.UserInfo;
-import ybolo.szreach.com.live_vod.mInterface.Interface;
 
 import static android.content.Context.MODE_PRIVATE;
 

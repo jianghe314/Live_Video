@@ -27,6 +27,7 @@ import java.util.TimerTask;
 
 import ybolo.szreach.com.live_vod.R;
 
+
 /**
  * 还要添加window类，设置当播放视频时屏幕常亮，播放完毕清除常亮标志
  */

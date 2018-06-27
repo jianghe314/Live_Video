@@ -10,14 +10,15 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.szreach.ybolotv.App;
+import com.szreach.ybolotv.bean.LiveRemark;
+import com.szreach.ybolotv.mInterface.Interface;
 
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import ybolo.szreach.com.live_vod.App;
 import ybolo.szreach.com.live_vod.R;
-import ybolo.szreach.com.live_vod.bean.LiveRemark;
-import ybolo.szreach.com.live_vod.mInterface.Interface;
+
 
 public class LiveRemarkAdapter extends RecyclerView.Adapter<LiveRemarkAdapter.LiveListHolder> {
 

@@ -4,12 +4,13 @@ import android.app.Application;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.szreach.ybolotv.db.DaoMaster;
+import com.szreach.ybolotv.db.DaoSession;
 import com.yanzhenjie.nohttp.InitializationConfig;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.cache.DBCacheStore;
 
-import ybolo.szreach.com.live_vod.db.DaoMaster;
-import ybolo.szreach.com.live_vod.db.DaoSession;
+
 
 public class App extends Application {
     private static Context context;

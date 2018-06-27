@@ -13,13 +13,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.szreach.ybolotv.activity.VideoDetailActivity;
+import com.szreach.ybolotv.bean.VideoList;
+import com.szreach.ybolotv.utils.mLog;
 
 import java.util.List;
 
 import ybolo.szreach.com.live_vod.R;
-import ybolo.szreach.com.live_vod.activity.VideoDetailActivity;
-import ybolo.szreach.com.live_vod.bean.VideoList;
-import ybolo.szreach.com.live_vod.utils.mLog;
+
 
 public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.VideoListHolder>{
 

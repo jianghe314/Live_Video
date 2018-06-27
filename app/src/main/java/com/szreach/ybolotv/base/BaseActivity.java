@@ -11,6 +11,12 @@ import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
 
 import com.google.gson.Gson;
+import com.szreach.ybolotv.App;
+import com.szreach.ybolotv.db.DaoSession;
+import com.szreach.ybolotv.mui.ErrorDialog;
+import com.szreach.ybolotv.mui.WaitDialog;
+import com.szreach.ybolotv.utils.NoHttpUtils;
+import com.szreach.ybolotv.utils.mLog;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
 import com.yanzhenjie.nohttp.rest.Request;
 
@@ -20,12 +26,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import ybolo.szreach.com.live_vod.App;
-import ybolo.szreach.com.live_vod.db.DaoSession;
-import ybolo.szreach.com.live_vod.mui.ErrorDialog;
-import ybolo.szreach.com.live_vod.mui.WaitDialog;
-import ybolo.szreach.com.live_vod.utils.NoHttpUtils;
-import ybolo.szreach.com.live_vod.utils.mLog;
+
 
 public class BaseActivity extends AppCompatActivity {
 

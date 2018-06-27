@@ -6,6 +6,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.szreach.ybolotv.base.BaseActivity;
+import com.szreach.ybolotv.bean.UserInfo;
+import com.szreach.ybolotv.mInterface.Interface;
+import com.szreach.ybolotv.utils.mLog;
+import com.szreach.ybolotv.utils.mToast;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
@@ -19,11 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ybolo.szreach.com.live_vod.R;
-import ybolo.szreach.com.live_vod.base.BaseActivity;
-import ybolo.szreach.com.live_vod.bean.UserInfo;
-import ybolo.szreach.com.live_vod.mInterface.Interface;
-import ybolo.szreach.com.live_vod.utils.mLog;
-import ybolo.szreach.com.live_vod.utils.mToast;
+
 
 public class SettingActivity extends BaseActivity {
 

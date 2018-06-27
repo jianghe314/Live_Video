@@ -1,7 +1,9 @@
 package com.szreach.ybolotv.fragment;
 
+
+import com.szreach.ybolotv.base.BaseFragment;
+
 import ybolo.szreach.com.live_vod.R;
-import ybolo.szreach.com.live_vod.base.BaseFragment;
 
 public class LiveListSubjectFragment extends BaseFragment {
 

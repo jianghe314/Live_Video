@@ -10,14 +10,15 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.szreach.ybolotv.App;
+import com.szreach.ybolotv.base.BaseFragment;
+import com.szreach.ybolotv.utils.mToast;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import ybolo.szreach.com.live_vod.App;
 import ybolo.szreach.com.live_vod.R;
-import ybolo.szreach.com.live_vod.base.BaseFragment;
-import ybolo.szreach.com.live_vod.utils.mToast;
 
 
 public class LiveFragment extends BaseFragment implements LiveListFragment.NoticeListDataChange{

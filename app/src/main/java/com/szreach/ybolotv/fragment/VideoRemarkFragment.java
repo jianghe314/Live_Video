@@ -8,9 +8,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
 import com.netease.hearttouch.htrefreshrecyclerview.HTLoadMoreListener;
 import com.netease.hearttouch.htrefreshrecyclerview.HTRefreshListener;
 import com.netease.hearttouch.htrefreshrecyclerview.HTRefreshRecyclerView;
+import com.szreach.ybolotv.App;
+import com.szreach.ybolotv.adapter.VideoRemarkAdapter;
+import com.szreach.ybolotv.base.BaseFragment;
+import com.szreach.ybolotv.bean.VideoRemark;
+import com.szreach.ybolotv.mInterface.Interface;
+import com.szreach.ybolotv.utils.mLog;
+import com.szreach.ybolotv.utils.mToast;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
@@ -24,14 +32,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import ybolo.szreach.com.live_vod.App;
 import ybolo.szreach.com.live_vod.R;
-import ybolo.szreach.com.live_vod.adapter.VideoRemarkAdapter;
-import ybolo.szreach.com.live_vod.base.BaseFragment;
-import ybolo.szreach.com.live_vod.bean.VideoRemark;
-import ybolo.szreach.com.live_vod.mInterface.Interface;
-import ybolo.szreach.com.live_vod.utils.mLog;
-import ybolo.szreach.com.live_vod.utils.mToast;
+
 
 public class VideoRemarkFragment extends BaseFragment implements View.OnClickListener{
 

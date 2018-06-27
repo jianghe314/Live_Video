@@ -8,9 +8,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
 import com.netease.hearttouch.htrefreshrecyclerview.HTLoadMoreListener;
 import com.netease.hearttouch.htrefreshrecyclerview.HTRefreshListener;
 import com.netease.hearttouch.htrefreshrecyclerview.HTRefreshRecyclerView;
+import com.szreach.ybolotv.App;
+import com.szreach.ybolotv.adapter.LiveRemarkAdapter;
+import com.szreach.ybolotv.base.BaseFragment;
+import com.szreach.ybolotv.bean.LiveRemark;
+import com.szreach.ybolotv.mInterface.Interface;
+import com.szreach.ybolotv.utils.mLog;
+import com.szreach.ybolotv.utils.mToast;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
@@ -24,14 +32,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import ybolo.szreach.com.live_vod.App;
 import ybolo.szreach.com.live_vod.R;
-import ybolo.szreach.com.live_vod.adapter.LiveRemarkAdapter;
-import ybolo.szreach.com.live_vod.base.BaseFragment;
-import ybolo.szreach.com.live_vod.bean.LiveRemark;
-import ybolo.szreach.com.live_vod.mInterface.Interface;
-import ybolo.szreach.com.live_vod.utils.mLog;
-import ybolo.szreach.com.live_vod.utils.mToast;
+
 
 public class LiveRemarkFragment extends BaseFragment implements View.OnClickListener{
 
@@ -49,7 +51,7 @@ public class LiveRemarkFragment extends BaseFragment implements View.OnClickList
     private int pageNumber=1;
     private List<LiveRemark> liveRemarkData=new ArrayList<>();
 
-    private String sendInfo=Interface.getIpAddress(App.getApplication())+Interface.URL_PREFIX_LIVE_COMMENT+Interface.URL_POST_LIVE_COMMENT_SUBMIT;
+    private String sendInfo= Interface.getIpAddress(App.getApplication())+Interface.URL_PREFIX_LIVE_COMMENT+Interface.URL_POST_LIVE_COMMENT_SUBMIT;
     private String getInfo=Interface.getIpAddress(App.getApplication())+Interface.URL_PREFIX_LIVE_COMMENT+Interface.URL_POST_LIVE_COMMENT;
 
     @Override

@@ -3,8 +3,15 @@ package com.szreach.ybolotv.fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
+
 import com.netease.hearttouch.htrefreshrecyclerview.HTRefreshListener;
 import com.netease.hearttouch.htrefreshrecyclerview.HTRefreshRecyclerView;
+import com.szreach.ybolotv.adapter.LiveListAdapter;
+import com.szreach.ybolotv.base.BaseFragment;
+import com.szreach.ybolotv.bean.LiveList;
+import com.szreach.ybolotv.bean.UserInfo;
+import com.szreach.ybolotv.mInterface.Interface;
+import com.szreach.ybolotv.utils.mLog;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
@@ -19,12 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ybolo.szreach.com.live_vod.R;
-import ybolo.szreach.com.live_vod.adapter.LiveListAdapter;
-import ybolo.szreach.com.live_vod.base.BaseFragment;
-import ybolo.szreach.com.live_vod.bean.LiveList;
-import ybolo.szreach.com.live_vod.bean.UserInfo;
-import ybolo.szreach.com.live_vod.mInterface.Interface;
-import ybolo.szreach.com.live_vod.utils.mLog;
+
 
 public class LiveListFragment extends BaseFragment {
 

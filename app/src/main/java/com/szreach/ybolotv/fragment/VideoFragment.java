@@ -10,9 +10,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
 import com.netease.hearttouch.htrefreshrecyclerview.HTLoadMoreListener;
 import com.netease.hearttouch.htrefreshrecyclerview.HTRefreshListener;
 import com.netease.hearttouch.htrefreshrecyclerview.HTRefreshRecyclerView;
+import com.szreach.ybolotv.App;
+import com.szreach.ybolotv.adapter.VideoListAdapter;
+import com.szreach.ybolotv.base.BaseFragment;
+import com.szreach.ybolotv.bean.UserInfo;
+import com.szreach.ybolotv.bean.VideoList;
+import com.szreach.ybolotv.bean.VideoTitle;
+import com.szreach.ybolotv.bean.VideoTitle2;
+import com.szreach.ybolotv.mInterface.Interface;
+import com.szreach.ybolotv.utils.mLog;
+import com.szreach.ybolotv.utils.mToast;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
@@ -27,17 +38,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.disposables.Disposable;
-import ybolo.szreach.com.live_vod.App;
 import ybolo.szreach.com.live_vod.R;
-import ybolo.szreach.com.live_vod.adapter.VideoListAdapter;
-import ybolo.szreach.com.live_vod.base.BaseFragment;
-import ybolo.szreach.com.live_vod.bean.UserInfo;
-import ybolo.szreach.com.live_vod.bean.VideoList;
-import ybolo.szreach.com.live_vod.bean.VideoTitle;
-import ybolo.szreach.com.live_vod.bean.VideoTitle2;
-import ybolo.szreach.com.live_vod.mInterface.Interface;
-import ybolo.szreach.com.live_vod.utils.mLog;
-import ybolo.szreach.com.live_vod.utils.mToast;
+
 
 public class VideoFragment extends BaseFragment implements View.OnClickListener{
 
@@ -62,7 +64,7 @@ public class VideoFragment extends BaseFragment implements View.OnClickListener{
     private Disposable disposable;
     private int tabPostion=0;
     private String videoFlag="video_time";
-    private String videoUrl=Interface.getIpAddress(App.getApplication())+Interface.URL_PREFIX_VIDEO+Interface.URL_POST_VIDEO_LIST_NOGROUP;
+    private String videoUrl= Interface.getIpAddress(App.getApplication())+Interface.URL_PREFIX_VIDEO+Interface.URL_POST_VIDEO_LIST_NOGROUP;
 
     @Override
     protected void HandMsg(int msg) {

@@ -13,14 +13,15 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.szreach.ybolotv.App;
+import com.szreach.ybolotv.activity.LiveDetailActivity;
+import com.szreach.ybolotv.bean.LiveList;
+import com.szreach.ybolotv.mInterface.Interface;
 
 import java.util.List;
 
-import ybolo.szreach.com.live_vod.App;
 import ybolo.szreach.com.live_vod.R;
-import ybolo.szreach.com.live_vod.activity.LiveDetailActivity;
-import ybolo.szreach.com.live_vod.bean.LiveList;
-import ybolo.szreach.com.live_vod.mInterface.Interface;
+
 
 public class LiveListAdapter extends RecyclerView.Adapter<LiveListAdapter.LiveListHolder> {
 

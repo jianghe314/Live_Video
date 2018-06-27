@@ -9,6 +9,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.szreach.ybolotv.base.BaseActivity;
+import com.szreach.ybolotv.bean.UserInfo;
+import com.szreach.ybolotv.fragment.LiveIntroFragment;
+import com.szreach.ybolotv.fragment.LiveRemarkFragment;
+import com.szreach.ybolotv.mInterface.Interface;
+import com.szreach.ybolotv.player.YboloPlayer;
+import com.szreach.ybolotv.utils.mLog;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
@@ -22,13 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ybolo.szreach.com.live_vod.R;
-import ybolo.szreach.com.live_vod.base.BaseActivity;
-import ybolo.szreach.com.live_vod.bean.UserInfo;
-import ybolo.szreach.com.live_vod.fragment.LiveIntroFragment;
-import ybolo.szreach.com.live_vod.fragment.LiveRemarkFragment;
-import ybolo.szreach.com.live_vod.mInterface.Interface;
-import ybolo.szreach.com.live_vod.player.YboloPlayer;
-import ybolo.szreach.com.live_vod.utils.mLog;
+
 
 public class LiveDetailActivity extends BaseActivity {
 

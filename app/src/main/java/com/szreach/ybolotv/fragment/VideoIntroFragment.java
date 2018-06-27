@@ -4,6 +4,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.szreach.ybolotv.App;
+import com.szreach.ybolotv.base.BaseFragment;
+import com.szreach.ybolotv.bean.VideoInfo;
+import com.szreach.ybolotv.mInterface.Interface;
+import com.szreach.ybolotv.utils.mLog;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
@@ -13,12 +18,8 @@ import com.yanzhenjie.nohttp.rest.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import ybolo.szreach.com.live_vod.App;
 import ybolo.szreach.com.live_vod.R;
-import ybolo.szreach.com.live_vod.base.BaseFragment;
-import ybolo.szreach.com.live_vod.bean.VideoInfo;
-import ybolo.szreach.com.live_vod.mInterface.Interface;
-import ybolo.szreach.com.live_vod.utils.mLog;
+
 
 public class VideoIntroFragment extends BaseFragment {
 

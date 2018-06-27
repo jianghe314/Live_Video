@@ -12,13 +12,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.szreach.ybolotv.fragment.HomeFragment;
+import com.szreach.ybolotv.fragment.LiveFragment;
+import com.szreach.ybolotv.fragment.MeFragment;
+import com.szreach.ybolotv.fragment.VideoFragment;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import ybolo.szreach.com.live_vod.fragment.HomeFragment;
-import ybolo.szreach.com.live_vod.fragment.LiveFragment;
-import ybolo.szreach.com.live_vod.fragment.MeFragment;
-import ybolo.szreach.com.live_vod.fragment.VideoFragment;
+import ybolo.szreach.com.live_vod.R;
+
 
 public class MainActivity extends AppCompatActivity implements HomeFragment.FragmentCallBack{
 

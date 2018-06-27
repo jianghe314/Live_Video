@@ -10,6 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.szreach.ybolotv.adapter.LiveListAdapter;
+import com.szreach.ybolotv.adapter.VideoListAdapter;
+import com.szreach.ybolotv.base.BaseFragment;
+import com.szreach.ybolotv.bean.LiveList;
+import com.szreach.ybolotv.bean.UserInfo;
+import com.szreach.ybolotv.bean.VideoList;
+import com.szreach.ybolotv.mInterface.Interface;
+import com.szreach.ybolotv.mui.mBanner;
+import com.szreach.ybolotv.utils.mLog;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
@@ -28,15 +37,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import ybolo.szreach.com.live_vod.R;
-import ybolo.szreach.com.live_vod.adapter.LiveListAdapter;
-import ybolo.szreach.com.live_vod.adapter.VideoListAdapter;
-import ybolo.szreach.com.live_vod.base.BaseFragment;
-import ybolo.szreach.com.live_vod.bean.LiveList;
-import ybolo.szreach.com.live_vod.bean.UserInfo;
-import ybolo.szreach.com.live_vod.bean.VideoList;
-import ybolo.szreach.com.live_vod.mInterface.Interface;
-import ybolo.szreach.com.live_vod.mui.mBanner;
-import ybolo.szreach.com.live_vod.utils.mLog;
+
 
 public class HomeFragment extends BaseFragment {
 

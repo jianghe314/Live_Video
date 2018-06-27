@@ -3,7 +3,8 @@ package com.szreach.ybolotv.mInterface;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import ybolo.szreach.com.live_vod.App;
+import com.szreach.ybolotv.App;
+
 
 public class Interface {
 

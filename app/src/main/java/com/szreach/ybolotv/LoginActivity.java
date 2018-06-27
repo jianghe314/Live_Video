@@ -10,6 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.szreach.ybolotv.base.BaseActivity;
+import com.szreach.ybolotv.bean.UserInfo;
+import com.szreach.ybolotv.db.UserInfoDao;
+import com.szreach.ybolotv.mInterface.Interface;
+import com.szreach.ybolotv.utils.mLog;
+import com.szreach.ybolotv.utils.mToast;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
@@ -22,12 +28,8 @@ import org.json.JSONObject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import ybolo.szreach.com.live_vod.base.BaseActivity;
-import ybolo.szreach.com.live_vod.bean.UserInfo;
-import ybolo.szreach.com.live_vod.db.UserInfoDao;
-import ybolo.szreach.com.live_vod.mInterface.Interface;
-import ybolo.szreach.com.live_vod.utils.mLog;
-import ybolo.szreach.com.live_vod.utils.mToast;
+import ybolo.szreach.com.live_vod.R;
+
 
 public class LoginActivity extends BaseActivity {
 
