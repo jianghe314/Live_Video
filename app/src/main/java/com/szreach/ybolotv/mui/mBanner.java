@@ -22,8 +22,9 @@ import java.util.List;
 
 import ybolo.szreach.com.live_vod.R;
 
+
 /**
- * Created by kangzhan011 on 2017/6/13.
+ * Created by zx on 2017/6/13.
  */
 
 public class mBanner extends FrameLayout implements View.OnClickListener {
