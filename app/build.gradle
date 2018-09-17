@@ -31,11 +31,7 @@ android {
 
 }
 
-greendao {
-    schemaVersion 1 //数据库版本号
-    daoPackage 'ybolo.szreach.com.live_vod.db'  //设置的文件路径
-    targetGenDir 'src/main/java'    //生成数据库文件的目录
-}
+
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
