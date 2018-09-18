@@ -4,7 +4,7 @@ apply plugin: 'org.greenrobot.greendao' // apply plugin
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "ybolo.szreach.com.live_vod"
+        applicationId "com.szreach.ybolotv"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
@@ -29,6 +29,12 @@ android {
         exclude 'META-INF/ASL2.0'
     }
 
+}
+
+greendao {
+    schemaVersion 1 //数据库版本号
+    daoPackage 'com.szreach.ybolotv.db'  //设置的文件路径
+    targetGenDir 'src/main/java'    //生成数据库文件的目录
 }
 
 

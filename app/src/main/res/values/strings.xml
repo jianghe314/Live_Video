@@ -9,6 +9,7 @@
     <string name="input_userName">请输入账号</string>
     <string name="input_userPsd">请输入密码</string>
     <!--视频副标题-->
+    <string name="live_list">直播列表</string>
     <string name="video_sec_title">锐取YBolo互联网直播平台</string>
     <string name="live_detail">直播详情</string>
     <string name="introduce">简介</string>

@@ -16,6 +16,7 @@
             android:layout_gravity="center"
             android:layout_width="50dp"
             android:layout_height="50dp" />
+
         <TextView
             android:id="@+id/wait_dialog_tv"
             android:layout_marginTop="2dp"
