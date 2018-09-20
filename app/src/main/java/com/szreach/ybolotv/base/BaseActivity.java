@@ -12,10 +12,15 @@ import android.widget.Toast;
 import com.szreach.ybolotv.widgets.ErrorDialog;
 import com.szreach.ybolotv.widgets.WaitDialog;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class BaseActivity extends AppCompatActivity implements BaseView{
 
     private WaitDialog waitDialog;
     private ErrorDialog errorDialog;
+    protected List<String> params=new ArrayList<>();
+    protected List<Object> values=new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,10 +36,31 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     }
 
     @Override
+    public void hideLoading() {
+        waitDialog.dismiss();
+    }
+
+    @Override
     public void showError(String msg) {
         waitDialog.dismiss();
         errorDialog.show();
         errorDialog.setTextMsg(msg);
+    }
+
+
+    @Override
+    public void showData(Object data) {
+
+    }
+
+    @Override
+    public void showToast(String msg) {
+
+    }
+
+    @Override
+    public void onRefresh(Object data) {
+
     }
 
     @Override

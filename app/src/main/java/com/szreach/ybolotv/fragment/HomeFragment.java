@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.base.BaseFragment;
 import com.szreach.ybolotv.utils.ShowToast;
-
+import com.szreach.ybolotv.utils.mLog;
 
 
 /**
@@ -62,6 +62,11 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void onRefresh(Object data) {
+
+    }
+
+    @Override
+    protected void stopLoad() {
 
     }
 

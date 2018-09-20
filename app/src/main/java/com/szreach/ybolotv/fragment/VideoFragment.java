@@ -66,6 +66,11 @@ public class VideoFragment extends BaseFragment {
     }
 
     @Override
+    protected void stopLoad() {
+
+    }
+
+    @Override
     public Context getContent() {
         return null;
     }

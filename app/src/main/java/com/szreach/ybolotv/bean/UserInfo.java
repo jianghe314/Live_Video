@@ -128,6 +128,9 @@ public class UserInfo {
     }
 
     public String getUserName() {
+        if(userName==null||userName.equals("")){
+            return "某某";
+        }
         return userName;
     }
 
@@ -152,6 +155,9 @@ public class UserInfo {
     }
 
     public String getIntroduction() {
+        if(introduction==null||introduction.equals("")){
+            return "这个人很懒什么也没留下";
+        }
         return introduction;
     }
 

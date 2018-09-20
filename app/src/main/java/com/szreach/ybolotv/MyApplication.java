@@ -18,7 +18,7 @@ import org.greenrobot.greendao.AbstractDaoMaster;
 public class MyApplication extends Application {
 
     private static Context context;
-    private DaoSession daoSession;
+    private static DaoSession daoSession;
 
     @Override
     public void onCreate() {
@@ -51,7 +51,7 @@ public class MyApplication extends Application {
 
 
     //获取DaoSession
-    public DaoSession getDaoSession() {
+    public static DaoSession getDaoSession() {
         return daoSession;
     }
 

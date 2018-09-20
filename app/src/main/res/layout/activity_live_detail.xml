@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.LiveDetailActivity">
+
+    <RelativeLayout
+        android:id="@+id/live_detail_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/live_detail_back"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/return_ico"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textColor="@color/color_black_gray"
+            android:textSize="@dimen/textSize_16"
+            android:text="@string/live_detail"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/live_share"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/share"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/live_detail_content"
+        android:layout_below="@+id/live_detail_title"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <com.szreach.ybolotv.player.YboloTvPlayer
+            android:id="@+id/ybolo_player"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.szreach.ybolotv.player.YboloTvPlayer>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/live_detail_content"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <RelativeLayout
+                android:id="@+id/live_detail_intro_container"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/live_detail_intro"
+                    android:textColor="@color/color_black_gray"
+                    android:textSize="@dimen/textSize_16"
+                    android:layout_centerInParent="true"
+                    android:text="@string/introduce"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/live_detail_remark_container"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/live_detail_evalu"
+                    android:textColor="@color/color_black_gray"
+                    android:textSize="@dimen/textSize_16"
+                    android:layout_centerInParent="true"
+                    android:text="@string/evalution"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+        </LinearLayout>
+        <View
+            android:background="@color/color_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/live_detail_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v4.view.ViewPager>
+
+    </LinearLayout>
+
+    <!--全屏播放-->
+    <android.opengl.GLSurfaceView
+        android:visibility="gone"
+        android:id="@+id/gl_surface_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</RelativeLayout>

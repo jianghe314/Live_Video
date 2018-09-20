@@ -46,7 +46,7 @@ public class Model {
 
             @Override
             public void onFailed(int what, Response response) {
-                callBack.onFail("网络连接异常，请检查网络");
+                callBack.onError("网络连接异常，请检查网络");
             }
 
             @Override
@@ -80,7 +80,7 @@ public class Model {
 
             @Override
             public void onFailed(int what, Response response) {
-                callBack.onFail("网络连接异常，请检查网络");
+                callBack.onError("网络连接异常，请检查网络");
             }
 
             @Override
@@ -88,6 +88,14 @@ public class Model {
                 callBack.onComplete();
             }
         });
+    }
+
+    /**
+     * 取消请求
+     * @param what
+     */
+    public static void cancelRequest(int what){
+        NoHttpUtils.getInstence().cancelBySign(what);
     }
 
 

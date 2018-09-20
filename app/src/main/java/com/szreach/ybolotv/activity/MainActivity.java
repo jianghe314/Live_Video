@@ -1,7 +1,10 @@
 package com.szreach.ybolotv.activity;
 
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -85,26 +88,6 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-}
-
-    @Override
-    public void hideLoading() {
-
-    }
-
-    @Override
-    public void showToast(String msg) {
-
-    }
-
-    @Override
-    public void showData(Object data) {
-
-    }
-
-    @Override
-    public void onRefresh(Object data) {
-
     }
 
 
@@ -143,5 +126,30 @@ public class MainActivity extends BaseActivity {
     private void setSelect(ImageView iv,TextView tv){
         iv.setSelected(true);
         tv.setSelected(true);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage("是否确认退出？");
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                SharedPreferences sp=getSharedPreferences("Status",MODE_PRIVATE);
+                SharedPreferences.Editor editor=sp.edit();
+                editor.putBoolean("logout",false);
+                editor.apply();
+                dialogInterface.dismiss();
+                finish();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.create().show();
     }
 }

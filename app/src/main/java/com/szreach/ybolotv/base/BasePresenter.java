@@ -1,5 +1,7 @@
 package com.szreach.ybolotv.base;
 
+import com.google.gson.Gson;
+
 /**
  * Created by ZX on 2018/9/18
  */
@@ -7,6 +9,9 @@ public class BasePresenter<V extends BaseView> {
 
     //绑定需要的View
     private V view;
+
+
+    protected Gson gson=new Gson();
 
     //绑定view
     public void attachView(V view){
@@ -27,4 +32,5 @@ public class BasePresenter<V extends BaseView> {
     public V getView(){
         return view;
     }
+
 }

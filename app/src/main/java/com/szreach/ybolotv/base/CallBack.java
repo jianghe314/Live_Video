@@ -20,12 +20,6 @@ public interface CallBack<T> {
    void onRefresh(int waht,T data);
 
     /**
-     * 网络请求失败提示信息
-     * @param msg
-     */
-    void onFail(String msg);
-
-    /**
      * 网络请求发送错误提示信息
      * @param msg
      */

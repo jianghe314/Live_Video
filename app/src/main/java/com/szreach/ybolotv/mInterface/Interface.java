@@ -59,8 +59,7 @@ public class Interface {
 
     //登录
     public static String Login(){
-        String url="http://www.ybolo.com"+URL_PREFIX_MY_HOME+LOGIN;
-        //String url=getIpAddress(MyApplication.getApplication())+URL_PREFIX_MY_HOME+LOGIN;
+        String url=getIpAddress(MyApplication.getApplication())+URL_PREFIX_MY_HOME+LOGIN;
         return url;
     }
 
