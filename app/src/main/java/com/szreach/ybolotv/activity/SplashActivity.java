@@ -7,8 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.szreach.ybolotv.R;
+import com.szreach.ybolotv.base.BaseActivity;
+import com.szreach.ybolotv.base.MVPView;
+import com.szreach.ybolotv.presenter.LoginPresenter;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,6 @@ public class SplashActivity extends AppCompatActivity {
             }
         }
     }
-
 
 
     private void recordFirst() {

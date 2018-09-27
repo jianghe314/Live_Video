@@ -4,9 +4,13 @@ import com.szreach.ybolotv.MyApplication;
 import com.szreach.ybolotv.base.BasePresenter;
 import com.szreach.ybolotv.base.CallBack;
 import com.szreach.ybolotv.base.MVPView;
+import com.szreach.ybolotv.bean.LiveInfo;
 import com.szreach.ybolotv.mInterface.Interface;
 import com.szreach.ybolotv.model.Model;
 import com.szreach.ybolotv.utils.mLog;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -16,15 +20,10 @@ import java.util.List;
 public class LiveDetailIntroPresenter extends BasePresenter<MVPView> {
 
     //获取直播简介
-    public void getLiveIntro(List<String> params, List<Object> data){
-        for (int i = 0; i <params.size() ; i++) {
-            mLog.e("Params","-->"+params.get(i)+":"+data.get(i));
-        }
+    public void getLiveIntro(List<String> params, List<Object> data, final List<LiveInfo> liveIntrData){
         if(!isViewAttach()){
             return;
         }
-        String url= Interface.getIpAddress(MyApplication.getApplication()) + Interface.URL_PREFIX_LIVE + Interface.URL_POST_LIVE_INFO;
-        mLog.e("URL","-->"+url);
         Model.postData(3, Interface.getIpAddress(MyApplication.getApplication()) + Interface.URL_PREFIX_LIVE + Interface.URL_POST_LIVE_INFO, params, data, new CallBack<String>() {
             @Override
             public void onLoading() {
@@ -33,7 +32,21 @@ public class LiveDetailIntroPresenter extends BasePresenter<MVPView> {
 
             @Override
             public void onSuccess(int waht, String data) {
-                mLog.e("LiveIntro","-->"+data);
+                try {
+                    JSONObject object=new JSONObject(data);
+                    JSONObject object1=object.getJSONObject("msgHeader");
+                    if(object1.getBoolean("result")){
+                        liveIntrData.clear();
+                        LiveInfo liveInfo=gson.fromJson(object.getJSONObject("data").toString(),LiveInfo.class);
+                        liveIntrData.add(liveInfo);
+                        getView().showData(liveIntrData);
+                    }else {
+                        String msg=object1.getString("errorInfo");
+                        getView().showError(msg);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -43,7 +56,6 @@ public class LiveDetailIntroPresenter extends BasePresenter<MVPView> {
 
             @Override
             public void onError(String msg) {
-                getView().hideLoading();
                 getView().showError(msg);
             }
 

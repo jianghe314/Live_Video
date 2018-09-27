@@ -33,7 +33,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LiveDetailActivity extends BaseActivity implements MVPView{
-
+    //E527JU
 
     @BindView(R.id.live_detail_back)
     ImageView live_back;
@@ -66,8 +66,6 @@ public class LiveDetailActivity extends BaseActivity implements MVPView{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live_detail);
         ButterKnife.bind(this);
-
-        PcdnManager.start(this, PcdnType.LIVE,"60009c01005b86553238bed989d37402b95680375bb9c9cba1",null,null,null);
 
         liveId = getIntent().getStringExtra("liveId");
         yboloPlayer.setBufferSize(30);

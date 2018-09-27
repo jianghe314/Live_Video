@@ -66,7 +66,6 @@ public class LiveListPresenter extends BasePresenter<MVPView> {
 
             @Override
             public void onError(String msg) {
-                getView().hideLoading();
                 getView().showError(msg);
             }
 

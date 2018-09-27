@@ -78,7 +78,6 @@ public class LoginActivity extends BaseActivity implements MVPView{
                     values.add(psd);
                     loginPresenter.Login(params,values);
                 }
-
                 break;
         }
     }

@@ -31,7 +31,7 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void loadData() {
-        ShowToast.setToastShort("HomeFragment--->"+getUserVisibleHint());
+
     }
 
 

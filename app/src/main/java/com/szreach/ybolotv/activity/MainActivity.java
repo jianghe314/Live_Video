@@ -62,7 +62,7 @@ public class MainActivity extends BaseActivity {
         fragmentList.add(new HomeFragment());
         fragmentAdapter=new FragmentAdapter(getSupportFragmentManager(),fragmentList);
         viewPager.setAdapter(fragmentAdapter);
-        viewPager.setOffscreenPageLimit(1);
+        viewPager.setOffscreenPageLimit(2);
         viewPager.setCurrentItem(0);       //默认选中第一个
         setSelect(tabMenuLiveIv,tabMenuLiveTv);
         viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){

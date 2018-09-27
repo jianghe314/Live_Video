@@ -1,14 +1,18 @@
 package com.szreach.ybolotv.fragment;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.netease.hearttouch.htrefreshrecyclerview.HTRefreshListener;
 import com.netease.hearttouch.htrefreshrecyclerview.HTRefreshRecyclerView;
+import com.netease.hearttouch.htrefreshrecyclerview.base.HTBaseRecyclerView;
 import com.szreach.ybolotv.MyApplication;
 import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.adapter.LiveListAdapter;
@@ -32,8 +36,10 @@ import butterknife.Unbinder;
  */
 public class LiveFragment extends BaseFragment implements MVPView {
 
+    private RelativeLayout titleRela;
     private HTRefreshRecyclerView recyclerView;
     private LiveListAdapter liveListAdapter;
+
     private LiveListPresenter liveListPresenter;
     private List<LiveList> data=new ArrayList<>();
 
@@ -45,7 +51,7 @@ public class LiveFragment extends BaseFragment implements MVPView {
 
     @Override
     protected void initView(View view) {
-
+        titleRela=view.findViewById(R.id.live_fragment_title);
         recyclerView=view.findViewById(R.id.live_list_recyclerView);
         liveListAdapter=new LiveListAdapter(data,getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -63,6 +69,18 @@ public class LiveFragment extends BaseFragment implements MVPView {
                 liveListPresenter.getLiveData(params,values,data);
             }
         });
+        //对列表设置滑动监听,实现标题栏渐变
+       recyclerView.addOnScrollListener(new HTBaseRecyclerView.OnScrollListener() {
+           @Override
+           public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+
+           }
+
+           @Override
+           public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+           }
+       });
     }
 
     @Override

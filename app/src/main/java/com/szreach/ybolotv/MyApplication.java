@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.edge.pcdn.PcdnManager;
+import com.edge.pcdn.PcdnType;
 import com.szreach.ybolotv.db.DaoMaster;
 import com.szreach.ybolotv.db.DaoSession;
 import com.yanzhenjie.nohttp.InitializationConfig;
@@ -14,7 +16,9 @@ import org.greenrobot.greendao.AbstractDaoMaster;
 
 /**
  * Created by ZX on 2018/9/18
+ * 这个版本为MVP架构测试版
  */
+
 public class MyApplication extends Application {
 
     private static Context context;
@@ -26,6 +30,11 @@ public class MyApplication extends Application {
         context=this;
         initNohttp();
         initGreenDao();
+
+        //初始化PCDN
+        PcdnManager.start(this, PcdnType.LIVE,"60009c01005b86553238bed989d37402b95680375bb9c9cba1",null,"1",null);
+        //初始化PCDN
+        PcdnManager.start(this, PcdnType.VOD,"60009c01005b86553238bed989d37402b95680375bb9c9cba1",null,"1",null);
     }
 
 

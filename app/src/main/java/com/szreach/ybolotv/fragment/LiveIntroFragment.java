@@ -12,10 +12,14 @@ import com.szreach.ybolotv.MyApplication;
 import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.base.BaseFragment;
 import com.szreach.ybolotv.base.MVPView;
+import com.szreach.ybolotv.bean.LiveInfo;
 import com.szreach.ybolotv.bean.UserInfo;
 import com.szreach.ybolotv.presenter.LiveDetailIntroPresenter;
 import com.szreach.ybolotv.presenter.LiveDetailPresenter;
 import com.szreach.ybolotv.utils.mLog;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,6 +34,7 @@ public class LiveIntroFragment extends BaseFragment implements MVPView{
     private ImageView person_iv;
     private String videoId;
     private UserInfo userInfo;
+    private List<LiveInfo> liveInfo=new ArrayList<>();
     private LiveDetailIntroPresenter introPresenter;
 
     @Override
@@ -60,8 +65,16 @@ public class LiveIntroFragment extends BaseFragment implements MVPView{
         params.add("liveId");
         values.add(userInfo.getCoId());
         values.add(videoId);
-        introPresenter.getLiveIntro(params,values);
+        introPresenter.getLiveIntro(params,values,liveInfo);
+    }
 
+
+    @Override
+    public void showData(Object data) {
+        title.setText(liveInfo.get(0).getLiveName());
+        time.setText(liveInfo.get(0).getLiveStart()+"-"+liveInfo.get(0).getLiveEnd());
+        person.setText(liveInfo.get(0).getOnlineCount()+"");
+        describe.setText(liveInfo.get(0).getLiveName()+","+liveInfo.get(0).getChannelName());
     }
 
     @Override
