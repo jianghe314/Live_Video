@@ -354,6 +354,9 @@ public class YboloTvPlayer extends FrameLayout implements View.OnFocusChangeList
                 case KSYMediaPlayer.MEDIA_ERROR_CONNECT_SERVER_FAILED:
                     Toast.makeText(context.getApplicationContext(),"连接服务器失败，请检查网络",Toast.LENGTH_SHORT).show();
                     break;
+                    default:
+                        progressBar.setVisibility(GONE);
+                        break;
             }
             return false;
         }

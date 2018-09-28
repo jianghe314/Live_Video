@@ -41,6 +41,7 @@ public abstract class BaseFragment extends Fragment implements BaseView{
         waitDialog=new WaitDialog(getContext());
         errorDialog=new ErrorDialog(getContext());
         initView(view);
+        loadData();
         return view;
     }
 
@@ -94,6 +95,7 @@ public abstract class BaseFragment extends Fragment implements BaseView{
     //此方法会在onCreate()方法之前调用一次，当视图切换到当前fragment时，还会调用一次
     //相应的getgetUserVisibleHint()先为false,然后为true
 
+    /*
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -103,6 +105,7 @@ public abstract class BaseFragment extends Fragment implements BaseView{
             stopLoad();
         }
     }
+    */
 
 
     protected abstract int setContentView();
