@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_tab_menu"
+    tools:context=".activity.SettingActivity">
+
+    <RelativeLayout
+        android:background="@color/color_white"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/setting_back"
+            android:src="@drawable/return_ico"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/textSize_18"
+            android:text="@string/psd_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/setting_save"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="@string/save"
+            android:textColor="@color/live_textColor"
+            android:textSize="@dimen/textSize_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:background="@color/color_white"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_alignParentStart="true"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/textSize_16"
+                android:layout_centerVertical="true"
+                android:text="@string/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:enabled="false"
+                android:id="@+id/setting_userName"
+                android:background="@null"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/color_black_gray"
+                android:textSize="@dimen/textSize_16"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+        <View
+            android:background="@color/color_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"/>
+        <RelativeLayout
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_alignParentStart="true"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/textSize_16"
+                android:layout_centerVertical="true"
+                android:text="@string/old_psd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:hint="@string/old_psd"
+                android:gravity="end"
+                android:maxLength="15"
+                android:maxLines="1"
+                android:id="@+id/setting_oldPsd"
+                android:background="@null"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/color_black_gray"
+                android:textSize="@dimen/textSize_16"
+                android:layout_centerVertical="true"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+        <View
+            android:background="@color/color_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"/>
+        <RelativeLayout
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_alignParentStart="true"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/textSize_16"
+                android:layout_centerVertical="true"
+                android:text="@string/new_psd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:hint="@string/new_psd"
+                android:gravity="end"
+                android:maxLength="15"
+                android:maxLines="1"
+                android:id="@+id/setting_newPsd"
+                android:background="@null"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/color_black_gray"
+                android:textSize="@dimen/textSize_16"
+                android:layout_centerVertical="true"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+        <View
+            android:background="@color/color_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"/>
+        <RelativeLayout
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_alignParentStart="true"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/textSize_16"
+                android:layout_centerVertical="true"
+                android:text="@string/confirm_new_psd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:hint="@string/confirm_new_psd"
+                android:gravity="end"
+                android:maxLength="15"
+                android:maxLines="1"
+                android:id="@+id/setting_confirmPsd"
+                android:background="@null"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/color_black_gray"
+                android:textSize="@dimen/textSize_16"
+                android:layout_centerVertical="true"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

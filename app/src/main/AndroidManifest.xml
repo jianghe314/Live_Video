@@ -36,7 +36,9 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".activity.LiveDetailActivity" />
-        <activity android:name=".activity.VideoDetailActivity"></activity>
+        <activity android:name=".activity.VideoDetailActivity" />
+        <activity android:name=".activity.UserInfoActivity" />
+        <activity android:name=".activity.SettingActivity"></activity>
     </application>
 
 </manifest>
