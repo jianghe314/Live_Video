@@ -45,6 +45,7 @@ public class YboloTvPlayer extends FrameLayout implements View.OnFocusChangeList
     private ImageView play;
     private TextView loadTime,totalTime;
     private mSeekBar seekBar;
+    private TextView hintText;
 
     private KSYMediaPlayer ksyMediaPlayer;
     private SurfaceHolder surfaceHolder;
@@ -90,6 +91,8 @@ public class YboloTvPlayer extends FrameLayout implements View.OnFocusChangeList
         View view= LayoutInflater.from(context).inflate(R.layout.ybolo_layout1,null,false);
         surfaceView=view.findViewById(R.id.surface_view);
         progressBar=view.findViewById(R.id.progress_bar);
+        hintText=view.findViewById(R.id.player_hint_text);
+        hintText.setVisibility(GONE);
         play=view.findViewById(R.id.img_control);
         //视频默认自动播放
         play.setTag(true);
@@ -334,24 +337,45 @@ public class YboloTvPlayer extends FrameLayout implements View.OnFocusChangeList
 
                     break;
                 case KSYMediaPlayer.MEDIA_ERROR_IO:
+                    progressBar.setVisibility(GONE);
+                    hintText.setVisibility(VISIBLE);
+                    hintText.setText("链接超时,请重试");
                     Toast.makeText(context.getApplicationContext(),"链接超时,请重试",Toast.LENGTH_SHORT).show();
                     break;
                 case KSYMediaPlayer.MEDIA_ERROR_UNKNOWN:
+                    progressBar.setVisibility(GONE);
+                    hintText.setVisibility(VISIBLE);
+                    hintText.setText("无效的播放路径");
                     Toast.makeText(context.getApplicationContext(),"无效的播放路径",Toast.LENGTH_SHORT).show();
                     break;
                 case KSYMediaPlayer.MEDIA_ERROR_SERVER_DIED:
+                    progressBar.setVisibility(GONE);
+                    hintText.setVisibility(VISIBLE);
+                    hintText.setText("多媒体服务器出错，请重试");
                     Toast.makeText(context.getApplicationContext(),"多媒体服务器出错，请重试",Toast.LENGTH_SHORT).show();
                     break;
                 case KSYMediaPlayer.MEDIA_ERROR_INVALID_DATA:
+                    progressBar.setVisibility(GONE);
+                    hintText.setVisibility(VISIBLE);
+                    hintText.setText("无效的媒体数据");
                     Toast.makeText(context.getApplicationContext(),"无效的媒体数据",Toast.LENGTH_SHORT).show();
                     break;
                 case KSYMediaPlayer.MEDIA_ERROR_TIMED_OUT:
+                    progressBar.setVisibility(GONE);
+                    hintText.setVisibility(VISIBLE);
+                    hintText.setText("操作超时，请重试");
                     Toast.makeText(context.getApplicationContext(),"操作超时，请重试",Toast.LENGTH_SHORT).show();
                     break;
                 case KSYMediaPlayer.MEDIA_ERROR_DNS_PARSE_FAILED:
+                    progressBar.setVisibility(GONE);
+                    hintText.setVisibility(VISIBLE);
+                    hintText.setText("DNS解析失败，请检查网络");
                     Toast.makeText(context.getApplicationContext(),"DNS解析失败，请检查网络",Toast.LENGTH_SHORT).show();
                     break;
                 case KSYMediaPlayer.MEDIA_ERROR_CONNECT_SERVER_FAILED:
+                    progressBar.setVisibility(GONE);
+                    hintText.setVisibility(VISIBLE);
+                    hintText.setText("连接服务器失败，请检查网络");
                     Toast.makeText(context.getApplicationContext(),"连接服务器失败，请检查网络",Toast.LENGTH_SHORT).show();
                     break;
                     default:

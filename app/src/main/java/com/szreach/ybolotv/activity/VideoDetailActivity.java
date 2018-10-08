@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.edge.pcdn.PcdnManager;
+import com.edge.pcdn.PcdnType;
 import com.szreach.ybolotv.MyApplication;
 import com.szreach.ybolotv.R;
 import com.szreach.ybolotv.adapter.FragmentAdapter;
@@ -115,7 +117,7 @@ public class VideoDetailActivity extends BaseActivity implements MVPView{
 
     @Override
     public void showData(Object data) {
-        String url= (String) data;
+        String url= PcdnManager.PCDNAddress(PcdnType.VOD,(String) data);
         yboloPlayerVideo.setDataSources(url);
     }
 
@@ -137,8 +139,13 @@ public class VideoDetailActivity extends BaseActivity implements MVPView{
         }
     }
 
+    @Override
+    public void showError(String msg) {
+        super.showError(msg);
+        yboloPlayerVideo.setDataSources("");
+    }
 
-    private void ClearAndSetColor(TextView tv1,TextView tv2){
+    private void ClearAndSetColor(TextView tv1, TextView tv2){
         tv1.setTextColor(getResources().getColor(R.color.live_textColor));
         tv2.setTextColor(getResources().getColor(R.color.color_black_gray));
     }

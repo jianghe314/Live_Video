@@ -146,7 +146,13 @@ public class LiveDetailActivity extends BaseActivity implements MVPView{
         }
     }
 
-    private void setColor(TextView tv1,TextView tv2){
+    @Override
+    public void showError(String msg) {
+        super.showError(msg);
+        yboloPlayer.setDataSources("");
+    }
+
+    private void setColor(TextView tv1, TextView tv2){
         tv1.setTextColor(getResources().getColor(R.color.color_black_gray));
         tv2.setTextColor(getResources().getColor(R.color.live_textColor));
     }
