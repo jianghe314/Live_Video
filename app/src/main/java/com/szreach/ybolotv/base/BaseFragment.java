@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by ZX on 2018/9/18
  * 这个基类有个bug，在一些情况下，如：前一个页面传递一个数据，给当前页面时
- * 特别是这些参数用于网络请求，会先加载网络数据，这是传递的数据还没有到，即wangl请求先于加载View
+ * 特别是这些参数用于网络请求，会先加载网络数据，这是传递的数据还没有到，即请求先于加载View
  */
 public abstract class BaseFragment extends Fragment implements BaseView{
 

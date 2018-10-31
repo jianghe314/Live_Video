@@ -19,7 +19,7 @@ import javax.security.auth.callback.Callback;
 /**
  * Created by ZX on 2018/9/18
  */
-//负责网络请求
+//负责网络请求，做了网络请求工具隔离，然后要换请求框架的话，直接改写这里即可
 public class Model {
 
     /**
