@@ -99,23 +99,14 @@ public class VideoFragment extends BaseFragment implements MVPView ,View.OnClick
                 //获取选中视频标签栏的数据
                 tabPostion=tab.getPosition();
                 pageNumber=1;
-                params.clear();
-                values.clear();
-
-                params.add("coId");
-                params.add("pageNumber");
-                params.add("pageSize");
-                params.add("groupId");
-                params.add("sort");         //视频分类标准
-                params.add("videoCName");
-
-                values.add(userInfo.getCoId());
-                values.add(pageNumber);
-                values.add(6);
-                values.add(tabPostion==0?"":videoData.get(tabPostion-1).getGroupId());
-                values.add(videoFlag);
-                values.add("");
-                videoFragmentPresenter.getTabData(videoUrl,1,params,values,videoListData,true);
+                params_values.clear();
+                params_values.put("coId",userInfo.getCoId());
+                params_values.put("pageNumber",pageNumber);
+                params_values.put("pageSize",6);
+                params_values.put("groupId",tabPostion==0?"":videoData.get(tabPostion-1).getGroupId());
+                params_values.put("sort",videoFlag);        //视频分类标准
+                params_values.put("videoCName","");
+                videoFragmentPresenter.getTabData(videoUrl,1,params_values,videoListData,true);
             }
 
             @Override
@@ -135,23 +126,14 @@ public class VideoFragment extends BaseFragment implements MVPView ,View.OnClick
                 //下拉刷新
                 pageNumber=1;
 
-                params.clear();
-                values.clear();
-
-                params.add("coId");
-                params.add("pageNumber");
-                params.add("pageSize");
-                params.add("groupId");
-                params.add("sort");         //视频分类标准
-                params.add("videoCName");
-
-                values.add(userInfo.getCoId());
-                values.add(pageNumber);
-                values.add(6);
-                values.add(tabPostion==0?"":videoData.get(tabPostion-1).getGroupId());
-                values.add(videoFlag);
-                values.add("");
-                videoFragmentPresenter.getTabData(videoUrl,1,params,values,videoListData,true);
+                params_values.clear();
+                params_values.put("coId",userInfo.getCoId());
+                params_values.put("pageNumber",pageNumber);
+                params_values.put("pageSize",6);
+                params_values.put("groupId",tabPostion==0?"":videoData.get(tabPostion-1).getGroupId());
+                params_values.put("sort",videoFlag);
+                params_values.put("videoCName","");
+                videoFragmentPresenter.getTabData(videoUrl,1,params_values,videoListData,true);
                 refreshRecyclerView.setRefreshCompleted(true);
             }
         });
@@ -162,23 +144,14 @@ public class VideoFragment extends BaseFragment implements MVPView ,View.OnClick
                 if(pageNumber<totalPage){
                     pageNumber=pageNumber+1;
 
-                    params.clear();
-                    values.clear();
-
-                    params.add("coId");
-                    params.add("pageNumber");
-                    params.add("pageSize");
-                    params.add("groupId");
-                    params.add("sort");         //视频分类标准
-                    params.add("videoCName");
-
-                    values.add(userInfo.getCoId());
-                    values.add(pageNumber);
-                    values.add(6);
-                    values.add(tabPostion==0?"":videoData.get(tabPostion-1).getGroupId());
-                    values.add(videoFlag);
-                    values.add("");
-                    videoFragmentPresenter.getTabData(videoUrl,1,params,values,videoListData,false);
+                    params_values.clear();
+                    params_values.put("coId",userInfo.getCoId());
+                    params_values.put("pageNumber",pageNumber);
+                    params_values.put("pageSize",6);
+                    params_values.put("groupId",tabPostion==0?"":videoData.get(tabPostion-1).getGroupId());
+                    params_values.put("sort",videoFlag);
+                    params_values.put("videoCName","");
+                    videoFragmentPresenter.getTabData(videoUrl,1,params_values,videoListData,false);
                 }else {
                     ShowToast.setToastShort("没有更多了");
                     refreshRecyclerView.setLoadMoreViewShow(false);
@@ -197,23 +170,14 @@ public class VideoFragment extends BaseFragment implements MVPView ,View.OnClick
                 if(query.length()>0){
                     pageNumber=1;
 
-                    params.clear();
-                    values.clear();
-
-                    params.add("coId");
-                    params.add("pageNumber");
-                    params.add("pageSize");
-                    params.add("groupId");
-                    params.add("sort");         //视频分类标准
-                    params.add("videoCName");
-
-                    values.add(userInfo.getCoId());
-                    values.add(pageNumber);
-                    values.add(6);
-                    values.add("");
-                    values.add(videoFlag);
-                    values.add(query);
-                    videoFragmentPresenter.getTabData(videoUrl,1,params,values,videoListData,true);
+                    params_values.clear();
+                    params_values.put("coId",userInfo.getCoId());
+                    params_values.put("pageNumber",pageNumber);
+                    params_values.put("pageSize",6);
+                    params_values.put("groupId","");
+                    params_values.put("sort",videoFlag);
+                    params_values.put("videoCName",query);
+                    videoFragmentPresenter.getTabData(videoUrl,1,params_values,videoListData,true);
                 }
                 return true;
             }
@@ -229,24 +193,15 @@ public class VideoFragment extends BaseFragment implements MVPView ,View.OnClick
             @Override
             public boolean onClose() {
                 pageNumber=1;
+                params_values.clear();
 
-                params.clear();
-                values.clear();
-
-                params.add("coId");
-                params.add("pageNumber");
-                params.add("pageSize");
-                params.add("groupId");
-                params.add("sort");         //视频分类标准
-                params.add("videoCName");
-
-                values.add(userInfo.getCoId());
-                values.add(pageNumber);
-                values.add(6);
-                values.add(tabPostion==0?"":videoData.get(tabPostion-1).getGroupId());
-                values.add(videoFlag);
-                values.add("");
-                videoFragmentPresenter.getTabData(videoUrl,1,params,values,videoListData,true);
+                params_values.put("coId",userInfo.getCoId());
+                params_values.put("pageNumber",pageNumber);
+                params_values.put("pageSize",6);
+                params_values.put("groupId",tabPostion==0?"":videoData.get(tabPostion-1).getGroupId());
+                params_values.put("sort",videoFlag);
+                params_values.put("videoCName","");
+                videoFragmentPresenter.getTabData(videoUrl,1,params_values,videoListData,true);
                 return false;
             }
         });
@@ -255,11 +210,10 @@ public class VideoFragment extends BaseFragment implements MVPView ,View.OnClick
 
     @Override
     protected void loadData() {
-        params.clear();
-        values.clear();
-        params.add("coId");
-        values.add(userInfo.getCoId());
-        videoFragmentPresenter.getTabTitle(1,Tab_Url,params,values,videoData);
+        params_values.clear();
+
+        params_values.put("coId",userInfo.getCoId());
+        videoFragmentPresenter.getTabTitle(1,Tab_Url,params_values,videoData);
     }
 
     @Override
@@ -321,45 +275,28 @@ public class VideoFragment extends BaseFragment implements MVPView ,View.OnClick
                     videoSort.setTag(false);
                     videoFlag="video_vod";
 
-                    params.clear();
-                    values.clear();
-
-                    params.add("coId");
-                    params.add("pageNumber");
-                    params.add("pageSize");
-                    params.add("groupId");
-                    params.add("sort");         //视频分类标准
-                    params.add("videoCName");
-
-                    values.add(userInfo.getCoId());
-                    values.add(pageNumber);
-                    values.add(6);
-                    values.add(tabPostion==0?"":videoData.get(tabPostion-1).getGroupId());
-                    values.add(videoFlag);
-                    values.add("");
-                    videoFragmentPresenter.getTabData(videoUrl,1,params,values,videoListData,true);
+                    params_values.clear();
+                    params_values.put("coId",userInfo.getCoId());
+                    params_values.put("pageNumber",pageNumber);
+                    params_values.put("pageSize",6);
+                    params_values.put("groupId",tabPostion==0?"":videoData.get(tabPostion-1).getGroupId());
+                    params_values.put("sort",videoFlag);
+                    params_values.put("videoCName","");
+                    videoFragmentPresenter.getTabData(videoUrl,1,params_values,videoListData,true);
                 }else {
                     videoSort.setText("最新发布");
                     videoSort.setTag(true);
                     videoFlag="video_time";
 
-                    params.clear();
-                    values.clear();
+                    params_values.clear();
+                    params_values.put("coId",userInfo.getCoId());
+                    params_values.put("pageNumber",pageNumber);
+                    params_values.put("pageSize",6);
+                    params_values.put("groupId",tabPostion==0?"":videoData.get(tabPostion-1).getGroupId());
+                    params_values.put("sort",videoFlag);
+                    params_values.put("videoCName","");
 
-                    params.add("coId");
-                    params.add("pageNumber");
-                    params.add("pageSize");
-                    params.add("groupId");
-                    params.add("sort");         //视频分类标准
-                    params.add("videoCName");
-
-                    values.add(userInfo.getCoId());
-                    values.add(pageNumber);
-                    values.add(6);
-                    values.add(tabPostion==0?"":videoData.get(tabPostion-1).getGroupId());
-                    values.add(videoFlag);
-                    values.add("");
-                    videoFragmentPresenter.getTabData(videoUrl,1,params,values,videoListData,true);
+                    videoFragmentPresenter.getTabData(videoUrl,1,params_values,videoListData,true);
                 }
                 break;
         }
@@ -405,23 +342,14 @@ public class VideoFragment extends BaseFragment implements MVPView ,View.OnClick
                             tv1.setTextColor(getResources().getColor(R.color.live_textColor));
                             tv2.setTextColor(getResources().getColor(R.color.color_text_gray));
 
-                            params.clear();
-                            values.clear();
-
-                            params.add("coId");
-                            params.add("pageNumber");
-                            params.add("pageSize");
-                            params.add("groupId");
-                            params.add("sort");         //视频分类标准
-                            params.add("videoCName");
-
-                            values.add(userInfo.getCoId());
-                            values.add(pageNumber);
-                            values.add(6);
-                            values.add(tabPostion==0?"":videoData.get(tabPostion-1).getGroupId());
-                            values.add(videoFlag);
-                            values.add("");
-                            videoFragmentPresenter.getTabData(videoUrl,1,params,values,videoListData,true);
+                            params_values.clear();
+                            params_values.put("coId",userInfo.getCoId());
+                            params_values.put("pageNumber",pageNumber);
+                            params_values.put("pageSize",6);
+                            params_values.put("groupId",tabPostion==0?"":videoData.get(tabPostion-1).getGroupId());
+                            params_values.put("sort",videoFlag);
+                            params_values.put("videoCName","");
+                            videoFragmentPresenter.getTabData(videoUrl,1,params_values,videoListData,true);
                         }
                     });
                     tv2.setOnClickListener(new View.OnClickListener() {
@@ -431,23 +359,14 @@ public class VideoFragment extends BaseFragment implements MVPView ,View.OnClick
                             tv2.setTextColor(getResources().getColor(R.color.live_textColor));
                             tv1.setTextColor(getResources().getColor(R.color.color_text_gray));
 
-                            params.clear();
-                            values.clear();
-
-                            params.add("coId");
-                            params.add("pageNumber");
-                            params.add("pageSize");
-                            params.add("groupId");
-                            params.add("sort");         //视频分类标准
-                            params.add("videoCName");
-
-                            values.add(userInfo.getCoId());
-                            values.add(pageNumber);
-                            values.add(6);
-                            values.add(tabPostion==0?"":videoData.get(tabPostion-1).getGroupId());
-                            values.add(videoFlag);
-                            values.add("");
-                            videoFragmentPresenter.getTabData(videoUrl,1,params,values,videoListData,true);
+                            params_values.clear();
+                            params_values.put("coId",userInfo.getCoId());
+                            params_values.put("pageNumber",pageNumber);
+                            params_values.put("pageSize",6);
+                            params_values.put("groupId",tabPostion==0?"":videoData.get(tabPostion-1).getGroupId());
+                            params_values.put("sort",videoFlag);
+                            params_values.put("videoCName","");
+                            videoFragmentPresenter.getTabData(videoUrl,1,params_values,videoListData,true);
                         }
                     });
                     title2_layout.addView(tv1);

@@ -13,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ZX on 2018/9/20
@@ -20,11 +21,11 @@ import java.util.List;
 public class LiveDetailIntroPresenter extends BasePresenter<MVPView> {
 
     //获取直播简介
-    public void getLiveIntro(List<String> params, List<Object> data, final List<LiveInfo> liveIntrData){
+    public void getLiveIntro(Map<String,Object> params_values, final List<LiveInfo> liveIntrData){
         if(!isViewAttach()){
             return;
         }
-        Model.postData(3, Interface.getIpAddress(MyApplication.getApplication()) + Interface.URL_PREFIX_LIVE + Interface.URL_POST_LIVE_INFO, params, data, new CallBack<String>() {
+        Model.postData(3, Interface.getIpAddress(MyApplication.getApplication()) + Interface.URL_PREFIX_LIVE + Interface.URL_POST_LIVE_INFO, params_values, new CallBack<String>() {
             @Override
             public void onLoading() {
                 getView().showLoading();

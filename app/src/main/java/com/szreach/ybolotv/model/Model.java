@@ -13,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.security.auth.callback.Callback;
 
@@ -26,12 +27,9 @@ public class Model {
      * GET请求
      * @param what
      * @param url
-     * @param params
-     * @param values
      */
-    public static void getData(int what, String url, List<String> params, List<Object> values, final CallBack<String> callBack){
+    public static void getData(int what, String url, Map<String,Object> params_values, final CallBack<String> callBack){
         Request<JSONObject> request= NoHttp.createJsonObjectRequest(url, RequestMethod.GET);
-        request.setDefineRequestBodyForJson(addParams(params,values));
         NoHttpUtils.getInstence().add(what, request, new OnResponseListener() {
             @Override
             public void onStart(int what) {
@@ -60,12 +58,10 @@ public class Model {
      * POST请求
      * @param what
      * @param url
-     * @param params
-     * @param values
      */
-    public static void postData(int what, String url, List<String> params, List<Object> values, final CallBack<String> callBack){
+    public static void postData(int what, String url, Map<String,Object> params_values, final CallBack<String> callBack){
         Request<JSONObject> request= NoHttp.createJsonObjectRequest(url, RequestMethod.POST);
-        request.setDefineRequestBodyForJson(addParams(params,values));
+        request.setDefineRequestBodyForJson(addParams(params_values));
         NoHttpUtils.getInstence().add(what, request, new OnResponseListener() {
             @Override
             public void onStart(int what) {
@@ -99,12 +95,12 @@ public class Model {
     }
 
 
-    private static JSONObject addParams(List<String> params,List<Object> values){
+    private static JSONObject addParams(Map<String,Object> params_values){
         JSONObject jsonObject=new JSONObject();
-        if(params.size()>0){
-            for (int i = 0; i < params.size(); i++) {
+        if(params_values.size()>0){
+            for (String key:params_values.keySet()) {
                 try {
-                    jsonObject.put(params.get(i),values.get(i));
+                    jsonObject.put(key,params_values.get(key));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

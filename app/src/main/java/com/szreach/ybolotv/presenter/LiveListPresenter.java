@@ -13,18 +13,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ZX on 2018/9/19
  */
 public class LiveListPresenter extends BasePresenter<MVPView> {
 
-    public void getLiveData(List<String> params, List<Object> values, final List<LiveList> objectData){
+    public void getLiveData(Map<String,Object> params_values, final List<LiveList> objectData){
 
         if(!isViewAttach()){
             return;
         }
-        Model.postData(1, Interface.LiveList(), params, values, new CallBack<String>() {
+        Model.postData(1, Interface.LiveList(), params_values, new CallBack<String>() {
             @Override
             public void onLoading() {
                 getView().showLoading();

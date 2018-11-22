@@ -104,19 +104,14 @@ public class LiveDetailActivity extends BaseActivity implements MVPView{
 
         detailPresenter=new LiveDetailPresenter();
         detailPresenter.attachView(this);
-
-        params.clear();
-        values.clear();
-        params.add("userId");
-        params.add("coId");
-        params.add("userName");
-        params.add("liveId");
         UserInfo userInfo=MyApplication.getDaoSession().getUserInfoDao().loadAll().get(0);
-        values.add(userInfo.getUserId());
-        values.add(userInfo.getCoId());
-        values.add(userInfo.getUserName());
-        values.add(liveId);
-        detailPresenter.getLivePath(params,values);
+        parama_values.clear();
+        parama_values.put("userId",userInfo.getUserId());
+        parama_values.put("coId",userInfo.getCoId());
+        parama_values.put("userName",userInfo.getUserName());
+        parama_values.put("liveId",liveId);
+
+        detailPresenter.getLivePath(parama_values);
     }
 
     @Override

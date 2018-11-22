@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ZX on 2018/9/27
@@ -18,11 +19,11 @@ import java.util.List;
 public class VideoDetailPresenter extends BasePresenter<MVPView> {
 
     //获取点播视频路径
-    public void getVideoUrl(String url,List<String> params,List<Object> values){
+    public void getVideoUrl(String url, Map<String,Object> params_values){
         if(!isViewAttach()){
             return;
         }
-        Model.postData(8, url, params, values, new CallBack<String>() {
+        Model.postData(8, url, params_values, new CallBack<String>() {
             @Override
             public void onLoading() {
                 getView().showLoading();

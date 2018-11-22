@@ -32,7 +32,7 @@ public class LiveIntroFragment extends BaseFragment implements MVPView{
 
     private TextView title,time,person,describe;
     private ImageView person_iv;
-    private String videoId;
+    private String liveId;
     private UserInfo userInfo;
     private List<LiveInfo> liveInfo=new ArrayList<>();
     private LiveDetailIntroPresenter introPresenter;
@@ -45,7 +45,7 @@ public class LiveIntroFragment extends BaseFragment implements MVPView{
     @Override
     protected void initView(View view) {
         Bundle bundle=getArguments();
-        videoId=bundle.getString("liveId");
+        liveId=bundle.getString("liveId");
         title=view.findViewById(R.id.live_detail_title);
         time=view.findViewById(R.id.live_detail_time);
         person=view.findViewById(R.id.live_detail_person);
@@ -59,13 +59,10 @@ public class LiveIntroFragment extends BaseFragment implements MVPView{
         userInfo= MyApplication.getDaoSession().getUserInfoDao().loadAll().get(0);
         introPresenter=new LiveDetailIntroPresenter();
         introPresenter.attachView(this);
-        params.clear();
-        values.clear();
-        params.add("coId");
-        params.add("liveId");
-        values.add(userInfo.getCoId());
-        values.add(videoId);
-        introPresenter.getLiveIntro(params,values,liveInfo);
+        params_values.clear();
+        params_values.put("coId",userInfo.getCoId());
+        params_values.put("liveId",liveId);
+        introPresenter.getLiveIntro(params_values,liveInfo);
     }
 
 

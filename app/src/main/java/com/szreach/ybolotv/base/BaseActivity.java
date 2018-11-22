@@ -13,14 +13,15 @@ import com.szreach.ybolotv.widgets.ErrorDialog;
 import com.szreach.ybolotv.widgets.WaitDialog;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseView{
 
     private WaitDialog waitDialog;
     private ErrorDialog errorDialog;
-    protected List<String> params=new ArrayList<>();
-    protected List<Object> values=new ArrayList<>();
+    protected Map<String,Object> parama_values=new HashMap<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

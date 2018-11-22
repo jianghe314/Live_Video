@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ZX on 2018/9/29
@@ -17,11 +18,11 @@ import java.util.List;
 public class SettingPresenter extends BasePresenter<MVPView> {
 
     //上传修改的密码
-    public void sendPsd(String url, List<String> params,List<Object> values){
+    public void sendPsd(String url, Map<String,Object> params_values){
         if(!isViewAttach()){
             return;
         }
-        Model.postData(10, url, params, values, new CallBack<String>() {
+        Model.postData(10, url, params_values, new CallBack<String>() {
             @Override
             public void onLoading() {
                 getView().showLoading();

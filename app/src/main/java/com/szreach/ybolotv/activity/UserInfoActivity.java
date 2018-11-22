@@ -230,20 +230,14 @@ public class UserInfoActivity extends BaseActivity implements  MVPView {
                 public void onNext(Boolean aBoolean) {
                     if(aBoolean){
                         //开始上传文字数据
-                        params.clear();
-                        values.clear();
-                        params.add("userId");
-                        params.add("introduction");
-                        params.add("userImg");
-                        params.add("userName");
-                        params.add("userSex");
-                        values.add(userInfo.getUserId());
-                        values.add(userInfoSignEdit.getText().toString().trim());
-                        values.add(null!=mCropImageFile?mCropImageFile.getAbsolutePath():userInfo.getUserImg());
-                        values.add(userInfoName.getText().toString().trim());
-                        values.add(userInfoSwitch.isChecked()?2:1);
+                        parama_values.clear();
+                        parama_values.put("userId",userInfo.getUserId());
+                        parama_values.put("introduction",userInfoSignEdit.getText().toString().trim());
+                        parama_values.put("userImg",null!=mCropImageFile?mCropImageFile.getAbsolutePath():userInfo.getUserImg());
+                        parama_values.put("userName",userInfoName.getText().toString().trim());
+                        parama_values.put("userSex",userInfoSwitch.isChecked()?2:1);
                         String url=Interface.getIpAddress(getApplicationContext())+Interface.URL_PREFIX_MY_HOME+Interface.URL_POST_USER_MODIFY_INFO;
-                        infoPresenter.sendUserInfo(url,params,values);
+                        infoPresenter.sendUserInfo(url,parama_values);
                     }else {
                         handler.sendEmptyMessage(88);
                     }

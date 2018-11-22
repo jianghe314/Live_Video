@@ -102,16 +102,11 @@ public class VideoDetailActivity extends BaseActivity implements MVPView{
                 }
             }
         });
-
-        params.clear();
-        values.clear();
-        params.add("userId");
-        params.add("coId");
-        params.add("videoId");
-        values.add(userInfo.getUserId());
-        values.add(coId);
-        values.add(videoId);
-        videoDetailPresenter.getVideoUrl(video_url,params,values);
+        parama_values.clear();
+        parama_values.put("userId",userInfo.getUserId());
+        parama_values.put("coId",coId);
+        parama_values.put("videoId",videoId);
+        videoDetailPresenter.getVideoUrl(video_url,parama_values);
     }
 
 

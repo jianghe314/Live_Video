@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ZX on 2018/9/26
@@ -19,12 +20,12 @@ import java.util.List;
 public class VideoFragmentPresenter extends BasePresenter<MVPView> {
 
     //获取Tab标签
-    public void getTabTitle(final int mwhat, String url, List<String> params, List<Object> values, final List<VideoTitle> TitleData){
+    public void getTabTitle(final int mwhat, String url, Map<String,Object> params_values, final List<VideoTitle> TitleData){
 
         if(!isViewAttach()){
             return;
         }
-        Model.postData(6, url, params, values, new CallBack<String>() {
+        Model.postData(6, url, params_values, new CallBack<String>() {
             @Override
             public void onLoading() {
                 getView().showLoading();
@@ -77,12 +78,12 @@ public class VideoFragmentPresenter extends BasePresenter<MVPView> {
     }
 
     //获取标题栏数据
-    public void getTabData(String url, int mwhat, List<String> params, List<Object> values, final List<VideoList> videoListData, final boolean isClear){
+    public void getTabData(String url, int mwhat, Map<String,Object> params_values, final List<VideoList> videoListData, final boolean isClear){
 
         if(!isViewAttach()){
             return;
         }
-        Model.postData(7, url, params, values, new CallBack<String>() {
+        Model.postData(7, url, params_values, new CallBack<String>() {
             @Override
             public void onLoading() {
                 getView().showLoading();

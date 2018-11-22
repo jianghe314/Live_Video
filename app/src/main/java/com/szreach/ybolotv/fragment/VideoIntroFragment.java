@@ -51,13 +51,10 @@ public class VideoIntroFragment extends BaseFragment implements MVPView {
 
     @Override
     protected void loadData() {
-        params.clear();
-        values.clear();
-        params.add("coId");
-        params.add("vodId");
-        values.add(userInfo.getCoId());
-        values.add(videoId);
-        introPresenter.getVideoIntro(url,params,values);
+        params_values.clear();
+        params_values.put("coId",userInfo.getCoId());
+        params_values.put("vodId",videoId);
+        introPresenter.getVideoIntro(url,params_values);
     }
 
     @Override

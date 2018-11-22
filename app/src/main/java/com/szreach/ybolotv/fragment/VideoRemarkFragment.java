@@ -80,15 +80,12 @@ public class VideoRemarkFragment extends BaseFragment implements MVPView,View.On
             public void onLoadMore() {
                 if(pageNumber<totalPage){
                     pageNumber=pageNumber+1;
-                    params.add("commentPageSize");
-                    params.add("commentPageNum");
-                    params.add("videoId");
-                    params.add("coId");
-                    values.add(6);
-                    values.add(pageNumber);
-                    values.add(videoId);
-                    values.add(userInfo.getCoId());
-                    remarkPresenter.getRemarkData(getRemarkData, params,values,remarkData,false);
+                    params_values.clear();
+                    params_values.put("commentPageSize",6);
+                    params_values.put("commentPageNum",pageNumber);
+                    params_values.put("videoId",videoId);
+                    params_values.put("coId",userInfo.getCoId());
+                    remarkPresenter.getRemarkData(getRemarkData, params_values,remarkData,false);
                 }else {
                     ShowToast.setToastShort("没有更多了");
                     remarkList.setLoadMoreViewShow(false);
@@ -109,17 +106,13 @@ public class VideoRemarkFragment extends BaseFragment implements MVPView,View.On
     @Override
     protected void loadData() {
         pageNumber=1;
-        params.clear();
-        values.clear();
-        params.add("commentPageSize");
-        params.add("commentPageNum");
-        params.add("videoId");
-        params.add("coId");
-        values.add(6);
-        values.add(pageNumber);
-        values.add(videoId);
-        values.add(userInfo.getCoId());
-        remarkPresenter.getRemarkData(getRemarkData,params,values,remarkData,true);
+
+        params_values.clear();
+        params_values.put("commentPageSize",6);
+        params_values.put("commentPageNum",pageNumber);
+        params_values.put("videoId",videoId);
+        params_values.put("coId",userInfo.getCoId());
+        remarkPresenter.getRemarkData(getRemarkData,params_values,remarkData,true);
     }
 
     @Override
@@ -142,24 +135,17 @@ public class VideoRemarkFragment extends BaseFragment implements MVPView,View.On
                 if(remarkContent.equals("")){
                     ShowToast.setToastShort("内容不能为空哦^_^");
                 }else {
-                    params.clear();
-                    values.clear();
-                    params.add("coId");
-                    params.add("videoId");
-                    params.add("commContent");
-                    values.add(userInfo.getCoId());
-                    values.add(videoId);
-                    values.add(remarkContent);
+                    params_values.clear();
+                    params_values.put("coId",userInfo.getCoId());
+                    params_values.put("videoId",videoId);
+                    params_values.put("commContent",remarkContent);
                     if(null==userInfo.getUserId()||userInfo.getUserId().equals("")){
-                        params.add("userId");
-                        params.add("userName");
-                        values.add("-1");
-                        values.add("游客");
+                        params_values.put("userId","-1");
+                        params_values.put("userName","游客");
                     }else {
-                        params.add("userId");
-                        values.add(userInfo.getUserId());
+                        params_values.put("userId",userInfo.getUserId());
                     }
-                    remarkPresenter.sendRemarkData(sendReamrkData,params,values);
+                    remarkPresenter.sendRemarkData(sendReamrkData,params_values);
                 }
                 break;
         }

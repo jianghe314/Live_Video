@@ -70,13 +70,10 @@ public class LoginActivity extends BaseActivity implements MVPView{
                 if(name.equals("")||psd.equals("")){
                     ShowToast.setToastShort("用户名或密码不能为空");
                 }else {
-                    params.clear();
-                    values.clear();
-                    params.add("userlogin");
-                    params.add("userpass");
-                    values.add(name);
-                    values.add(psd);
-                    loginPresenter.Login(params,values);
+                    parama_values.clear();
+                    parama_values.put("userlogin",name);
+                    parama_values.put("userpass",psd);
+                    loginPresenter.Login(parama_values);
                 }
                 break;
         }

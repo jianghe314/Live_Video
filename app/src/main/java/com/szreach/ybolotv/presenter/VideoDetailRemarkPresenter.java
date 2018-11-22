@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ZX on 2018/9/28
@@ -19,11 +20,11 @@ import java.util.List;
 public class VideoDetailRemarkPresenter extends BasePresenter<MVPView> {
 
     //获取评论数据
-    public void getRemarkData(String url, List<String> params, List<Object> values, final List<VideoRemark> remarkData, final boolean isClear){
+    public void getRemarkData(String url, Map<String,Object> params_values, final List<VideoRemark> remarkData, final boolean isClear){
         if(!isViewAttach()){
             return;
         }
-        Model.postData(9, url, params, values, new CallBack<String>() {
+        Model.postData(9, url, params_values, new CallBack<String>() {
             @Override
             public void onLoading() {
                 getView().showLoading();
@@ -82,11 +83,11 @@ public class VideoDetailRemarkPresenter extends BasePresenter<MVPView> {
     }
 
     //发送评论数据
-    public void sendRemarkData(String url,List<String> params,List<Object> values){
+    public void sendRemarkData(String url,Map<String,Object> params_values){
         if(!isViewAttach()){
             return;
         }
-        Model.postData(10, url, params, values, new CallBack<String>() {
+        Model.postData(10, url, params_values, new CallBack<String>() {
             @Override
             public void onLoading() {
                 getView().showLoading();

@@ -62,25 +62,11 @@ public class LiveFragment extends BaseFragment implements MVPView {
         recyclerView.setOnRefreshListener(new HTRefreshListener() {
             @Override
             public void onRefresh() {
-                params.clear();
-                values.clear();
-                params.add("coId");
-                values.add(MyApplication.getDaoSession().getUserInfoDao().loadAll().get(0).getCoId());
-                liveListPresenter.getLiveData(params,values,data);
+                params_values.clear();
+                params_values.put("coId",MyApplication.getDaoSession().getUserInfoDao().loadAll().get(0).getCoId());
+                liveListPresenter.getLiveData(params_values,data);
             }
         });
-        //对列表设置滑动监听,实现标题栏渐变
-       recyclerView.addOnScrollListener(new HTBaseRecyclerView.OnScrollListener() {
-           @Override
-           public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-
-           }
-
-           @Override
-           public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-
-           }
-       });
     }
 
     @Override
@@ -94,11 +80,9 @@ public class LiveFragment extends BaseFragment implements MVPView {
     protected void loadData() {
         liveListPresenter=new LiveListPresenter();
         liveListPresenter.attachView(this);
-        params.clear();
-        values.clear();
-        params.add("coId");
-        values.add(MyApplication.getDaoSession().getUserInfoDao().loadAll().get(0).getCoId());
-        liveListPresenter.getLiveData(params,values,data);
+        params_values.clear();
+        params_values.put("coId",MyApplication.getDaoSession().getUserInfoDao().loadAll().get(0).getCoId());
+        liveListPresenter.getLiveData(params_values,data);
     }
 
     @Override

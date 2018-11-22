@@ -88,15 +88,11 @@ public class LiveRemarkFragment extends BaseFragment implements MVPView,View.OnC
     @Override
     protected void loadData() {
         userInfo= MyApplication.getDaoSession().getUserInfoDao().loadAll().get(0);
-        params.clear();
-        values.clear();
-        params.add("max");
-        params.add("commId");
-        params.add("liveId");
-        values.add("");
-        values.add("");
-        values.add(liveId);
-        remarkPresenter.getRemarkData(1,getContent_Url,params,values,liveRemarkData);
+        params_values.clear();
+        params_values.put("max","");
+        params_values.put("commId","");
+        params_values.put("liveId",liveId);
+        remarkPresenter.getRemarkData(1,getContent_Url,params_values,liveRemarkData);
     }
 
     @Override
@@ -128,17 +124,12 @@ public class LiveRemarkFragment extends BaseFragment implements MVPView,View.OnC
                 ShowToast.setToastShort("评论内容不能为空哦^_^");
             }else {
                 //发送评论信息
-                params.clear();
-                values.clear();
-                params.add("coId");
-                params.add("liveId");
-                params.add("userId");
-                params.add("commContent");
-                values.add(userInfo.getCoId());
-                values.add(liveId);
-                values.add(userInfo.getUserId());
-                values.add(content);
-                remarkPresenter.getRemarkData(2,sendContent_Url,params,values,null);
+                params_values.clear();
+                params_values.put("coId",userInfo.getCoId());
+                params_values.put("liveId",liveId);
+                params_values.put("commContent",content);
+                params_values.put("userId",userInfo.getUserId());
+                remarkPresenter.getRemarkData(2,sendContent_Url,params_values,null);
 
             }
 

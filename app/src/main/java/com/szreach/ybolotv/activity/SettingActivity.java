@@ -60,15 +60,11 @@ public class SettingActivity extends BaseActivity implements MVPView {
                 if(!settingOldPsd.getText().toString().trim().equals("")){
                     if(!settingNewPsd.getText().toString().trim().equals("")){
                        if(!settingConfirmPsd.getText().toString().trim().equals("")){
-                           params.clear();
-                           values.clear();
-                           params.add("newpwd");
-                           params.add("oldpwd");
-                           params.add("userLogin");
-                           values.add(settingNewPsd.getText().toString().trim());
-                           values.add(settingOldPsd.getText().toString().trim());
-                           values.add(userInfo.getUserName());
-                           settingPresenter.sendPsd(url,params,values);
+                           parama_values.clear();
+                           parama_values.put("newpwd",settingNewPsd.getText().toString().trim());
+                           parama_values.put("oldpwd",settingOldPsd.getText().toString().trim());
+                           parama_values.put("userLogin",userInfo.getUserName());
+                           settingPresenter.sendPsd(url,parama_values);
                        }else {
                            ShowToast.setToastShort("确认密码不能为空！");
                        }

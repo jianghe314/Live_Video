@@ -16,18 +16,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ZX on 2018/9/18
  */
 public class LoginPresenter extends BasePresenter<MVPView> {
 
-    public void Login(List<String> params,List<Object> values){
+    public void Login(Map<String,Object> params_values){
         if(!isViewAttach()){
             //没有持有View直接返回
             return;
         }
-        Model.postData(0, Interface.Login(), params, values, new CallBack<String>() {
+        Model.postData(0, Interface.Login(), params_values, new CallBack<String>() {
             @Override
             public void onLoading() {
                 //显示耗时

@@ -14,12 +14,12 @@ import com.szreach.ybolotv.widgets.ErrorDialog;
 import com.szreach.ybolotv.widgets.WaitDialog;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ZX on 2018/9/18
- * 这个基类有个bug，在一些情况下，如：前一个页面传递一个数据，给当前页面时
- * 特别是这些参数用于网络请求，会先加载网络数据，这是传递的数据还没有到，即请求先于加载View
  */
 public abstract class BaseFragment extends Fragment implements BaseView{
 
@@ -30,8 +30,7 @@ public abstract class BaseFragment extends Fragment implements BaseView{
     private WaitDialog waitDialog;
     private ErrorDialog errorDialog;
 
-    protected List<String> params=new ArrayList<>();
-    protected List<Object> values=new ArrayList<>();
+    protected Map<String,Object> params_values=new HashMap<>();
 
 
     @Nullable
@@ -95,8 +94,8 @@ public abstract class BaseFragment extends Fragment implements BaseView{
     //此方法会在onCreate()方法之前调用一次，当视图切换到当前fragment时，还会调用一次
     //相应的getgetUserVisibleHint()先为false,然后为true
 
-    /*
-    @Override
+
+    /*@Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if(isVisibleToUser&&!isLoad){
@@ -104,8 +103,9 @@ public abstract class BaseFragment extends Fragment implements BaseView{
         }else {
             stopLoad();
         }
-    }
-    */
+    }*/
+
+
 
 
     protected abstract int setContentView();
