@@ -3,11 +3,17 @@ package com.szreach.ybolotv.activity;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.szreach.ybolotv.R;
@@ -23,122 +29,106 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
 
     @BindView(R.id.view_pager)
     ViewPager viewPager;
-    @BindView(R.id.tab_menu_live_iv)
-    ImageView tabMenuLiveIv;
-    @BindView(R.id.tab_menu_live_tv)
-    TextView tabMenuLiveTv;
-    @BindView(R.id.tab_menu1)
-    RelativeLayout tabMenu1;
-    @BindView(R.id.tab_menu_tv_iv)
-    ImageView tabMenuTvIv;
-    @BindView(R.id.tab_menu_tv_tv)
-    TextView tabMenuTvTv;
-    @BindView(R.id.tab_menu2)
-    RelativeLayout tabMenu2;
-    @BindView(R.id.tab_menu_me_iv)
-    ImageView tabMenuMeIv;
-    @BindView(R.id.tab_menu_me_tv)
-    TextView tabMenuMeTv;
-    @BindView(R.id.tab_menu3)
-    RelativeLayout tabMenu3;
+    @BindView(R.id.bottom_nav_view)
+    BottomNavigationView bottomNavView;
 
-    private List<BaseFragment> fragmentList=new ArrayList<>();
+    private List<BaseFragment> fragmentList = new ArrayList<>();
     private FragmentAdapter fragmentAdapter;
+
+    private  enum FragmentItem{
+
+        LiveFragment(R.id.tab_menu1,LiveFragment.class),
+        VideoFragment(R.id.tab_menu2,VideoFragment.class),
+        personFragment(R.id.tab_menu3,HomeFragment.class);
+
+        private BaseFragment fragment;
+        private Class<? extends BaseFragment> aClass;
+        private int Id;
+        FragmentItem(@IdRes int Id,Class<? extends BaseFragment> aClass){
+            this.aClass=aClass;
+            this.Id=Id;
+        }
+
+        public  BaseFragment fragment(){
+            if(fragment == null){
+                try {
+                    fragment=aClass.newInstance();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            return fragment;
+        }
+
+
+        public static FragmentItem from(@IdRes int Id){
+            for (FragmentItem fragmentItem:values()) {
+                if(fragmentItem.Id == Id){
+                    return fragmentItem;
+                }
+            }
+            return LiveFragment;
+        }
+
+        public static void onDestory(){
+            for (FragmentItem Item:values()) {
+                Item=null;
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        fragmentList.add(new LiveFragment());
-        fragmentList.add(new VideoFragment());
-        fragmentList.add(new HomeFragment());
-        fragmentAdapter=new FragmentAdapter(getSupportFragmentManager(),fragmentList);
-        viewPager.setAdapter(fragmentAdapter);
+        bottomNavView.setOnNavigationItemSelectedListener(this);
         viewPager.setOffscreenPageLimit(2);
         viewPager.setCurrentItem(0);       //默认选中第一个
-        setSelect(tabMenuLiveIv,tabMenuLiveTv);
+        viewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                return FragmentItem.values()[position].fragment();
+            }
+
+            @Override
+            public int getCount() {
+                return FragmentItem.values().length;
+            }
+        });
         viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
             @Override
             public void onPageSelected(int position) {
-                switch (position){
-                    case 0:
-                        unSelect();
-                        setSelect(tabMenuLiveIv,tabMenuLiveTv);
-                        viewPager.setCurrentItem(0,false);
-                        break;
-                    case 1:
-                        unSelect();
-                        setSelect(tabMenuTvIv,tabMenuTvTv);
-                        viewPager.setCurrentItem(1,false);
-                        break;
-                    case 2:
-                        unSelect();
-                        setSelect(tabMenuMeIv,tabMenuMeTv);
-                        viewPager.setCurrentItem(2,false);
-                        break;
-                }
+                bottomNavView.setSelectedItemId(FragmentItem.values()[position].Id);
             }
         });
 
     }
 
 
-    @OnClick({R.id.tab_menu1, R.id.tab_menu2, R.id.tab_menu3})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.tab_menu1:
-                unSelect();
-                setSelect(tabMenuLiveIv,tabMenuLiveTv);
-                viewPager.setCurrentItem(0,false);
-                break;
-            case R.id.tab_menu2:
-                unSelect();
-                setSelect(tabMenuTvIv,tabMenuTvTv);
-                viewPager.setCurrentItem(1,false);
-                break;
-            case R.id.tab_menu3:
-                unSelect();
-                setSelect(tabMenuMeIv,tabMenuMeTv);
-                viewPager.setCurrentItem(2,false);
-                break;
-        }
-    }
-
-
-    private void unSelect(){
-        tabMenuLiveIv.setSelected(false);
-        tabMenuTvIv.setSelected(false);
-        tabMenuMeIv.setSelected(false);
-
-        tabMenuLiveTv.setSelected(false);
-        tabMenuTvTv.setSelected(false);
-        tabMenuMeTv.setSelected(false);
-    }
-
-    private void setSelect(ImageView iv,TextView tv){
-        iv.setSelected(true);
-        tv.setSelected(true);
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        viewPager.setCurrentItem(FragmentItem.from(item.getItemId()).ordinal(),false);
+        return true;
     }
 
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setMessage("是否确认退出？");
         builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                SharedPreferences sp=getSharedPreferences("Status",MODE_PRIVATE);
-                SharedPreferences.Editor editor=sp.edit();
-                editor.putBoolean("logout",false);
+                SharedPreferences sp = getSharedPreferences("Status", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putBoolean("logout", false);
                 editor.apply();
                 dialogInterface.dismiss();
                 finish();
@@ -151,5 +141,12 @@ public class MainActivity extends BaseActivity {
             }
         });
         builder.create().show();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        FragmentItem.onDestory();
     }
 }

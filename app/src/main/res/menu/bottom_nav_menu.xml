@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/tab_menu1"
+        android:icon="@drawable/tab_menu_icon_live"
+        android:title="@string/tab_menu_live"/>
+
+    <item android:id="@+id/tab_menu2"
+        android:icon="@drawable/tab_menu_icon_video"
+        android:title="@string/tab_menu_tv"/>
+
+    <item android:id="@+id/tab_menu3"
+        android:icon="@drawable/tab_menu_icon_user"
+        android:title="@string/tab_menu_me"/>
+
+</menu>

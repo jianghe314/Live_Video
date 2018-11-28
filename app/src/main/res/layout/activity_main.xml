@@ -21,12 +21,8 @@
 
     </FrameLayout>
 
-    <View
-        android:background="@color/color_line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
 
-    <LinearLayout
+    <!--<LinearLayout
         android:background="@color/color_tab_menu"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -125,5 +121,13 @@
         </RelativeLayout>
 
     </LinearLayout>
+    -->
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_nav_view"
+        app:menu="@menu/bottom_nav_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.design.widget.BottomNavigationView>
 
 </LinearLayout>
