@@ -119,6 +119,7 @@ public class LiveDetailActivity extends BaseActivity implements MVPView{
         String url=PcdnManager.PCDNAddress(PcdnType.LIVE,(String) data);
         mLog.e("直播地址","-->"+url);
         yboloPlayer.setDataSources(url);
+        //yboloPlayer.setDataSources("udp://172.16.32.234:8889");
     }
 
     @OnClick({R.id.live_detail_back, R.id.live_share, R.id.live_detail_intro_container, R.id.live_detail_remark_container})

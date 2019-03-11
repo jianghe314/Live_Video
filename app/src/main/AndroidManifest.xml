@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.szreach.ybolotv">
-
     <!-- 允许程序打开网络套接字 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 允许程序设置内置sd卡的写权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- 允许程序获取网络状态 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- 允许程序访问WiFi网络信息 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 允许程序设置内置sd卡的写权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 允许程序获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 允许程序访问WiFi网络信息 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
@@ -19,14 +15,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".activity.SplashActivity"
-            android:theme="@style/SplashTheme">
+        <activity android:name=".activity.TestActivity">
             <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.SplashActivity"
+            android:theme="@style/SplashTheme">
+
         </activity>
         <activity
             android:name=".activity.LoginActivity"
@@ -35,20 +35,18 @@
             android:name=".activity.MainActivity"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity android:name=".activity.LiveDetailActivity"
-            android:theme="@style/AppTheme"/>
-
-        <activity android:name=".activity.VideoDetailActivity"
-            android:theme="@style/AppTheme"/>
-
-        <activity android:name=".activity.UserInfoActivity"
-            android:theme="@style/AppTheme"/>
-
-        <activity android:name=".activity.SettingActivity"
-            android:theme="@style/AppTheme"/>
-
-        <!-- 照片存储provider -->
+        <activity
+            android:name=".activity.LiveDetailActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.VideoDetailActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.UserInfoActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.SettingActivity"
+            android:theme="@style/AppTheme" /> <!-- 照片存储provider -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.szreach.ybolotv.provider"
