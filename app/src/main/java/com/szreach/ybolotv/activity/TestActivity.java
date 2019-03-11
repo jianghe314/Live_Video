@@ -29,7 +29,7 @@ public class TestActivity extends AppCompatActivity implements SurfaceHolder.Cal
     @BindView(R.id.surface_view)
     SurfaceView surfaceView;
     private MediaPlayer mediaPlayer;
-    private String str="分支测试";
+    private String str="往master分支提交代码";
     private String Address="udp://192.168.1.1:2256";
 
     @Override
